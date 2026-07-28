@@ -4049,6 +4049,10 @@ body#user .user_title {
   display: block;
 }
 
+.box_torrents > div:has(> table) {
+  overflow: auto;
+}
+
 #likesrow td,
 #uploadsrow td,
 #snatchesrow td {
@@ -4095,7 +4099,7 @@ body#user .user_title {
 
 /****************************************************************************
 9.7 collections */
-.collage_images {
+.collage_images:not(.hidden) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -5633,8 +5637,8 @@ table.calendar td.calendar-day.today .day-number {
     padding: 8px 9px;
   }
 
-  #vanityhouse,
-  #vanityhouse tbody {
+  #vanityhouse:not(.hidden),
+  #vanityhouse:not(.hidden) tbody {
     display: block;
   }
   #vanityhouse tr {
