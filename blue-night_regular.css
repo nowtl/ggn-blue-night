@@ -5908,7 +5908,7 @@ tr.likes > td:first-child > a:hover {
   top: 0;
   right: 1.1em;
   bottom: 0;
-  width: 0.72em;
+  width: 0.6rem;
   background-color: #0b0f1b;
 }
 
@@ -5918,7 +5918,7 @@ tr.likes > td:first-child > a:hover {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0.1em;
+  right: 0.5rem;
   width: 10px;
   height: 10px;
   transform: translateY(-50%);
