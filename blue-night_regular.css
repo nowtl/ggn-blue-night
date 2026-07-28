@@ -2807,7 +2807,7 @@ span.spoiler-show * {
 .panel .username + img {
    margin: 0 2.5px;
    position: relative;
-   top: -2px;
+   top: 2px;
 }
 
 
