@@ -1437,6 +1437,17 @@ img[src*="common/thumbsdown.png"] {
           mask: url("assets/icons/ui/thumbs-down.svg") center / contain no-repeat;
 }
 
+img[src*="game_room/images/upvote.png"] {
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  padding-left: 14px;
+  background-size: contain;
+  background-color: #c7d0e0;
+  -webkit-mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+}
+
 .staff-toolbar {
   display: table;
   margin-left: auto;
@@ -3099,6 +3110,10 @@ img[src="static/forums/locked_read.png"] {
   display: none;
 }
 
+.center {
+  text-align: center;
+}
+
 .nobr {
   white-space: nowrap;
 }
@@ -3748,22 +3763,32 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   display: inline;
 }
 #slides .slides_container.staff_pick {
-  height: 340px;
+  height: 360px !important;
+}
+
+#slides .slides_control {
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
 }
 
 #slides .slides_control > ul.nobullet {
-  width: 246px;
-  height: 340px;
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  top: 0 !important;
+  left: 0 !important;
   box-sizing: border-box;
   padding: 4px 6px 0;
   text-align: center;
 }
 
 #slides .slides_container.staff_pick img {
+  display: block;
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 290px;
+  max-width: 220px;
+  max-height: 320px;
   margin: 0 auto 8px;
   object-fit: contain;
   border-radius: 6px;
@@ -5409,18 +5434,22 @@ body {
   padding: 7px 10px !important;
 }
 
-#threadpoll p {
+p:has(+ ul.poll) {
   margin: 0 0 0.6rem;
   color: #e6ebf5;
   font-size: 0.8rem;
 }
 
-#threadpoll ul.poll {
+ul.poll {
   margin: 0;
   padding: 0;
 }
 
-#threadpoll ul.poll > li {
+ul.poll > br {
+  display: none;
+}
+
+ul.poll > li {
   margin: 0;
   padding: 0;
   color: #c7d0e0;
@@ -5428,7 +5457,7 @@ body {
   line-height: 1.15rem;
 }
 
-#threadpoll ul.poll > li.graph {
+ul.poll > li.graph {
   height: 8px;
   margin: 0.15rem 0 0.55rem;
   overflow: hidden;
@@ -5438,12 +5467,12 @@ body {
   border-radius: 4px;
 }
 
-#threadpoll #left_poll,
-#threadpoll #right_poll {
+ul.poll #left_poll,
+ul.poll #right_poll {
   display: none;
 }
 
-#threadpoll #center_poll {
+ul.poll #center_poll {
   display: block;
   height: 100%;
   min-width: 2px;
@@ -5567,6 +5596,20 @@ table.calendar td.calendar-day.today .day-number {
 }
 
 @media (max-width: 768px) {
+  .thin {
+    display: flex;
+    flex-direction: column;
+  }
+  .main_column_bg {
+    order: 1;
+    width: 100%;
+  }
+  .sidebar {
+    order: 2;
+    float: none;
+    width: 100%;
+  }
+
   #header {
     display: flex;
     flex-direction: column;
