@@ -5685,6 +5685,52 @@ td.read_locked_sticky {
   max-height: 16px;
 }
 
+.forum_post p.forumstat {
+  margin: 10px 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid #3a4056;
+  font-size: 0.68rem;
+  line-height: 1.1rem;
+}
+
+.forum_post p.forumstat > strong,
+.forum_post #achievement_info > strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.7rem;
+}
+
+.forum_post p.forumstat > strong + br,
+.forum_post #achievement_info > strong + br {
+  display: none;
+}
+
+.forum_post #active_status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.forum_post #active_status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #6b7080;
+}
+
+.forum_post #active_status.user_online::before {
+  background-color: #55b160;
+}
+
+.forum_post #achievement_info {
+  display: block;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid #3a4056;
+}
+
 #forums .sub,
 #comments .sub,
 .sub:has(+ .forum_post) {
