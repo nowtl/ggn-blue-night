@@ -1999,7 +1999,7 @@ textarea::placeholder {
   background: #1e2333;
   margin: 0 auto;
   overflow: auto;
-  padding: 0 15px;
+  padding: 0 15px 15px;
   font-size: 0.75rem;
   border-top: none;
   box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.6);
@@ -3262,6 +3262,11 @@ img[src="static/forums/locked_read.png"] {
   font-size: 0.75rem;
 }
 
+.linkbox.pager .selected > a {
+  color: #fff;
+  font-weight: 700;
+}
+
 
 /****************************************************************************
   4.1 CSS Animation/Keyframes */
@@ -3447,6 +3452,16 @@ div.show_torrents {
   background: none;
   color: inherit;
   font-weight: 700;
+}
+
+#grouplinks td:has(> a) {
+  position: relative;
+}
+
+#grouplinks td > a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 #grouplinks .windows,
@@ -3841,9 +3856,10 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   display: inline-block !important; 
   white-space: nowrap; 
   overflow: hidden;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
   width: 340px;
-  font-size: 0.6rem;
+  font-size: 0;
+  vertical-align: middle;
 }
 #group_tags, #theme_collections, .sidebar .calendar,.theme_collections {
   padding: 0.75rem 1rem;
@@ -4221,10 +4237,35 @@ body#user .user_title {
 .large_progress_bar .main_bar {
   top: 0;
   left: 0;
+  z-index: 1;
   height: 100%;
   min-width: 2px;
   background-color: #4281da;
   border-radius: 4px;
+}
+
+.large_progress_bar .main_section,
+.large_progress_bar .bonus_section {
+  top: 0;
+  height: 100%;
+}
+
+.large_progress_bar .main_section {
+  left: 0;
+}
+
+.large_progress_bar .bonus_section {
+  right: 0;
+  background-color: #232a3d;
+  border-radius: 0 3px 3px 0;
+}
+
+.large_progress_bar [class*="_marker"] {
+  top: 100%;
+  right: 0;
+  margin-top: 5px;
+  color: #99a1b3;
+  text-align: left;
 }
 
 .large_progress_bar .points {
@@ -4262,8 +4303,12 @@ body#user .user_title {
   margin: 12px 0 0;
 }
 
-#tokens_breakdown {
-  margin-bottom: 15px;
+#share_score .linkbox {
+  margin: 24px 0 0;
+}
+
+#content:has(#share_score) > span:first-child {
+  margin: 0.9rem 0.25rem 0 0;
 }
 
 /****************************************************************************
@@ -4891,14 +4936,7 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
   margin: 0 1px;
   padding: 0;
   line-height: 20px;
-}
-#userinfo #nav_donate {
-  position: relative;
-  display: inline;
-  vertical-align: middle;
-  margin: 0 1px;
-  padding: 0;
-  line-height: 20px;
+  white-space: nowrap;
 }
 #userinfo .welcome {
   font-size: 0; /* Hides the "Welcome, " text node */
@@ -4929,20 +4967,20 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
 #nav_userinfo a.username:hover::after {
   background-color: #4281da;
 }
-#userinfo #nav_donate .r00, 
-#userinfo #nav_donate .r01, 
-#userinfo #nav_donate .r02, 
-#userinfo #nav_donate .r03 {color: #BF6A6A;}
-#userinfo #nav_donate .r04, 
-#userinfo #nav_donate .r05, 
-#userinfo #nav_donate .r06, 
-#userinfo #nav_donate .r07, 
-#userinfo #nav_donate .r08 {color: #D9E473;}
-#userinfo #nav_donate .r09, 
-#userinfo #nav_donate .r10, 
-#userinfo #nav_donate .r20, 
-#userinfo #nav_donate .r50, 
-#userinfo #nav_donate .r99 {color: #69C077;}
+.r00,
+.r01,
+.r02,
+.r03 {color: #BF6A6A;}
+.r04,
+.r05,
+.r06,
+.r07,
+.r08 {color: #D9E473;}
+.r09,
+.r10,
+.r20,
+.r50,
+.r99 {color: #69C077;}
 #us_pop {
   background-color: rgba(7, 11, 22, 0.9);
   position: absolute;
@@ -5950,6 +5988,11 @@ td.read_locked_sticky {
   max-height: 16px;
 }
 
+.forum_post .signature {
+  font-size: 0.7rem;
+  color: #99a1b3;
+}
+
 .forum_post p.forumstat {
   margin: 10px 0 0;
   padding-top: 0.5rem;
@@ -6050,6 +6093,18 @@ td.read_locked_sticky {
   background-color: #363d52;
 }
 
+.torrent_table > tbody > tr.sticky > td:has(> .tags_ratings)::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.25rem;
+  vertical-align: -1px;
+  background-color: #4281da;
+  -webkit-mask: url("assets/icons/ui/pin.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/pin.svg") center / contain no-repeat;
+}
+
 .torrent_table td.edition_info {
   padding: 0.3rem 0.6rem;
   background-color: #262b39;
@@ -6062,11 +6117,20 @@ td.read_locked_sticky {
   font-weight: 600;
 }
 
-.torrent_table .tags_ratings .tags {
-  font-size: 0;
+.tags_ratings .rating_container {
+  display: inline-block;
+  margin: 0 0.15rem 0 0;
+  padding: 0 0.3rem;
+  color: #c7d0e0;
+  font-size: 0.6rem;
+  font-weight: 600;
+  vertical-align: middle;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 2px;
 }
 
-.torrent_table .tags_ratings .tags a {
+.torrent_table .tags a {
   display: inline-block;
   margin: 0 0.15rem 0 0;
   padding: 0 0.3rem;
@@ -6077,7 +6141,7 @@ td.read_locked_sticky {
   border-radius: 2px;
 }
 
-.torrent_table .tags_ratings .tags a:hover {
+.torrent_table .tags a:hover {
   color: #c7d0e0;
   border-color: #4281da;
 }
@@ -6141,6 +6205,10 @@ td.read_locked_sticky {
 
 /****************************************************************************
 9.17  Forum post like / dislike (tr.likes) */
+tr.likes > td {
+  vertical-align: top;
+}
+
 tr.likes > td:first-child {
   font-size: 0;
 }
@@ -6911,7 +6979,8 @@ tr.likes > td:first-child > a:hover {
   text-align: center;
 }
 
-#allreviewslink a {
+#allreviewslink a,
+#content:has(#share_score) > span:first-child > a {
   display: inline-block;
   padding: 0.4rem 1rem;
   color: #fff;
@@ -6925,7 +6994,8 @@ tr.likes > td:first-child > a:hover {
   transition: all 0.3s;
 }
 
-#allreviewslink a:hover {
+#allreviewslink a:hover,
+#content:has(#share_score) > span:first-child > a:hover {
   color: #fff;
   background: #4281da;
 }
