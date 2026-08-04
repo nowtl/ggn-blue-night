@@ -2579,16 +2579,36 @@ img[title="Snatches"] {
           mask: url("assets/icons/ui/download.svg") center / contain no-repeat;
 }
 
-img[title="Seeders"] {
+img[title="Seeders"],
+img[title="Uploaded"] {
   background-color: #fff;
   -webkit-mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
           mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
 }
 
-img[title="Leechers"] {
+img[title="Leechers"],
+img[title="Downloaded"] {
   background-color: #fff;
   -webkit-mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
           mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
+}
+
+img[title="Ratio"] {
+  background-color: #fff;
+  -webkit-mask: url("assets/icons/ui/arrow-down-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-down-up.svg") center / contain no-repeat;
+}
+
+img[title="Gold"] {
+  width: 13px;
+  height: 13px;
+  box-sizing: border-box;
+  padding-left: 13px;
+  vertical-align: -2px;
+  background-color: #e0b64d;
+  background-size: contain;
+  -webkit-mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
 }
 
 #browse_settings,
@@ -2597,7 +2617,10 @@ img[title="Time"],
 img[src="static/common/time.png"],
 img[title="Snatches"],
 img[title="Seeders"],
-img[title="Leechers"] {
+img[title="Leechers"],
+img[title="Uploaded"],
+img[title="Downloaded"],
+img[title="Ratio"] {
   width: 14px;
   height: 14px;
   box-sizing: border-box;
@@ -4162,6 +4185,18 @@ body#user .user_title {
 
 .box_stats .stats > li.status.online::before {
   background-color: #55b160;
+}
+
+.box_stats #gold .stat::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.25rem;
+  vertical-align: -2px;
+  background-color: #e0b64d;
+  -webkit-mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
 }
 
 .review_qtip {
@@ -6105,6 +6140,69 @@ td.read_locked_sticky {
           mask: url("assets/icons/ui/pin.svg") center / contain no-repeat;
 }
 
+.torrent_table a[id^="bookmarklink_"] {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  overflow: hidden;
+  vertical-align: -2px;
+  font-size: 0;
+  background-color: #99a1b3;
+  -webkit-mask: url("assets/icons/ui/bookmark.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/bookmark.svg") center / contain no-repeat;
+  transition: background-color 0.2s;
+}
+
+.torrent_table a.removebookmark[id^="bookmarklink_"] {
+  background-color: #4281da;
+}
+
+.torrent_table a[id^="bookmarklink_"]:hover {
+  background-color: #c7d0e0;
+}
+
+.torrent_table .checked,
+.torrent_table .notchecked {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+.torrent_table .checked {
+  background-color: #69c077;
+  -webkit-mask-image: url("assets/icons/ui/badge-check.svg");
+          mask-image: url("assets/icons/ui/badge-check.svg");
+}
+
+.torrent_table .notchecked {
+  background-color: #bf6a6a;
+  -webkit-mask-image: url("assets/icons/ui/x.svg");
+          mask-image: url("assets/icons/ui/x.svg");
+}
+
+.torrent_table td.userrating {
+  font-weight: 600;
+}
+
+.torrent_table td#upvote {
+  color: #69c077;
+}
+
+.torrent_table td#downvote {
+  color: #bf6a6a;
+}
+
+.torrent_table td#novote {
+  color: #6b7080;
+}
+
 .torrent_table td.edition_info {
   padding: 0.3rem 0.6rem;
   background-color: #262b39;
@@ -6128,6 +6226,17 @@ td.read_locked_sticky {
   background-color: #262b39;
   border: 1px solid #363d52;
   border-radius: 2px;
+}
+
+#torrent_history_table .tags {
+  display: inline-block;
+  max-width: 340px;
+  overflow: hidden;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #99a1b3;
+  font-size: 0.6rem;
 }
 
 .torrent_table .tags a {
@@ -6980,7 +7089,8 @@ tr.likes > td:first-child > a:hover {
 }
 
 #allreviewslink a,
-#content:has(#share_score) > span:first-child > a {
+#content:has(#share_score) > span:first-child > a,
+#content:has(> h3 a[href*="content_filter"]) > h3 > a {
   display: inline-block;
   padding: 0.4rem 1rem;
   color: #fff;
@@ -6995,7 +7105,8 @@ tr.likes > td:first-child > a:hover {
 }
 
 #allreviewslink a:hover,
-#content:has(#share_score) > span:first-child > a:hover {
+#content:has(#share_score) > span:first-child > a:hover,
+#content:has(> h3 a[href*="content_filter"]) > h3 > a:hover {
   color: #fff;
   background: #4281da;
 }
@@ -7279,4 +7390,48 @@ tr.likes > td:first-child > a:hover {
 .error_message a {
   color: #f0cccc;
   text-decoration: underline;
+}
+
+#content:has(> h3 a[href*="content_filter"]) {
+  padding: 3rem 15px;
+  text-align: center;
+}
+
+#content:has(> h3 a[href*="content_filter"])::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 0.85rem;
+  background-color: #bf6a6a;
+  -webkit-mask: url("assets/icons/ui/shield.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/shield.svg") center / contain no-repeat;
+}
+
+#content:has(> h3 a[href*="content_filter"]) > br {
+  display: none;
+}
+
+#content:has(> h3 a[href*="content_filter"]) > h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+#content:has(> h3 a[href*="content_filter"]) > h2 {
+  margin: 0 0 1.1rem;
+  color: #a0a6b7;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+#content:has(> h3 a[href*="content_filter"]) > p {
+  max-width: 460px;
+  margin: 0 auto 0.55rem;
+  color: #c7d0e0;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+#content:has(> h3 a[href*="content_filter"]) > h3 {
+  margin: 1.4rem 0 0;
 }
