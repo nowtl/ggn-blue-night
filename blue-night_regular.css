@@ -4914,6 +4914,70 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
   padding-left: 20px;
 }
 
+#wiki .box .pad {
+  line-height: 1.6;
+}
+
+#wiki .box.wiki_article .pad > div:first-child {
+  margin: 0 0 1rem;
+  padding-bottom: 0.55rem;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-bottom: 1px solid #3a4056;
+}
+
+#wiki .main_column h3 {
+  margin: 1.6rem 0 0.5rem;
+  padding-bottom: 0.35rem;
+  color: #fff;
+  font-size: 1rem;
+  border-bottom: 1px solid #3a4056;
+}
+
+#wiki .main_column h4 {
+  margin: 1.4rem 0 0.45rem;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+#wiki .main_column h5 {
+  margin: 1.1rem 0 0.35rem;
+  color: #c7d0e0;
+  font-size: 0.8rem;
+}
+
+#wiki .main_column :is(h3, h4, h5, h6) + br,
+#wiki .main_column br:has(+ :is(h3, h4, h5, h6)) {
+  display: none;
+}
+
+#wiki .main_column .postlist {
+  margin: 0.4rem 0 0.9rem;
+}
+
+#wiki .main_column ul.postlist {
+  padding-left: 2px;
+  list-style: none;
+}
+
+#wiki .main_column ul.postlist > li {
+  position: relative;
+  padding: 1px 0 1px 14px;
+  list-style: none;
+}
+
+#wiki .main_column ul.postlist > li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #4281da;
+}
+
 #userinfo a {
   text-decoration: none;
   color: #949aac;
