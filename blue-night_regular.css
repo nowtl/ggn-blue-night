@@ -4427,32 +4427,46 @@ body#user .user_title {
   margin: 0;
 }
 
-.collections_art_display td {
+.collections_art_display,
+.gazelles_art_display {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.collections_art_display td,
+.gazelles_art_display td {
   width: 25%;
+  vertical-align: top;
 }
 
 @media (max-width: 900px) {
   .collections_art_display,
-  .collections_art_display tbody {
+  .collections_art_display tbody,
+  .gazelles_art_display,
+  .gazelles_art_display tbody {
     display: block;
   }
-  .collections_art_display tr {
+  .collections_art_display tr,
+  .gazelles_art_display tr {
     display: flex;
     flex-wrap: wrap;
   }
-  .collections_art_display td {
+  .collections_art_display td,
+  .gazelles_art_display td {
     width: 50%;
     box-sizing: border-box;
   }
 }
 
 @media (max-width: 520px) {
-  .collections_art_display td {
+  .collections_art_display td,
+  .gazelles_art_display td {
     width: 100%;
   }
 }
 
-#collections .hovereffect {
+#collections .hovereffect,
+#gazelles .hovereffect {
   display: flex;
   flex-direction: column;
   background: #2f3547;
@@ -4463,11 +4477,13 @@ body#user .user_title {
   transition: border-color 0.2s;
 }
 
-#collections .hovereffect:hover {
+#collections .hovereffect:hover,
+#gazelles .hovereffect:hover {
   border-color: #4281da;
 }
 
-#collections .collection_art {
+#collections .collection_art,
+#gazelles .gazelle_art {
   flex: 0 0 auto;
   height: 92px;
   border-bottom: 1px solid #3a4056;
@@ -4476,22 +4492,62 @@ body#user .user_title {
   background-repeat: no-repeat !important;
 }
 
-#collections .hovereffect .overlay {
+#collections .hovereffect .overlay,
+#gazelles .hovereffect .overlay {
   position: static;
   margin: 0;
   padding: 8px 11px;
   background: none;
 }
 
-#collections .hovereffect .overlay h2 {
+#collections .hovereffect .overlay h2,
+#gazelles .hovereffect .overlay h2 {
   margin: 0 0 3px;
   font-size: 0.82rem;
-  line-height: 1.2;
+  line-height: 1.35;
   color: #fff;
 }
 
-#collections .hovereffect .overlay a {
+#gazelles .hovereffect .overlay h2 > div {
+  margin-top: 5px !important;
+  line-height: 1.4;
+}
+
+#collections .hovereffect .overlay a,
+#gazelles .hovereffect .overlay a {
   color: #8fb4ff;
+}
+
+#gazelles .hovereffect .overlay span {
+  color: #99a1b3;
+  font-size: 0.72rem;
+}
+
+#gazelles .gazellepic img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+#gazelletags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+}
+
+#gazelletags > li {
+  margin: 0;
+  padding: 1px 0.3rem;
+  color: #99a1b3;
+  font-size: 0.6rem;
+  line-height: 1.5;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 2px;
 }
 
 /****************************************************************************
@@ -4539,7 +4595,9 @@ body:has(#items_list, #items-wrapper) .pad ul li::before {
   background: #4281da;
 }
 
-.center:has(> #shop_search) {
+.center:has(> #shop_search),
+.center:has(> .requests_outer_table),
+.center:has(> .search_form) {
   text-align: left;
 }
 
@@ -6331,7 +6389,12 @@ td.read_locked_sticky {
   font-size: 0.6rem;
 }
 
-.torrent_table .tags a {
+.request_table .tags {
+  font-size: 0;
+}
+
+.torrent_table .tags a,
+.request_table .tags a {
   display: inline-block;
   margin: 0 0.15rem 0 0;
   padding: 0 0.3rem;
@@ -6342,7 +6405,8 @@ td.read_locked_sticky {
   border-radius: 2px;
 }
 
-.torrent_table .tags a:hover {
+.torrent_table .tags a:hover,
+.request_table .tags a:hover {
   color: #c7d0e0;
   border-color: #4281da;
 }
