@@ -6893,6 +6893,7 @@ tr.likes > td:first-child > a:hover {
 #users_reviews .reviews_table {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -7269,6 +7270,103 @@ tr.likes > td:first-child > a:hover {
 
 #show_recommend_to_friend:hover {
   color: #8fb4ff;
+}
+
+.comment_rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 0.5rem;
+  margin-top: 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px dashed #3a4056;
+  border-radius: 4px;
+}
+
+.comment_rating:has(img[src*="thumbsup.png"]) {
+  border-color: rgba(85, 177, 96, 0.4);
+}
+
+.comment_rating:has(img[src*="thumbsdown.png"]) {
+  border-color: rgba(250, 70, 89, 0.4);
+}
+
+.comment_rating > .flleft {
+  flex: none;
+  margin-top: 1px;
+}
+
+.comment_rating > p {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  line-height: 20px;
+}
+
+.comment_rating > a {
+  flex: 0 0 100%;
+  width: fit-content;
+  margin: 0.35rem 0 0 calc(18px + 0.5rem);
+  color: #8fb4ff;
+  font-size: 0.72rem;
+}
+
+.comment_rating > a:hover {
+  color: #c7d0e0;
+}
+
+.userreviews table,
+.userreviews tbody {
+  display: block;
+  width: 100%;
+}
+
+.userreviews tr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 0.5rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid #3a4056;
+}
+
+.userreviews tr:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.userreviews td {
+  border: 0;
+}
+
+.userreviews td#usersreviewimage {
+  flex: none;
+  width: 18px;
+  padding: 0;
+}
+
+.userreviews td.users_review {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0;
+  line-height: 17.6px;
+}
+
+.userreviews tr > a {
+  flex: 0 0 100%;
+  width: fit-content;
+  margin: 0.35rem 0 0 calc(18px + 0.5rem);
+  color: #8fb4ff;
+  font-size: 0.72rem;
+}
+
+.userreviews tr > a:hover {
+  color: #c7d0e0;
+}
+
+.userreviews #reviewdate {
+  color: #8892a4;
+  font-size: 0.68rem;
 }
 
 /****************************************************************************
