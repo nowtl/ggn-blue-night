@@ -8472,22 +8472,24 @@ body::before {
   right: 0;
   left: 0;
   z-index: -1;
-  height: 360px;
+  height: 560px;
   background-image: inherit;
   background-position: 50% 35%;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: brightness(0.62) saturate(0.92);
+  filter: brightness(0.5) saturate(0.92);
   -webkit-mask-image: linear-gradient(
     180deg,
     #000 0%,
-    rgba(0, 0, 0, 0.9) 52%,
+    rgba(0, 0, 0, 0.92) 42%,
+    rgba(0, 0, 0, 0.55) 72%,
     transparent 100%
   );
           mask-image: linear-gradient(
     180deg,
     #000 0%,
-    rgba(0, 0, 0, 0.9) 52%,
+    rgba(0, 0, 0, 0.92) 42%,
+    rgba(0, 0, 0, 0.55) 72%,
     transparent 100%
   );
   pointer-events: none;
@@ -8581,6 +8583,11 @@ table {
 
 .head {
   box-shadow: none;
+  background-image: none;
+}
+
+.colhead,
+.colhead_dark {
   background-image: none;
 }
 
