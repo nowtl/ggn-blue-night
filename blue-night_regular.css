@@ -4143,18 +4143,18 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   display: block;
 }
 
-form[name="freeleech_pot"] {
+.freeleech_pot_contribute form {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   margin-top: 0.6rem;
 }
 
-form[name="freeleech_pot"] input[type="number"] {
+.freeleech_pot_contribute input[type="number"] {
   width: 100%;
 }
 
-form[name="freeleech_pot"] input[type="submit"] {
+.freeleech_pot_contribute input[type="submit"] {
   margin: 0;
 }
 
@@ -4804,6 +4804,37 @@ body#user .user_title {
 
 /****************************************************************************
 9.8  Shop */
+.box_add_freeleech .body {
+  padding: 0;
+}
+
+.box_add_freeleech form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#groupid_input {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+#gold_input {
+  flex: 0 1 150px;
+  min-width: 0;
+  padding-left: 1.85rem;
+  background-image: url("assets/icons/ui/coins-gold.svg");
+  background-repeat: no-repeat;
+  background-position: 0.55rem center;
+  background-size: 15px;
+}
+
+.box_add_freeleech input[type="submit"] {
+  flex: none;
+  margin: 0;
+}
+
 body:has(#items_list, #items-wrapper) .pad h3,
 body:has(#items_list, #items-wrapper) .pad > a {
   display: block;
@@ -6515,6 +6546,10 @@ td.read_locked_sticky {
 
 /****************************************************************************
 9.15  Browse table (torrents.php) */
+.center > form td:not(.label) {
+  text-align: left;
+}
+
 .torrent_table > tbody > tr.rowa,
 .torrent_table > tbody > tr.row_a {
   background-color: #2f3547;
