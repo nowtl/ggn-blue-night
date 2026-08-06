@@ -4711,7 +4711,8 @@ body#user .user_title {
 #collections .collection_art,
 #gazelles .gazelle_art {
   flex: 0 0 auto;
-  height: 92px;
+  height: auto;
+  aspect-ratio: 460 / 215;
   border-bottom: 1px solid #3a4056;
   background-size: cover !important;
   background-position: center !important;
@@ -4755,19 +4756,18 @@ body#user .user_title {
 }
 
 .box_pack .hovereffect {
+  height: auto !important;
   cursor: pointer;
 }
 
 .box_pack .hovereffect .img_responsive {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-}
-
-.box_pack .hovereffect .overlay {
-  border-top: 1px solid #3a4056;
+  width: 100%;
+  max-width: none !important;
+  aspect-ratio: 460 / 215;
+  border-bottom: 1px solid #3a4056;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #gazelles .hovereffect .overlay span {
