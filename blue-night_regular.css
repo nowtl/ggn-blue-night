@@ -3529,45 +3529,122 @@ div.show_torrents {
 #grouplinks td::after {
   font-weight: 700;
 }
-#grouplinks td:has(.windows)::after { content: "Windows"; }
-#grouplinks td:has(.mac)::after { content: "Mac"; }
-#grouplinks td:has(.linux)::after { content: "Linux"; }
+#grouplinks td:has(.amigacd32)::after { content: "Amiga CD32"; }
+#grouplinks td:has(.amstradcpc)::after { content: "Amstrad CPC"; }
+#grouplinks td:has(.android)::after { content: "Android"; }
+#grouplinks td:has(.applebandaipippin)::after { content: "Apple Bandai Pippin"; }
+#grouplinks td:has(.appleii)::after { content: "Apple II"; }
+#grouplinks td:has(.atari2600)::after { content: "Atari 2600"; }
+#grouplinks td:has(.atari5200)::after { content: "Atari 5200"; }
+#grouplinks td:has(.atari7800)::after { content: "Atari 7800"; }
+#grouplinks td:has(.atarijaguar)::after { content: "Atari Jaguar"; }
+#grouplinks td:has(.atarilynx)::after { content: "Atari Lynx"; }
+#grouplinks td:has(.atarist)::after { content: "Atari ST"; }
+#grouplinks td:has(.bandaiwonderswan)::after { content: "Bandai WonderSwan"; }
+#grouplinks td:has(.bandaiwonderswancolor)::after { content: "Bandai WonderSwan Color"; }
+#grouplinks td:has(.casioloopy)::after { content: "Casio Loopy"; }
+#grouplinks td:has(.casiopv)::after { content: "Casio PV-1000"; }
+#grouplinks td:has(.cats_ost)::after { content: "OST"; }
+#grouplinks td:has(.colecovision)::after { content: "Colecovision"; }
+#grouplinks td:has(.commodore128)::after { content: "Commodore 128"; }
+#grouplinks td:has(.commodore64)::after { content: "Commodore 64"; }
+#grouplinks td:has(.commodoreamiga)::after { content: "Commodore Amiga"; }
+#grouplinks td:has(.commodoreplus)::after { content: "Commodore Plus-4"; }
+#grouplinks td:has(.commodorevic)::after { content: "Commodore VIC-20"; }
+#grouplinks td:has(.creativision)::after { content: "CreatiVision"; }
 #grouplinks td:has(.dos)::after { content: "DOS"; }
-#grouplinks td:has(.switch)::after,
-#grouplinks td:has(.nintendoswitch)::after { content: "Switch"; }
-#grouplinks td:has(.playstation)::after { content: "PlayStation"; }
-#grouplinks td:has(.playstation2)::after { content: "PS2"; }
-#grouplinks td:has(.playstation3)::after { content: "PS3"; }
-#grouplinks td:has(.playstation4)::after { content: "PS4"; }
-#grouplinks td:has(.playstation5)::after { content: "PS5"; }
-#grouplinks td:has(.psp)::after { content: "PSP"; }
-#grouplinks td:has(.psvita)::after { content: "PS Vita"; }
-#grouplinks td:has(.xbox)::after { content: "Xbox"; }
-#grouplinks td:has(.xbox360)::after { content: "Xbox 360"; }
-#grouplinks td:has(.xboxone)::after { content: "Xbox One"; }
+#grouplinks td:has(.dreamcast)::after { content: "Dreamcast"; }
+#grouplinks td:has(.dsiware)::after { content: "DSiWare"; }
+#grouplinks td:has(.emersonarcadia2001)::after { content: "Emerson Arcadia 2001"; }
+#grouplinks td:has(.entexadventurevision)::after { content: "Entex Adventure Vision"; }
+#grouplinks td:has(.epochsupercasettevision)::after { content: "Epoch Super Casette Vision"; }
+#grouplinks td:has(.fairchildchannelf)::after { content: "Fairchild Channel F"; }
+#grouplinks td:has(.funtechsuperacan)::after { content: "Funtech Super Acan"; }
+#grouplinks td:has(.game.com)::after { content: "Game.com"; }
 #grouplinks td:has(.gameboy)::after { content: "Game Boy"; }
-#grouplinks td:has(.gameboycolor)::after { content: "GBC"; }
-#grouplinks td:has(.gameboyadvance)::after { content: "GBA"; }
-#grouplinks td:has(.nintendods)::after,
-#grouplinks td:has(.ds)::after { content: "DS"; }
-#grouplinks td:has(.nintendo3ds)::after { content: "3DS"; }
-#grouplinks td:has(.nintendo64)::after { content: "N64"; }
-#grouplinks td:has(.supernintendo)::after { content: "SNES"; }
+#grouplinks td:has(.gameboyadvance)::after { content: "Game Boy Advance"; }
+#grouplinks td:has(.gameboycolor)::after { content: "Game Boy Color"; }
+#grouplinks td:has(.gamecom)::after { content: "Game.com"; }
+#grouplinks td:has(.gamegear)::after { content: "Game Gear"; }
+#grouplinks td:has(.gameparkgp32)::after { content: "GamePark GP32"; }
+#grouplinks td:has(.generalcomputervectrex)::after { content: "General Computer Vectrex"; }
+#grouplinks td:has(.gizmondo)::after { content: "Gizmondo"; }
+#grouplinks td:has(.hartungamemaster)::after { content: "Hartung Game Master"; }
+#grouplinks td:has(.hartunggamemaster)::after { content: "Hartung Game Master"; }
+#grouplinks td:has(.intellivision)::after { content: "Mattel Intellivision"; }
+#grouplinks td:has(.ios)::after { content: "iOS"; }
+#grouplinks td:has(.linux)::after { content: "Linux"; }
+#grouplinks td:has(.mac)::after { content: "Mac"; }
+#grouplinks td:has(.magnavox)::after { content: "Magnavox-Phillips Odyssey"; }
+#grouplinks td:has(.mastersystem)::after { content: "Master System"; }
+#grouplinks td:has(.mattelintellivision)::after { content: "Mattel Intellivision"; }
+#grouplinks td:has(.megadrive)::after { content: "Mega Drive"; }
+#grouplinks td:has(.memotechmtx)::after { content: "Memotech MTX"; }
+#grouplinks td:has(.milesgordonsamcoupe)::after { content: "Miles Gordon Sam Coupe"; }
+#grouplinks td:has(.msx)::after { content: "MSX"; }
+#grouplinks td:has(.msx2)::after { content: "MSX 2"; }
+#grouplinks td:has(.necpc)::after { content: "NEC PC-98"; }
+#grouplinks td:has(.necsupergrafx)::after { content: "NEC SuperGrafx"; }
+#grouplinks td:has(.necturbografx)::after { content: "NEC TurboGrafx-16"; }
 #grouplinks td:has(.nes)::after { content: "NES"; }
+#grouplinks td:has(.newnintendo3ds)::after { content: "New Nintendo 3DS"; }
+#grouplinks td:has(.newnintendo3dsvc)::after { content: "New 3DS VC"; }
+#grouplinks td:has(.nintendo3ds)::after { content: "Nintendo 3DS"; }
+#grouplinks td:has(.nintendo3dsvc)::after { content: "3DS VC"; }
+#grouplinks td:has(.nintendo64)::after { content: "Nintendo 64"; }
+#grouplinks td:has(.nintendods)::after { content: "Nintendo DS"; }
+#grouplinks td:has(.nintendogamecube)::after { content: "Nintendo GameCube"; }
+#grouplinks td:has(.nokian)::after { content: "Nokia N-Gage"; }
+#grouplinks td:has(.oculusquest)::after { content: "Oculus Quest"; }
+#grouplinks td:has(.ouya)::after { content: "Ouya"; }
+#grouplinks td:has(.philipscd)::after { content: "Philips CD-i"; }
+#grouplinks td:has(.philipsvideopac)::after { content: "Philips Videopac+"; }
+#grouplinks td:has(.phonepda)::after { content: "Phone/PDA"; }
+#grouplinks td:has(.pico)::after { content: "Pico"; }
+#grouplinks td:has(.playstation1)::after { content: "PlayStation 1"; }
+#grouplinks td:has(.playstation2)::after { content: "PlayStation 2"; }
+#grouplinks td:has(.playstation3)::after { content: "PlayStation 3"; }
+#grouplinks td:has(.playstation4)::after { content: "PlayStation 4"; }
+#grouplinks td:has(.playstation5)::after { content: "PlayStation 5"; }
+#grouplinks td:has(.playstationportable)::after { content: "PlayStation Portable"; }
+#grouplinks td:has(.playstationvita)::after { content: "PlayStation Vita"; }
+#grouplinks td:has(.pokemonmini)::after { content: "Pokemon Mini"; }
+#grouplinks td:has(.psonpsp)::after { content: "PS1 on PSP"; }
+#grouplinks td:has(.psponps3)::after { content: "PSP on PS3"; }
+#grouplinks td:has(.rcastudioii)::after { content: "RCA Studio II"; }
+#grouplinks td:has(.retro)::after { content: "Retro - Other"; }
+#grouplinks td:has(.saturn)::after { content: "Saturn"; }
+#grouplinks td:has(.sg)::after { content: "SG-1000"; }
+#grouplinks td:has(.sharpx1)::after { content: "Sharp X1"; }
+#grouplinks td:has(.sharpx68000)::after { content: "Sharp X68000"; }
+#grouplinks td:has(.snes)::after { content: "SNES"; }
+#grouplinks td:has(.snkneogeo)::after { content: "SNK Neo Geo"; }
+#grouplinks td:has(.snkneogeopocket)::after { content: "SNK Neo Geo Pocket"; }
+#grouplinks td:has(.supernes)::after { content: "SNES"; }
+#grouplinks td:has(.switch)::after { content: "Switch"; }
+#grouplinks td:has(.taitotypex)::after { content: "Taito Type X"; }
+#grouplinks td:has(.tandycolorcomputer)::after { content: "Tandy Color Computer"; }
+#grouplinks td:has(.tangerineoric)::after { content: "Tangerine Oric"; }
+#grouplinks td:has(.thomsonmo5)::after { content: "Thomson MO5"; }
+#grouplinks td:has(.turbografx)::after { content: "NEC TurboGrafx-16"; }
+#grouplinks td:has(.v.smile)::after { content: "V.Smile"; }
+#grouplinks td:has(.vectrex)::after { content: "General Computer Vectrex"; }
 #grouplinks td:has(.virtualboy)::after { content: "Virtual Boy"; }
-#grouplinks td:has(.gamecube)::after { content: "GameCube"; }
+#grouplinks td:has(.watarasupervision)::after { content: "Watara Supervision"; }
 #grouplinks td:has(.wii)::after { content: "Wii"; }
 #grouplinks td:has(.wiiu)::after { content: "Wii U"; }
-#grouplinks td:has(.genesis)::after { content: "Genesis"; }
-#grouplinks td:has(.dreamcast)::after { content: "Dreamcast"; }
-#grouplinks td:has(.saturn)::after { content: "Saturn"; }
-#grouplinks td:has(.gamegear)::after { content: "Game Gear"; }
-#grouplinks td:has(.mastersystem)::after { content: "Master System"; }
-#grouplinks td:has(.arcade)::after { content: "Arcade"; }
-#grouplinks td:has(.mobile)::after { content: "Mobile"; }
-#grouplinks td:has(.android)::after { content: "Android"; }
-#grouplinks td:has(.ios)::after { content: "iOS"; }
-#grouplinks td:has(.cats_ost)::after { content: "OST"; }
+#grouplinks td:has(.wiiuvc)::after { content: "Wii U VC"; }
+#grouplinks td:has(.wiivc)::after { content: "Wii VC"; }
+#grouplinks td:has(.wiiware)::after { content: "WiiWare"; }
+#grouplinks td:has(.windows)::after { content: "Windows"; }
+#grouplinks td:has(.windows95)::after { content: "Windows 95"; }
+#grouplinks td:has(.windowsxp)::after { content: "Windows XP"; }
+#grouplinks td:has(.wonderswan)::after { content: "Bandai WonderSwan"; }
+#grouplinks td:has(.xbla)::after { content: "XBLA"; }
+#grouplinks td:has(.xbox)::after { content: "Xbox"; }
+#grouplinks td:has(.xbox360)::after { content: "Xbox 360"; }
+#grouplinks td:has(.xboxon360)::after { content: "Xbox on 360"; }
+#grouplinks td:has(.zxspectrum)::after { content: "ZX Spectrum"; }
 
 /* OST tab: count badge first, then the album dropdown */
 #grouplinks .ost_dropdown_indicator {
@@ -3916,29 +3993,176 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   padding: 0.75rem 1rem;
 }
 
+#group_tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
 .tag_type_header {
-  margin-bottom: 6px;
+  margin-bottom: 0;
+  color: #7d879b;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 #group_tags .tag_type_header:not(:first-child) {
   margin-top: 6px;
 }
 
+.untyped_tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.untyped_tags:empty {
+  display: none;
+}
+
 .group_tag {
-  margin-left: 8px;
+  display: inline-flex;
+  align-items: stretch;
+  margin-left: 0;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 2px;
+  transition: border-color 0.15s;
+}
+
+.group_tag:hover {
+  border-color: #4281da;
+}
+
+.group_tag > a {
+  padding: 0.18rem 0.42rem;
+  color: #c7d0e0;
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.group_tag > a:hover {
+  color: #8fb4ff;
+  text-decoration: none;
+}
+
+.group_tag > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0 0.35rem;
+  border-left: 1px solid #363d52;
+}
+
+.group_tag > span > span {
+  color: #99a1b3;
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.tag_vote_button {
+  display: inline-block;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  font-size: 0;
+  background-color: #6b7080;
+  -webkit-mask: url("assets/icons/ui/chevron-down.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/chevron-down.svg") center / contain no-repeat;
+  transition: background-color 0.15s;
+}
+
+.group_tag > span > .tag_vote_button:first-child:hover {
+  background-color: #fa4659;
+}
+
+.group_tag > span > .tag_vote_button:last-child {
+  -webkit-mask-image: url("assets/icons/ui/chevron-up.svg");
+          mask-image: url("assets/icons/ui/chevron-up.svg");
+}
+
+.group_tag > span > .tag_vote_button:last-child:hover {
+  background-color: #55b160;
 }
 
 #add_tags_link {
   display: block;
-  width: 100%;
-  margin-bottom: 6px;
+  margin: 0 1rem 0.75rem;
+  padding: 0.25rem 0;
+  color: #99a1b3;
+  font-size: 0.68rem;
   text-align: center;
+  border: 1px dashed #3a4056;
+  border-radius: 3px;
+  transition: all 0.15s;
 }
+
+#add_tags_link:hover {
+  color: #8fb4ff;
+  border-color: #4281da;
+  text-decoration: none;
+}
+
+#add_tags_input {
+  margin: 0 1rem 0.75rem;
+}
+
+#add_tags_input > input[type="text"] {
+  width: 100%;
+  margin-bottom: 0.35rem;
+}
+
+#add_tags_button {
+  width: 100%;
+  margin: 0;
+}
+
+.box_freeleech .body {
+  display: flex;
+  flex-direction: column;
+}
+
+.left_status_text {
+  display: block;
+  color: #c7d0e0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.freeleech_pot_contribute,
+.box_recommend_to_friend {
+  display: none;
+}
+
+.freeleech_pot_contribute.shown,
+.box_recommend_to_friend.shown {
+  display: block;
+}
+
+form[name="freeleech_pot"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+form[name="freeleech_pot"] input[type="number"] {
+  width: 100%;
+}
+
+form[name="freeleech_pot"] input[type="submit"] {
+  margin: 0;
+}
+
 #thumbsup img,
 #thumbsdown img {
-  width: 28px;
-  height: 28px;
-  padding-left: 28px;
+  width: 20px;
+  height: 20px;
+  padding-left: 20px;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -4466,7 +4690,8 @@ body#user .user_title {
 }
 
 #collections .hovereffect,
-#gazelles .hovereffect {
+#gazelles .hovereffect,
+.box_pack .hovereffect {
   display: flex;
   flex-direction: column;
   background: #2f3547;
@@ -4478,7 +4703,8 @@ body#user .user_title {
 }
 
 #collections .hovereffect:hover,
-#gazelles .hovereffect:hover {
+#gazelles .hovereffect:hover,
+.box_pack .hovereffect:hover {
   border-color: #4281da;
 }
 
@@ -4493,15 +4719,18 @@ body#user .user_title {
 }
 
 #collections .hovereffect .overlay,
-#gazelles .hovereffect .overlay {
+#gazelles .hovereffect .overlay,
+.box_pack .hovereffect .overlay {
   position: static;
+  height: auto;
   margin: 0;
   padding: 8px 11px;
   background: none;
 }
 
 #collections .hovereffect .overlay h2,
-#gazelles .hovereffect .overlay h2 {
+#gazelles .hovereffect .overlay h2,
+.box_pack .hovereffect .overlay h2 {
   margin: 0 0 3px;
   font-size: 0.82rem;
   line-height: 1.35;
@@ -4514,8 +4743,31 @@ body#user .user_title {
 }
 
 #collections .hovereffect .overlay a,
-#gazelles .hovereffect .overlay a {
+#gazelles .hovereffect .overlay a,
+.box_pack .hovereffect .overlay a {
   color: #8fb4ff;
+}
+
+.box_pack .body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.box_pack .hovereffect {
+  cursor: pointer;
+}
+
+.box_pack .hovereffect .img_responsive {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.box_pack .hovereffect .overlay {
+  border-top: 1px solid #3a4056;
 }
 
 #gazelles .hovereffect .overlay span {
@@ -7269,7 +7521,31 @@ tr.likes > td:first-child > a:hover {
 }
 
 .userratingdiv > table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
   width: 100%;
+}
+
+.userratingdiv > table > tbody,
+.userratingdiv > table > tbody > tr:not(.hidden) {
+  display: contents;
+}
+
+.userratingdiv > table > tbody > tr:first-child > td {
+  padding: 0.45rem 0;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 4px;
+  transition: border-color 0.15s;
+}
+
+.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsup:hover) {
+  border-color: rgba(85, 177, 96, 0.5);
+}
+
+.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsdown:hover) {
+  border-color: rgba(250, 70, 89, 0.5);
 }
 
 #thumbsup,
@@ -7294,6 +7570,7 @@ tr.likes > td:first-child > a:hover {
 }
 
 #reviewrow > td {
+  grid-column: 1 / -1;
   padding-top: 0.7rem;
 }
 
@@ -7323,16 +7600,19 @@ tr.likes > td:first-child > a:hover {
   min-height: 2rem;
 }
 
-#show_recommend_to_friend {
+#show_recommend_to_friend,
+.show_link {
   display: block;
   width: fit-content;
   margin: 0.6rem auto 0;
   color: #a0a6b7;
   font-size: 0.72rem;
   text-align: center;
+  cursor: pointer;
 }
 
-#show_recommend_to_friend:hover {
+#show_recommend_to_friend:hover,
+.show_link:hover {
   color: #8fb4ff;
 }
 
