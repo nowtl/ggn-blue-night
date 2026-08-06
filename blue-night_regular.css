@@ -1437,6 +1437,16 @@ img[src*="common/thumbsdown.png"] {
           mask: url("assets/icons/ui/thumbs-down.svg") center / contain no-repeat;
 }
 
+img[src*="coins_add.png"] {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  background-color: #deb423;
+  -webkit-mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+}
+
 img[src*="game_room/images/upvote.png"] {
   width: 14px;
   height: 14px;
@@ -1487,6 +1497,15 @@ img[src*="game_room/images/upvote.png"] {
 
 /************************************************************************
   3.1 - Inputs & Buttons */
+#gold_input,
+#gold_donation {
+  padding-left: 1.85rem;
+  background-image: url("assets/icons/ui/coins-gold.svg");
+  background-repeat: no-repeat;
+  background-position: 0.55rem center;
+  background-size: 15px;
+}
+
 .input-group {
   display: flex;
 }
@@ -1999,7 +2018,7 @@ textarea::placeholder {
   background: #1e2333;
   margin: 0 auto;
   overflow: auto;
-  padding: 0 15px 15px;
+  padding: 15px;
   font-size: 0.75rem;
   border-top: none;
   box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.6);
@@ -2873,21 +2892,30 @@ span.spoiler-show * {
 }
 
 
-.forum_post .avatar {
-  display: table-cell;
+.forum_post td.avatar {
   position: relative;
-  border-right: 1px solid #3a4056;
-  padding: 5px;
+  padding: 5px !important;
   width: 161px;
+  box-shadow: none;
 }
 
-.forum_post .avatar img {
+.forum_post tr.likes > td {
+  padding: 10px !important;
+}
+
+.forum_post td.body {
+  padding: 10px !important;
+}
+
+.forum_post img.avatar {
   display: block;
-  width: auto;
-  max-width: 150px;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   max-height: 400px;
+  padding: 0;
   border-radius: 5px;
+  box-shadow: none;
 }
 
 .forum-post img {
@@ -4182,6 +4210,29 @@ body#user .user_title {
   display: unset;
 }
 
+#tip_user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.45rem;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+#tip_user::after {
+  content: "";
+  width: 13px;
+  height: 13px;
+  background-color: #7d879b;
+  -webkit-mask: url("assets/icons/ui/circle-plus.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/circle-plus.svg") center / contain no-repeat;
+  transition: background-color 0.15s;
+}
+
+#tip_user:hover::after {
+  background-color: #deb423;
+}
+
 #community_stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4823,11 +4874,6 @@ body#user .user_title {
 #gold_input {
   flex: 0 1 150px;
   min-width: 0;
-  padding-left: 1.85rem;
-  background-image: url("assets/icons/ui/coins-gold.svg");
-  background-repeat: no-repeat;
-  background-position: 0.55rem center;
-  background-size: 15px;
 }
 
 .box_add_freeleech input[type="submit"] {
@@ -6674,6 +6720,14 @@ td.read_locked_sticky {
   text-overflow: ellipsis;
   color: #99a1b3;
   font-size: 0.6rem;
+}
+
+#requests_donate form img {
+  display: none;
+}
+
+#requests_donate form input[type="submit"] {
+  margin-top: 0.4rem;
 }
 
 .request_table .tags {
