@@ -5992,7 +5992,6 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
   max-width: fit-content;
   height: auto;
   margin: 0 auto -1.4rem;
-  background-image: url("gazellegames-logo-beta.png");
   background-size: 0 0;
 }
 
@@ -8494,7 +8493,102 @@ body::before {
   pointer-events: none;
 }
 
+body {
+  position: static;
+  overflow: visible;
+}
+
+#logo {
+  right: auto;
+  bottom: auto;
+  left: auto;
+  overflow: visible;
+  border: none;
+  filter: none;
+}
+
+#menu {
+  float: none;
+  position: static;
+  height: auto;
+  padding: 0;
+  overflow: visible;
+  opacity: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  background-image: none;
+}
+
+#menu ul {
+  max-width: none;
+  margin: 1em 0;
+  padding: 0 0 0 40px;
+  text-transform: none;
+}
+
+#menu ul a {
+  display: inline;
+  margin: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  background-image: none;
+}
+
+#userinfo {
+  border: none;
+  background-image: none;
+}
+
+#userinfo .donateico {
+  display: inline;
+  width: auto;
+  margin: 0 0 0 1px;
+  text-transform: none;
+}
+
+#userinfo .donateico a {
+  display: inline;
+  position: static;
+  top: auto;
+  margin: 0;
+  opacity: 1;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+#userinfo_minor {
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: auto;
+  padding-top: 0;
+  background-image: none;
+}
+
+#userinfo_stats li,
+#userinfo_minor li,
+#userinfo_username .sub span {
+  background-color: transparent;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+table {
+  max-width: none;
+  background: none;
+}
+
+.head {
+  box-shadow: none;
+  background-image: none;
+}
+
 @layer ggn {
+  #logo {
+    background-image: url("gazellegames-logo-beta.png");
+  }
+
   #menu {
     font-family: "Open Sans", Helvetica, Tahoma, Arial, sans-serif !important;
     font-size: 10pt !important;
