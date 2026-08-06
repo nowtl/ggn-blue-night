@@ -2892,7 +2892,24 @@ span.spoiler-show * {
 }
 
 
+.forum_post .col_avatar {
+  width: 161px;
+}
+
+.forum_post .signature {
+  max-height: 75px;
+  padding: 5px 0 2px 3px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.forum_post .signature img {
+  max-width: 100%;
+  height: auto;
+}
+
 .forum_post td.avatar {
+  display: table-cell;
   position: relative;
   padding: 5px !important;
   width: 161px;
@@ -4208,6 +4225,28 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 9.6  User profile */
 body#user .user_title {
   display: unset;
+}
+
+#content:has(#achievements) > .linkbox.flleft {
+  float: left;
+  width: 32%;
+  margin-left: 0;
+  text-align: left;
+}
+
+#content:has(#achievements) > .linkbox.flright {
+  float: right;
+  width: 32%;
+  margin-right: 0;
+  text-align: right;
+}
+
+#achievements {
+  clear: both;
+}
+
+#achievements td:not(.achlabel) {
+  text-align: center;
 }
 
 #tip_user {
@@ -6231,7 +6270,8 @@ ul.poll > li {
   line-height: 1.15rem;
 }
 
-ul.poll > li.graph {
+ul.poll > li.graph,
+#progress_bar {
   height: 8px;
   margin: 0.15rem 0 0.55rem;
   overflow: hidden;
@@ -6241,12 +6281,21 @@ ul.poll > li.graph {
   border-radius: 4px;
 }
 
+#progress_bar {
+  width: 100%;
+  max-width: 420px;
+  margin: 0.6rem auto 0.9rem;
+}
+
 ul.poll #left_poll,
-ul.poll #right_poll {
+ul.poll #right_poll,
+#progress_bar > #left_poll,
+#progress_bar > #right_poll {
   display: none;
 }
 
-ul.poll #center_poll {
+ul.poll #center_poll,
+#progress_bar > #center_poll {
   display: block;
   height: 100%;
   min-width: 2px;
