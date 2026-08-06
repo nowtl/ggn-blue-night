@@ -8472,25 +8472,25 @@ body::before {
   right: 0;
   left: 0;
   z-index: -1;
-  height: 560px;
+  height: 880px;
   background-image: inherit;
-  background-position: 50% 35%;
+  background-position: 50% 0%;
   background-size: cover;
   background-repeat: no-repeat;
   filter: brightness(0.5) saturate(0.92);
   -webkit-mask-image: linear-gradient(
     180deg,
     #000 0%,
-    rgba(0, 0, 0, 0.92) 42%,
-    rgba(0, 0, 0, 0.55) 72%,
-    transparent 100%
+    rgba(0, 0, 0, 0.9) 28%,
+    rgba(0, 0, 0, 0.5) 48%,
+    transparent 66%
   );
           mask-image: linear-gradient(
     180deg,
     #000 0%,
-    rgba(0, 0, 0, 0.92) 42%,
-    rgba(0, 0, 0, 0.55) 72%,
-    transparent 100%
+    rgba(0, 0, 0, 0.9) 28%,
+    rgba(0, 0, 0, 0.5) 48%,
+    transparent 66%
   );
   pointer-events: none;
 }
