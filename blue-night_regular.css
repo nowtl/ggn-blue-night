@@ -51,6 +51,7 @@
         9.29 Page level error message
         9.30 Per game themes
         9.31 Clan stats page
+        9.32 Top 10 page
    ========================================================================== */
 
 @layer ggn;
@@ -570,6 +571,7 @@ body {
 
 #wrapper {
   display: block;
+  position: relative;
   margin: 0 auto;
 }
 
@@ -2144,11 +2146,6 @@ table .colhead > td {
   background-color: #2f3547;
 }
 
-#top10 .table tr th,
-#top10 .table tr td {
-  text-align: left !important;
-}
-
 .tags {
   color: #a0a6b7;
 }
@@ -3382,6 +3379,51 @@ img[src="static/forums/locked_read.png"] {
   font-weight: 700;
 }
 
+#collections .linkbox:has(> a.brackets),
+#requests .linkbox:has(> a.brackets) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+#collections .linkbox:has(> a.brackets)::before,
+#requests .linkbox:has(> a.brackets)::before {
+  content: "";
+  flex-basis: 100%;
+  height: 0;
+}
+
+#collections .linkbox > a.brackets,
+#requests .linkbox > a.brackets {
+  display: inline-flex;
+  order: -1;
+  align-items: center;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #586278;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+#collections .linkbox > a.brackets::before,
+#collections .linkbox > a.brackets::after,
+#requests .linkbox > a.brackets::before,
+#requests .linkbox > a.brackets::after {
+  content: none;
+}
+
+#collections .linkbox > a.brackets:hover,
+#requests .linkbox > a.brackets:hover {
+  color: #fff;
+  background: #4281da;
+}
+
 
 /****************************************************************************
   4.1 CSS Animation/Keyframes */
@@ -4003,6 +4045,70 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 
 #slides .slides_control li.center {
   list-style: none;
+}
+
+#slides {
+  position: relative;
+}
+
+#slides .prev,
+#slides .next {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  background-color: rgba(7, 11, 22, 0.7);
+  border-radius: 4px;
+  transition: background-color 0.15s, transform 0.15s;
+  z-index: 20;
+}
+
+#slides .prev {
+  left: 6px;
+}
+
+#slides .next {
+  right: 6px;
+}
+
+#slides .prev:hover,
+#slides .next:hover {
+  background-color: rgba(7, 11, 22, 0.9);
+}
+
+#slides .prev:hover {
+  transform: translateX(-3px);
+}
+
+#slides .next:hover {
+  transform: translateX(3px);
+}
+
+#slides .prev::before,
+#slides .next::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: #c7d0e0;
+}
+
+#slides .prev::before {
+  -webkit-mask: url("assets/icons/ui/chevron-left.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/chevron-left.svg") center / contain no-repeat;
+}
+
+#slides .next::before {
+  -webkit-mask: url("assets/icons/ui/chevron-right.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/chevron-right.svg") center / contain no-repeat;
+}
+
+#slides .prev:hover::before,
+#slides .next:hover::before {
+  background-color: #fff;
 }
 
 #upcoming_calendar ul.calendar {
@@ -6457,11 +6563,51 @@ img[src="static/common/stars/AwardMetaMeta Awards1.png"] {
   padding: unset !important;
 }
 #toplink {
-	padding-top: 12px !important;
-	float: unset !important;
-	width: unset !important;
-	text-align: center !important;
-	background-color: transparent !important;
+  position: absolute;
+  top: 100vh;
+  left: 50%;
+  z-index: 1;
+  width: 44px !important;
+  height: calc(100% - 100vh);
+  margin-left: 660px;
+  padding: 0 !important;
+  float: unset !important;
+  background-color: transparent !important;
+  pointer-events: none;
+}
+
+#toplink a {
+  display: flex;
+  position: sticky;
+  top: calc(100vh - 76px);
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 0;
+  background-color: rgba(7, 11, 22, 0.7);
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+  pointer-events: auto;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+#toplink a::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background-color: #a0a6b7;
+  -webkit-mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+}
+
+#toplink a:hover {
+  background-color: rgba(7, 11, 22, 0.9);
+  border-color: #4a5372;
+}
+
+#toplink a:hover::before {
+  background-color: #fff;
 }
 /************************************************************************
       8.0 - Media Queries */
@@ -6611,17 +6757,6 @@ body {
   #torrents-movie-view {
     max-width: 1440px;
   }
-
-  #top10 .cover-movie-list {
-    justify-content: center;
-  }
-
-
-  #top10 .cover-movie-list__movie {
-    margin: 22px 24px;
-  }
-
-
 
   #artist .cover-movie-list__movie__cover-link--seen::after,
   #bookmarks .cover-movie-list__movie__cover-link--seen::after,
@@ -7565,6 +7700,42 @@ tr.likes > td:first-child > a:hover {
 
 /****************************************************************************
 9.20  Select2  */
+@media (min-width: 576px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 540px) / 2);
+  }
+}
+
+@media (min-width: 768px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 720px) / 2);
+  }
+}
+
+@media (min-width: 992px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 960px) / 2);
+  }
+}
+
+@media (min-width: 1200px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 1140px) / 2);
+  }
+}
+
+@media (min-width: 2048px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 1440px) / 2);
+  }
+}
+
+@media (min-width: 3840px) {
+  body > .select2-container--open {
+    margin-left: calc((100% - 1600px) / 2);
+  }
+}
+
 .select2-container--default .select2-selection--single {
   height: 28px;
   background-color: #0b0d19;
@@ -9054,4 +9225,56 @@ colgroup,
 #clans .clan_stat_totals > table {
   clear: both;
   margin-top: 0.7rem;
+}
+
+/****************************************************************************
+9.32  Top 10 page (top10.php). */
+#top10 img[src*="images/snatched.png"],
+#top10 img[src*="images/seeders.png"],
+#top10 img[src*="images/leechers.png"],
+#top10 img[src*="images/thumbs_up.png"],
+#top10 img[src*="images/thumbs_down.png"],
+#top10 img[src*="icons/coins.png"] {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  padding-left: 14px;
+  vertical-align: -2px;
+  background-color: #8b94a8;
+  background-size: contain;
+}
+
+#top10 img[src*="images/snatched.png"] {
+  -webkit-mask: url("assets/icons/ui/download.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/download.svg") center / contain no-repeat;
+}
+
+#top10 img[src*="images/seeders.png"] {
+  -webkit-mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+}
+
+#top10 img[src*="images/leechers.png"] {
+  -webkit-mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
+}
+
+#top10 img[src*="images/thumbs_up.png"] {
+  -webkit-mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+}
+
+#top10 img[src*="images/thumbs_down.png"] {
+  -webkit-mask: url("assets/icons/ui/thumbs-down.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/thumbs-down.svg") center / contain no-repeat;
+}
+
+#top10 img[src*="icons/coins.png"] {
+  background-color: #deb423;
+  -webkit-mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/coins.svg") center / contain no-repeat;
+}
+
+.donor_ico {
+  margin-left: 4px;
 }
