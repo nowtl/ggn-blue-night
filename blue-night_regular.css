@@ -7037,13 +7037,14 @@ td.read_locked_sticky {
   margin-left: 5px;
   vertical-align: -2px;
   background-color: #6b7080;
-  -webkit-mask: url("assets/icons/ui/circle-arrow-right.svg") center / contain no-repeat;
-          mask: url("assets/icons/ui/circle-arrow-right.svg") center / contain no-repeat;
-  transition: background-color 0.15s;
+  -webkit-mask: url("assets/icons/ui/move-right.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/move-right.svg") center / contain no-repeat;
+  transition: background-color 0.15s, transform 0.15s;
 }
 
 .last_read:hover {
-  background-color: #4281da;
+  background-color: #fff;
+  transform: translateX(3px);
 }
 
 .last_read a {
@@ -7070,8 +7071,25 @@ table.forum_post.forum_unread {
   border-collapse: inherit;
 }
 
+.forum_post .user_title {
+  display: block;
+  line-height: 1.4;
+  max-height: 1.4em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.forum_post .user_title marquee {
+  display: inline-block;
+  max-width: 97%;
+  height: 1.4em;
+  vertical-align: top;
+}
+
 .forum_post .user_title img {
   max-height: 16px;
+  vertical-align: -3px;
 }
 
 .forum_post .signature {
