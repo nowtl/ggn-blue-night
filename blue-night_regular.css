@@ -4222,6 +4222,47 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   margin: 0;
 }
 
+.box_torrent_checking #checkmarking {
+  display: block;
+  position: relative;
+  padding-left: 19px;
+  color: #c7d0e0;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.box_torrent_checking #checkmarking::before {
+  content: "";
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  background-color: #69c077;
+  -webkit-mask: url("assets/icons/ui/badge-check.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/badge-check.svg") center / contain no-repeat;
+}
+
+.box_torrent_checking #checkmarking:has(#unchecked)::before {
+  background-color: #bf6a6a;
+  -webkit-mask-image: url("assets/icons/ui/x.svg");
+          mask-image: url("assets/icons/ui/x.svg");
+}
+
+.box_torrent_checking #unchecked strong {
+  color: #bf6a6a !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.box_torrent_checking #checkmarking .time {
+  color: #99a1b3;
+}
+
+.box_torrent_checking #checkmarking br:last-child {
+  display: none;
+}
+
 #thumbsup img,
 #thumbsdown img {
   width: 20px;
@@ -4986,31 +5027,31 @@ body#user .user_title {
   margin: 0;
 }
 
-body:has(#items_list, #items-wrapper) .pad h3,
-body:has(#items_list, #items-wrapper) .pad > a {
+#items_navigation h3,
+#items_navigation > a {
   display: block;
-  margin: 12px 0 5px;
+  margin: 0 0 6px;
   font-weight: 700;
   font-size: 0.9rem;
   color: #fff;
 }
 
-body:has(#items_list, #items-wrapper) .pad > a > h3 {
+#items_navigation > a > h3 {
   margin: 0;
 }
 
-body:has(#items_list, #items-wrapper) .pad ul {
-  margin: 5px 0 14px;
+#items_navigation ul {
+  margin: 0;
   padding-left: 2px;
   list-style: none;
 }
 
-body:has(#items_list, #items-wrapper) .pad ul ul {
+#items_navigation ul ul {
   margin: 3px 0;
   padding-left: 16px;
 }
 
-body:has(#items_list, #items-wrapper) .pad ul li {
+#items_navigation ul li {
   position: relative;
   padding: 2px 0 2px 14px;
   line-height: 1.4;
@@ -5018,7 +5059,7 @@ body:has(#items_list, #items-wrapper) .pad ul li {
   break-inside: avoid;
 }
 
-body:has(#items_list, #items-wrapper) .pad ul li::before {
+#items_navigation ul li::before {
   content: "";
   position: absolute;
   left: 2px;
@@ -5029,6 +5070,12 @@ body:has(#items_list, #items-wrapper) .pad ul li::before {
   background: #4281da;
 }
 
+#items_navigation li#selected > a,
+#items_navigation li.selected > a {
+  color: #fff;
+  font-weight: 700;
+}
+
 .center:has(> #shop_search),
 .center:has(> .requests_outer_table),
 .center:has(> .search_form) {
@@ -5037,26 +5084,46 @@ body:has(#items_list, #items-wrapper) .pad ul li::before {
 
 #items_navigation {
   display: grid;
-
   grid-auto-flow: column;
   grid-template-rows: auto auto;
   grid-auto-columns: minmax(0, 1fr);
   column-gap: 1.75rem;
   align-items: start;
+  box-sizing: border-box;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background: #2f3547;
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
-
 
 #items_navigation:has(#categories) {
   grid-template-columns: minmax(0, 2fr);
 }
 
-body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-type(8)) {
-  columns: 2;
+#items_navigation > #avatar_preview {
+  justify-self: start;
+}
+
+#shop_search + #items_navigation {
+  margin-top: 0.85rem;
+}
+
+#items_navigation > ul:first-of-type:has(> li:nth-of-type(8)) {
+  columns: 2 220px;
   column-gap: 24px;
 }
 
 @media (max-width: 900px) {
-  #items_navigation { display: block; }
+  #items_navigation {
+    display: block;
+  }
+
+  #items_navigation > * + h3,
+  #items_navigation > * + a {
+    margin-top: 12px;
+  }
 }
 
 #items_list:has(> .item_li) {
@@ -5700,6 +5767,41 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
 .ui-dialog .ui-dialog-titlebar .ui-button:hover .ui-icon,
 .ui-dialog .ui-dialog-titlebar a:hover .ui-icon {
   filter: invert(1) brightness(1.5);
+}
+
+.ui-dialog,
+.ui-dialog .ui-widget {
+  font-size: 0.8rem !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  margin: 0 !important;
+  padding: 12px 18px !important;
+  color: #a0a6b7 !important;
+  background: #1e2333 !important;
+  border: none !important;
+  border-top: 1px solid #3a4056 !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-button {
+  margin: 0 !important;
+  padding: 0.4rem 1rem !important;
+  color: #fff !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  background: #586278 !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  transition: all 0.3s;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-button .ui-button-text {
+  padding: 0 !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-button:hover {
+  background: #4281da !important;
 }
 
 .ui-widget-overlay {
@@ -8099,6 +8201,15 @@ html {
   min-height: 90px;
 }
 
+#review_form > #textarea_div + div {
+  margin: 0.5rem 0 0;
+  color: #e8b6b6 !important;
+  font-size: 0.68rem !important;
+  font-weight: 400 !important;
+  line-height: 1.45;
+  text-align: left !important;
+}
+
 #add_rating_btn {
   width: 100%;
   margin-top: 0.5rem;
@@ -8301,64 +8412,140 @@ html {
 /****************************************************************************
 9.27  Torrent group sidebar: Web Links and Game Ratings icons. */
 #weblinksdiv .body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  display: grid;
+  gap: 0.4rem;
 }
 
 #weblinksdiv a {
-  display: block;
-  line-height: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 4px;
+  transition: border-color 0.15s;
+}
+
+#weblinksdiv a:hover {
+  border-color: rgba(66, 129, 218, 0.5);
+}
+
+#weblinksdiv a::after {
+  content: attr(title);
+  color: #99a1b3;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
 .weblinks {
-  width: 40px;
-  height: 40px;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 5px;
 }
 
-#weblinksdiv a:hover .weblinks {
-  transform: scale(1.1);
+.box_game_ratings .body {
+  display: grid;
+  gap: 0.4rem;
 }
 
-.box_game_ratings .body > div {
+.box_game_ratings .body br {
+  display: none;
+}
+
+.box_game_ratings .body > div > a {
   display: flex;
   align-items: center;
-  padding: 0.15rem 0;
-  color: #a0a6b7;
-  font-size: 0.75rem;
+  padding: 0.45rem 0.6rem;
+  background-color: #262b39;
+  border: 1px solid #363d52;
+  border-radius: 4px;
+  transition: border-color 0.15s;
+}
+
+.box_game_ratings .body > div > a:has(.green):hover {
+  border-color: rgba(85, 177, 96, 0.5);
+}
+
+.box_game_ratings .body > div > a:has(.yellow):hover {
+  border-color: rgba(222, 180, 35, 0.5);
+}
+
+.box_game_ratings .body > div > a:has(.red):hover {
+  border-color: rgba(250, 70, 89, 0.5);
 }
 
 .ratings {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   width: auto;
   height: auto;
+  min-height: 20px;
   margin: 0;
-  padding: 0.2rem 0 0.2rem 26px;
-  color: #e6ebf5;
-  font-size: 0.85rem;
-  font-weight: 700;
+  padding: 0 0 0 26px;
+  color: #99a1b3;
+  font-size: 0.72rem;
   text-align: left;
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 20px 20px;
 }
 
+.ratings::before {
+  flex: none;
+  width: 4.5rem;
+  color: #99a1b3;
+  font-weight: 600;
+}
+
+.ratings > span {
+  min-width: 1.9rem;
+  margin-right: 0.2rem;
+  color: #e6ebf5;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.ratings > span.green {
+  color: #55b160;
+}
+
+.ratings > span.yellow {
+  color: #deb423;
+}
+
+.ratings > span.red {
+  color: #fa4659;
+}
+
 .ratings.meta {
   background-image: url("https://gazellegames.net/static/styles/game_room/images/icons/metacritic.png");
+}
+
+.ratings.meta::before {
+  content: "Metacritic";
 }
 
 .ratings.ign {
   background-image: url("https://gazellegames.net/static/styles/game_room/images/icons/ign.png");
 }
 
+.ratings.ign::before {
+  content: "IGN";
+}
+
 .ratings.gamespot {
   background-image: url("https://gazellegames.net/static/styles/game_room/images/icons/gamespot.png");
+}
+
+.ratings.gamespot::before {
+  content: "GameSpot";
 }
 
 /****************************************************************************
@@ -8701,7 +8888,7 @@ colgroup,
   }
 
   #searchbars ul.autocomplete_list li {
-    border-bottom-color: #949aac !important;
+    border-bottom-color: #2f3547 !important;
   }
 
   .pad {
