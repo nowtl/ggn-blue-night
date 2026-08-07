@@ -6107,6 +6107,10 @@ body#user .user_title {
     backdrop-filter: blur(10px) !important;
     background-color: rgba(7, 11, 22, 0.65) !important;
   }
+
+  #us_pop {
+    background-color: rgba(7, 11, 22, 0.9) !important;
+  }
 }
 
 /* Site Logo */
@@ -7021,8 +7025,51 @@ td.read_locked_sticky {
           mask-image: url("assets/icons/ui/lock.svg") !important;
 }
 
+.last_topic {
+  display: inline;
+}
+
+.last_read {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-top: 2px;
+  margin-left: 5px;
+  vertical-align: -2px;
+  background-color: #6b7080;
+  -webkit-mask: url("assets/icons/ui/circle-arrow-right.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/circle-arrow-right.svg") center / contain no-repeat;
+  transition: background-color 0.15s;
+}
+
+.last_read:hover {
+  background-color: #4281da;
+}
+
+.last_read a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+tr.participated > td:nth-child(2)::before {
+  content: "";
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 2px 5px 0 0;
+  background-color: #6b7080;
+  -webkit-mask: url("assets/icons/ui/flag.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/flag.svg") center / contain no-repeat;
+}
+
 /****************************************************************************
 9.14 - Forum post tweaks */
+table.forum_post.forum_unread {
+  border: 1px solid #4281da;
+  border-collapse: inherit;
+}
+
 .forum_post .user_title img {
   max-height: 16px;
 }
