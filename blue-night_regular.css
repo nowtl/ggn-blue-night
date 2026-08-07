@@ -6564,15 +6564,16 @@ img[src="static/common/stars/AwardMetaMeta Awards1.png"] {
 }
 #toplink {
   position: absolute;
-  top: 100vh;
-  left: 50%;
+  top: min(100vh, 100%);
+  left: 100%;
   z-index: 1;
   width: 44px !important;
-  height: calc(100% - 100vh);
-  margin-left: 660px;
+  height: max(0px, calc(100% - 100vh));
+  margin-left: 12px;
   padding: 0 !important;
   float: unset !important;
   background-color: transparent !important;
+  overflow: clip;
   pointer-events: none;
 }
 
@@ -6608,6 +6609,12 @@ img[src="static/common/stars/AwardMetaMeta Awards1.png"] {
 
 #toplink a:hover::before {
   background-color: #fff;
+}
+
+@media (max-width: 1299px) {
+  #toplink {
+    display: none;
+  }
 }
 /************************************************************************
       8.0 - Media Queries */
