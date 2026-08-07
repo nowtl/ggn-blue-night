@@ -50,6 +50,7 @@
         9.28 Torrent state colours
         9.29 Page level error message
         9.30 Per game themes
+        9.31 Clan stats page
    ========================================================================== */
 
 @layer ggn;
@@ -2898,6 +2899,17 @@ span.spoiler-show * {
    top: 2px;
 }
 
+.username_badges {
+  display: inline-flex;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.username_badges:not(:empty) {
+  margin: 0 4px;
+}
+
 
 .forum_post .col_avatar {
   width: 161px;
@@ -4234,6 +4246,16 @@ body#user .user_title {
   display: unset;
 }
 
+#content:has(#achievements) > h2 {
+  margin: 0;
+}
+
+#content:has(#achievements) > .flright:not(.linkbox) {
+  float: right;
+  width: auto;
+  margin: 0 0.25rem 0 0;
+}
+
 #content:has(#achievements) > .linkbox.flleft {
   float: left;
   width: 32%;
@@ -4725,7 +4747,11 @@ body#user .user_title {
 }
 
 #content:has(#share_score) > span:first-child {
-  margin: 0.9rem 0.25rem 0 0;
+  margin: 0 0.25rem 0 0;
+}
+
+#content:has(#share_score) > h2 {
+  margin: 0;
 }
 
 /****************************************************************************
@@ -7985,6 +8011,8 @@ html {
 
 #allreviewslink a,
 #content:has(#share_score) > span:first-child > a,
+#clan_stats > span:first-child > a,
+#content:has(#achievements) > .flright:not(.linkbox) > a,
 #content:has(> h3 a[href*="content_filter"]) > h3 > a {
   display: inline-block;
   padding: 0.4rem 1rem;
@@ -8001,6 +8029,8 @@ html {
 
 #allreviewslink a:hover,
 #content:has(#share_score) > span:first-child > a:hover,
+#clan_stats > span:first-child > a:hover,
+#content:has(#achievements) > .flright:not(.linkbox) > a:hover,
 #content:has(> h3 a[href*="content_filter"]) > h3 > a:hover {
   color: #fff;
   background: #4281da;
@@ -8686,4 +8716,90 @@ colgroup,
   .main_column .torrent_table tr.group_torrent td.edition_info {
     padding: 0.4rem !important;
   }
+}
+
+/****************************************************************************
+9.31  Clan stats page (clans.php). */
+#clan_stats > br {
+  display: none;
+}
+
+#clan_stats > span:first-child {
+  margin: 0 0.25rem 0 0;
+}
+
+#clans .clan_stat_totals > h2 {
+  margin: 0;
+}
+
+#clans .large_progress_bar {
+  width: 100%;
+  max-width: none;
+  height: 28px;
+  margin: 0.9rem 0 1.6rem;
+  border-radius: 6px;
+  font-size: 0;
+  overflow: hidden;
+}
+
+#clans .large_progress_bar .main_bar {
+  position: static;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+}
+
+#clans .large_progress_bar .main_bar.clan_1_bar {
+  background-color: #8a6a4f;
+}
+
+#clans .large_progress_bar .main_bar.clan_2_bar {
+  color: #191d2a;
+  background-color: #99a1b3;
+}
+
+#clans .large_progress_bar .main_bar.clan_3_bar {
+  background-color: #c9584a;
+}
+
+#clans .large_progress_bar .main_bar.clan_4_bar {
+  background-color: #4281da;
+}
+
+#clans .large_progress_bar .main_bar.clan_1_bar::after {
+  content: "Earth";
+}
+
+#clans .large_progress_bar .main_bar.clan_2_bar::after {
+  content: "Wind";
+}
+
+#clans .large_progress_bar .main_bar.clan_3_bar::after {
+  content: "Fire";
+}
+
+#clans .large_progress_bar .main_bar.clan_4_bar::after {
+  content: "Water";
+}
+
+#clans .clan_stat_totals > .center {
+  float: left;
+  width: auto;
+  margin: 0 0.9rem 0 0;
+}
+
+#clans .clan_stat_totals > h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 64px;
+}
+
+#clans .clan_stat_totals > table {
+  clear: both;
+  margin-top: 0.7rem;
 }
