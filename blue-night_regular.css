@@ -49,10 +49,15 @@
         9.27 Web links and game ratings icons
         9.28 Torrent state colours
         9.29 Page level error message
+        9.30 Per game themes
    ========================================================================== */
+
+@layer ggn;
 
 @import url("https://gazellegames.net/static/styles/game_room/caticons.css");
 @import url("https://gazellegames.net/static/styles/game_room/webLinks.css");
+@import url("https://gazellegames.net/static/styles/game_room/gamethemes.css")
+  layer(gt);
 
 /****************************************************************************
 1.0 - Reset CSS */
@@ -553,8 +558,12 @@ html.busy-cursor * {
   --ggn-bg: url("game-bg.svg");
 }
 
-body {
+html {
   background: #191d2a var(--ggn-bg);
+}
+
+body {
+  background-size: 0 0;
   margin: 0 auto;
 }
 
@@ -567,7 +576,7 @@ a {
   text-decoration: none;
   color: #a0a6b7;
   border: none;
-  transition: all 0.3s;
+  transition: all 0.3s, visibility 0s;
 }
 
 a:hover {
@@ -2692,8 +2701,6 @@ img[src="static/common/symbols/uploader.png"] {
   background-size: contain;
 }
 #torrent_comments .sub,
-#forums .sub,
-#comments .sub,
 .sub:has(+ .forum_post) {
   visibility: hidden;
 }
@@ -5613,6 +5620,7 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
 #equipment #slot_8::after { content: "Right-Hand Weapon"; }
 #equipment #slot_7::after { content: "Left-Hand Weapon"; }
 #equipment #slot_12::after { content: "Back"; }
+#equipment #slot_13::after { content: "Outfit"; }
 #equipment #slot_14::after,
 #equipment #slot_15::after { content: "Additional"; }
 
@@ -5766,12 +5774,12 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
 #userinfo a {
   text-decoration: none;
   color: #949aac;
-  transition: all 0.3s;
+  transition: all 0.3s, visibility 0s;
 }
 
 #userinfo li a:hover,
 #nav_more a:hover:after {
-  transition: all 0.3s;
+  transition: all 0.3s, visibility 0s;
 }
 
 #userinfo a:hover,
@@ -5983,15 +5991,21 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
   max-width: fit-content;
   height: auto;
   margin: 0 auto -1.4rem;
+  background-size: 0 0;
 }
 
 #logo a:after {
   content: "";
   display: block;
-  width: 500px;
-  height: 130px;
+  width: min(720px, 86vw);
+  height: 150px;
+  padding: 34.5px 0;
   margin: 0 auto;
-  background: url("gazellegames-logo.png") center / contain no-repeat;
+  background-image: inherit;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-origin: content-box;
   transition: filter 0.3s;
 }
 
@@ -6005,6 +6019,8 @@ body:has(#items_list, #items-wrapper) .pad > ul:first-of-type:has(> li:nth-of-ty
   height: auto;
   margin-top: 1.4rem;
   border: none;
+  background-image: inherit;
+  background-size: 0 0;
 }
 
 #logo,
@@ -6805,7 +6821,8 @@ table.calendar td.calendar-day.today .day-number {
   #logo a:after {
     width: min(500px, 86vw);
     height: auto;
-    aspect-ratio: 1024 / 229;
+    padding: 0;
+    aspect-ratio: 919 / 164;
   }
 }
 
@@ -6933,8 +6950,6 @@ td.read_locked_sticky {
   border-top: 1px solid #3a4056;
 }
 
-#forums .sub,
-#comments .sub,
 .sub:has(+ .forum_post) {
   position: absolute !important;
   display: inline-block !important;
@@ -6952,8 +6967,6 @@ td.read_locked_sticky {
 #userinfo .sub {
   margin-top: 12px !important;
 }
-#forums .sub a,
-#comments .sub a,
 .sub:has(+ .forum_post) a {
   display: block !important;
   padding: 6px 15px !important;
@@ -6963,8 +6976,6 @@ td.read_locked_sticky {
   text-decoration: none;
 }
 
-#forums .sub a:hover,
-#comments .sub a:hover,
 .sub:has(+ .forum_post) a:hover {
   background: #2f3a52 !important;
   color: #fff !important;
@@ -8443,4 +8454,236 @@ html {
 
 #content:has(> h3 a[href*="content_filter"]) > h3 {
   margin: 1.4rem 0 0;
+}
+
+/****************************************************************************
+9.30  Per game themes (gamethemes.css). */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  height: 880px;
+  background-image: inherit;
+  background-position: 50% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(0.5) saturate(0.92);
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 28%,
+    rgba(0, 0, 0, 0.5) 43%,
+    transparent 62%
+  );
+          mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    rgba(0, 0, 0, 0.9) 28%,
+    rgba(0, 0, 0, 0.5) 43%,
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+body {
+  position: static;
+  overflow: visible;
+}
+
+#logo {
+  right: auto;
+  bottom: auto;
+  left: auto;
+  overflow: visible;
+  border: none;
+  filter: none;
+}
+
+#menu {
+  float: none;
+  position: static;
+  height: auto;
+  padding: 0;
+  overflow: visible;
+  opacity: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  background-image: none;
+}
+
+#menu ul {
+  max-width: none;
+  margin: 1em 0;
+  padding: 0 0 0 40px;
+  text-transform: none;
+}
+
+#menu ul a {
+  display: inline;
+  margin: 0;
+  letter-spacing: normal;
+  text-transform: none;
+  background-image: none;
+}
+
+#userinfo {
+  border: none;
+  background-image: none;
+}
+
+#userinfo .donateico {
+  display: inline;
+  width: auto;
+  margin: 0 0 0 1px;
+  text-transform: none;
+}
+
+#userinfo .donateico a {
+  display: inline;
+  position: static;
+  top: auto;
+  margin: 0;
+  opacity: 1;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+#userinfo_minor {
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: auto;
+  padding-top: 0;
+  background-image: none;
+}
+
+#userinfo_stats li,
+#userinfo_minor li,
+#userinfo_username .sub span {
+  background-color: transparent;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+}
+
+table {
+  max-width: none;
+  background: none;
+}
+
+.head {
+  box-shadow: none;
+  background-image: none;
+}
+
+.colhead,
+.colhead_dark,
+.box,
+.edition_info,
+#menu ul a,
+#userinfo #userinfo_username .donateico a {
+  background-image: none;
+}
+
+.box {
+  background-size: auto;
+}
+
+.colhead_dark {
+  position: static;
+  box-shadow: none;
+}
+
+.edition_info {
+  color: #fff;
+}
+
+.main_column .torrent_table tr.group_torrent td.edition_info {
+  font-size: 0.75rem;
+}
+
+#menu ul li {
+  position: static;
+}
+
+#menu ul a,
+#userinfo #userinfo_username .donateico a {
+  background-color: transparent;
+  background-clip: border-box;
+}
+
+.donateico span {
+  position: static;
+  top: auto;
+  left: auto;
+  display: inline;
+}
+
+#nav_irc {
+  text-transform: none;
+}
+
+.nobullet,
+colgroup,
+#searchbars ul.autocomplete_list li {
+  background-color: transparent;
+}
+
+@layer ggn {
+  #logo {
+    background-image: url("gazellegames-logo.png");
+  }
+
+  #menu {
+    font-family: "Open Sans", Helvetica, Tahoma, Arial, sans-serif !important;
+    font-size: 10pt !important;
+    font-weight: 400 !important;
+  }
+
+  #menu ul a,
+  .alertbar a {
+    color: #a0a6b7 !important;
+    text-shadow: none !important;
+  }
+
+  #menu ul a:hover {
+    color: #fff !important;
+  }
+
+  #userinfo #userinfo_username .donateico a {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    text-shadow: none !important;
+  }
+
+  #footer,
+  #footer #copyright p:nth-of-type(2),
+  #server_stats,
+  #toplink {
+    background: none !important;
+  }
+
+  #searchbars input {
+    background-color: #0b0d19 !important;
+  }
+
+  #searchbars ul.autocomplete_list li {
+    border-bottom-color: #949aac !important;
+  }
+
+  .pad {
+    background-color: #2f3547 !important;
+  }
+
+  .edition_info {
+    background-color: #262b39 !important;
+    background-image: none !important;
+  }
+
+  .main_column .torrent_table tr.group_torrent td.edition_info {
+    padding: 0.4rem !important;
+  }
 }
