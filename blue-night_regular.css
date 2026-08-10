@@ -2863,18 +2863,24 @@ span.spoiler-show * {
 #forums .colhead_dark > td > div,
 #comments .colhead_dark > td > div,
 #forums .colhead_dark > td > span,
-#comments .colhead_dark > td > span {
+#comments .colhead_dark > td > span,
+.forum_post .colhead_dark > td > div,
+.forum_post .colhead_dark > td > span {
   float: left;
   display: flex;
+  align-items: center;
   gap: 4px;
 }
-.colhead_dark > td > div > strong {
+.colhead_dark > td > div > strong,
+.colhead_dark .username_badges {
   display: inline-flex;
+  align-items: center;
   width: fit-content;
 }
 .user_title {
   max-width: 320px;
   display: flex;
+  align-items: center;
 }
 .forum-post__heading .l_movie,
 .forum-post__heading .username,
@@ -2888,7 +2894,10 @@ span.spoiler-show * {
   color: #949aac;
 }
 
-.colhead_dark img,
+.colhead_dark img {
+   margin: 0 2.5px;
+}
+
 .panel .username + img {
    margin: 0 2.5px;
    position: relative;
@@ -3949,7 +3958,11 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 #vanityhouse td > a:first-child img,
 #slides .slides_container.staff_pick img,
 .box.box_albumart p img,
-#users_reviews .center img {
+#users_reviews .center img,
+#snatchesrow td > a > img,
+#uploadsrow td > a > img,
+#likesrow td > a > img,
+.box_image_coverart a > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -3963,9 +3976,43 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 .collage_images li a:hover img,
 #vanityhouse td > a:first-child:hover img,
 #slides .slides_container.staff_pick ul.nobullet:hover img,
-.box.box_albumart p img:hover {
+.box.box_albumart p img:hover,
+#snatchesrow td > a:hover > img,
+#uploadsrow td > a:hover > img,
+#likesrow td > a:hover > img,
+.box_image_coverart a:hover > img {
   transform: scale(1.05);
   box-shadow: 0 0 30px #31517d;
+}
+
+#snatchesrow,
+#uploadsrow,
+#likesrow {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+}
+
+#snatchesrow > tbody,
+#uploadsrow > tbody,
+#likesrow > tbody,
+#snatchesrow > tbody > tr,
+#uploadsrow > tbody > tr,
+#likesrow > tbody > tr {
+  display: contents;
+}
+
+#snatchesrow td,
+#uploadsrow td,
+#likesrow td {
+  display: block;
+  width: auto;
+  padding: 0;
+  border: 0;
 }
 
 .similar_group > a > img {
@@ -8018,7 +8065,7 @@ table.forum_post.forum_unread {
 tr.likes > td {
   padding: 8px 10px;
   vertical-align: middle;
-  font-size: 0;
+  font-size: 0.72rem;
   line-height: 2;
 }
 
@@ -8029,6 +8076,7 @@ tr.likes > td em {
 }
 
 tr.likes > td:first-child {
+  font-size: 0;
   white-space: nowrap;
 }
 
@@ -8102,7 +8150,6 @@ tr.likes > td:last-child > strong:nth-of-type(2)::before {
 
 tr.likes > td:last-child > a {
   vertical-align: middle;
-  margin-right: 5px;
 }
 
 tr.likes > td:last-child > a:not(.username) {
@@ -8245,10 +8292,19 @@ tr.likes > td:last-child > br:has(+ strong + em) {
   content: "";
   position: absolute;
   top: 0;
-  right: 1.15em;
+  right: 1.05em;
   bottom: 0;
-  width: 0.667em;
+  width: 0.7em;
   background-color: #0b0f1b;
+}
+
+.sub + .forum_post .colhead_dark strong > a.username[style] {
+  padding-right: 0;
+}
+
+.sub + .forum_post .colhead_dark strong > a.username[style]::before,
+.sub + .forum_post .colhead_dark strong > a.username[style]::after {
+  content: none;
 }
 
 .sub + .forum_post .colhead_dark strong > a.username::after {
@@ -8270,8 +8326,8 @@ tr.likes > td:last-child > br:has(+ strong + em) {
 
 .forum_post .body div[id^="content"] > a.username:has(+ .time),
 .forum_post .body div[id^="content"] > a.username + .time {
-  font-style: italic;
   color: #949aac;
+  font-style: italic;
 }
 
 .forum_post .body div[id^="content"] > a.username:has(+ .time) {
@@ -8287,6 +8343,8 @@ tr.likes > td:last-child > br:has(+ strong + em) {
   white-space: nowrap;
   color: #949aac;
   font-style: italic;
+  font-weight: 400;
+  text-shadow: none;
   background-color: #2f3547;
 }
 
