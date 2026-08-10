@@ -5507,6 +5507,80 @@ body#user .user_title {
   padding-top: 12px;
 }
 
+#items_list > li.item_li.no_access,
+#items_list > li.item_li.nostock {
+  background: #2b3040;
+}
+
+#items_list > li.item_li.owned .item_image_div,
+#items_list > li.item_li.no_access .item_image_div,
+#items_list > li.item_li.nostock .item_image_div {
+  position: relative;
+}
+
+#items_list > li.item_li.owned .item_image_div::before,
+#items_list > li.item_li.no_access .item_image_div::before,
+#items_list > li.item_li.nostock .item_image_div::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 1px 6px;
+  color: #99a1b3;
+  font-size: 0.62rem;
+  font-weight: 600;
+  background-color: rgba(25, 29, 42, 0.92);
+  border: 1px solid #3a4056;
+  border-radius: 4px;
+}
+
+#items_list > li.item_li.nostock .item_image_div::before {
+  content: "Sold Out";
+  color: #bf6a6a;
+}
+
+#items_list > li.item_li.no_access .item_image_div::before {
+  content: "Locked";
+  color: #bf6a6a;
+}
+
+#items_list > li.item_li.owned .item_image_div::before {
+  content: "Owned";
+}
+
+#items_list > li.item_li.no_access .item_image_div img,
+#items_list > li.item_li.nostock .item_image_div img {
+  filter: grayscale(0.7);
+  opacity: 0.55;
+}
+
+#items_list > li.item_li.no_access .item_info h3,
+#items_list > li.item_li.nostock .item_info h3 {
+  color: #99a1b3;
+}
+
+#items_list > li.item_li.no_access .submit_section input.submit,
+#items_list > li.item_li.nostock .submit_section input.submit {
+  opacity: 0.55;
+}
+
+.item_li #stock_info.important_text {
+  color: #bf6a6a;
+  font-weight: 600;
+}
+
+.item_li .item_description span[style*="color:red"] {
+  color: #fa4659 !important;
+}
+
+.denied_req {
+  color: #bf6a6a;
+}
+
+.accepted_req {
+  color: #55b160;
+}
+
 #items-wrapper,
 #trading_panel .items-wrapper {
   display: grid;
@@ -8292,9 +8366,9 @@ tr.likes > td:last-child > br:has(+ strong + em) {
   content: "";
   position: absolute;
   top: 0;
-  right: 1.05em;
+  right: 1.15em;
   bottom: 0;
-  width: 0.7em;
+  width: 0.62em;
   background-color: #0b0f1b;
 }
 
@@ -8544,6 +8618,18 @@ tr.likes > td:last-child > br:has(+ strong + em) {
   transform: rotate(-90deg);
 }
 
+#users_medals {
+  padding: 0.75rem 1rem;
+}
+
+#users_medals > *:first-child {
+  margin-top: 0;
+}
+
+#users_medals > *:last-child {
+  margin-bottom: 0;
+}
+
 #user .medals_table {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -8562,7 +8648,111 @@ tr.likes > td:last-child > br:has(+ strong + em) {
   min-height: 0;
   margin: 0.4rem 0;
   padding: 0;
-  border-top: 1px solid #2a3348;
+  border-top: 1px solid #3a4056;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+#user .medals_table > .medal_cell {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+#user .medals_table .medal_name.primary {
+  margin-bottom: 8px;
+  color: #e6ebf5;
+  font-size: 0.74rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#user .medals_table .medal_cell.inactive .medal_name.primary {
+  color: #7d879b;
+}
+
+#user .medals_table .primary.medal_image_div {
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 110px;
+}
+
+#user .medals_table .primary.medal_image {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+#user .medals_table .medal_cell.inactive .medal_image {
+  opacity: 0.6;
+}
+
+#user .medals_table .medal_image_div .drop_shadow {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 62px;
+  margin: 0 auto;
+  box-shadow: 0 0 9px 4px rgba(0, 0, 0, 0.5);
+}
+
+#user .medals_table .primary {
+  transition: opacity 0.2s;
+}
+
+#user .medals_table .medal_cell:hover .primary {
+  opacity: 0;
+}
+
+#user .medals_table .medal_info {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 9px 10px;
+  overflow: hidden auto;
+  color: #c7d0e0;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  text-align: left;
+  background-color: rgba(25, 29, 42, 0.97);
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+}
+
+#user .medals_table .medal_cell:hover .medal_info {
+  opacity: 1;
+  visibility: visible;
+}
+
+#user .medals_table .medal_info .medal_name {
+  margin-bottom: 5px;
+  color: #e6ebf5;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+#user .medals_table .medal_info .medal_image_div {
+  display: none;
+}
+
+#user .medals_table .medal_info .medal_description {
+  margin-bottom: 6px;
+}
+
+#user .medals_table .medal_info .description_item strong {
+  padding-right: 4px;
+  color: #99a1b3;
+  font-weight: 600;
 }
 
 @media (max-width: 1200px) {
