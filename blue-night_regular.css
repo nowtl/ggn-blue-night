@@ -2500,20 +2500,18 @@ table .colhead > td {
   width: 250px;
 }
 
-.avatar {
+img.avatar {
   display: block;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
-  cursor: pointer;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   transition: all 0.3s;
 }
 
-#user .avatar:hover {
+#user img.avatar:hover {
   transform: scale(1);
-  cursor: initial;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
@@ -3423,6 +3421,31 @@ img[src="static/forums/locked_read.png"] {
 #requests .linkbox > a.brackets:hover {
   color: #fff;
   background: #4281da;
+}
+
+#requests .linkbox > a.brackets[id^="bookmarklink_"]::before,
+#requests .linkbox > a.brackets[href*="reports.php"]::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  margin-right: 0.4rem;
+  background-color: currentColor;
+  -webkit-mask: url("assets/icons/ui/bookmark.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/bookmark.svg") center / contain no-repeat;
+}
+
+#requests .linkbox > a.brackets[href*="reports.php"]::before {
+  -webkit-mask-image: url("assets/icons/ui/flag.svg");
+          mask-image: url("assets/icons/ui/flag.svg");
+}
+
+#requests .linkbox > a.removebookmark[id^="bookmarklink_"] {
+  background: #4281da;
+}
+
+.box_linked_group > a {
+  display: block;
+  padding: 0.75rem 1rem;
 }
 
 
@@ -4453,9 +4476,9 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 
 #thumbsup img,
 #thumbsdown img {
-  width: 20px;
-  height: 20px;
-  padding-left: 20px;
+  width: 16px;
+  height: 16px;
+  padding-left: 16px;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -7993,40 +8016,134 @@ table.forum_post.forum_unread {
 /****************************************************************************
 9.17  Forum post like / dislike (tr.likes) */
 tr.likes > td {
-  vertical-align: top;
+  padding: 8px 10px;
+  vertical-align: middle;
+  font-size: 0;
+  line-height: 2;
+}
+
+tr.likes > td strong,
+tr.likes > td a,
+tr.likes > td em {
+  font-size: 0.72rem;
 }
 
 tr.likes > td:first-child {
-  font-size: 0;
+  white-space: nowrap;
 }
 
 tr.likes > td:first-child > a {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  margin-right: 0.7rem;
-  color: #99a1b3;
-  font-size: 0.7rem;
+  gap: 0.4rem;
+  vertical-align: middle;
+  margin-right: 6px;
+  padding: 0.3rem 0.6rem;
+  color: #c7d0e0;
+  border: 1px solid #363d52;
+  border-radius: 4px;
   text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
 }
 
 tr.likes > td:first-child > a::before {
   content: "";
   flex: none;
-  width: 13px;
-  height: 13px;
-  background-color: currentColor;
+  width: 14px;
+  height: 14px;
+  background-color: #55b160;
   -webkit-mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
-  mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
 }
 
 tr.likes > td:first-child > a:nth-of-type(2)::before {
+  background-color: #fa4659;
   -webkit-mask-image: url("assets/icons/ui/thumbs-down.svg");
-  mask-image: url("assets/icons/ui/thumbs-down.svg");
+          mask-image: url("assets/icons/ui/thumbs-down.svg");
 }
 
-tr.likes > td:first-child > a:hover {
-  color: #4281da;
+tr.likes > td:first-child > a:first-of-type:hover,
+tr.likes:has(> td:last-child > a:not(.username) ~ br) > td:first-child > a:first-of-type {
+  color: #55b160;
+  border-color: rgba(85, 177, 96, 0.5);
+}
+
+tr.likes > td:first-child > a:nth-of-type(2):hover,
+tr.likes:has(> td:last-child > br ~ a:not(.username)) > td:first-child > a:nth-of-type(2) {
+  color: #fa4659;
+  border-color: rgba(250, 70, 89, 0.5);
+}
+
+tr.likes > td:last-child > strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  vertical-align: middle;
+  margin-right: 7px;
+  color: #7d879b;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+tr.likes > td:last-child > strong::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  background-color: #55b160;
+  -webkit-mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/thumbs-up.svg") center / contain no-repeat;
+}
+
+tr.likes > td:last-child > strong:nth-of-type(2)::before {
+  background-color: #fa4659;
+  -webkit-mask-image: url("assets/icons/ui/thumbs-down.svg");
+          mask-image: url("assets/icons/ui/thumbs-down.svg");
+}
+
+tr.likes > td:last-child > a {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+tr.likes > td:last-child > a:not(.username) {
+  position: relative;
+  padding: 0;
+  color: #fff;
+}
+
+tr.likes > td:last-child > a:not(.username)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1.5em;
+  background-color: #2f3547;
+}
+
+tr.likes > td:last-child > a:not(.username)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(0.75em - 6px);
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  background-color: #99a1b3;
+  -webkit-mask: url("assets/icons/ui/circle-x.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/circle-x.svg") center / contain no-repeat;
+  transition: background-color 0.15s;
+}
+
+tr.likes > td:last-child > a:not(.username):hover::after {
+  background-color: #fa4659;
+}
+
+tr.likes > td:last-child > em,
+tr.likes > td:last-child > strong:has(+ em),
+tr.likes > td:last-child > em + br,
+tr.likes > td:last-child > br:has(+ strong + em) {
+  display: none;
 }
 
 /****************************************************************************
@@ -8119,32 +8236,26 @@ tr.likes > td:first-child > a:hover {
   background-color: #0b0f1b;
 }
 
-#forums .colhead_dark strong > a.username,
-#comments .colhead_dark strong > a.username,
-.forum_post .colhead_dark strong > a.username {
+.sub + .forum_post .colhead_dark strong > a.username {
   position: relative;
   padding-right: 1.15em;
 }
 
-#forums .colhead_dark strong > a.username::before,
-#comments .colhead_dark strong > a.username::before,
-.forum_post .colhead_dark strong > a.username::before {
+.sub + .forum_post .colhead_dark strong > a.username::before {
   content: "";
   position: absolute;
   top: 0;
-  right: 1.1em;
+  right: 1.15em;
   bottom: 0;
-  width: 0.6rem;
+  width: 0.667em;
   background-color: #0b0f1b;
 }
 
-#forums .colhead_dark strong > a.username::after,
-#comments .colhead_dark strong > a.username::after,
-.forum_post .colhead_dark strong > a.username::after {
+.sub + .forum_post .colhead_dark strong > a.username::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0.5rem;
+  right: 0.25rem;
   width: 10px;
   height: 10px;
   transform: translateY(-50%);
@@ -8153,10 +8264,30 @@ tr.likes > td:first-child > a:hover {
           mask: url("assets/icons/ui/chevron-down.svg") center / contain no-repeat;
 }
 
-#forums .colhead_dark strong > a.username:hover::after,
-#comments .colhead_dark strong > a.username:hover::after,
-.forum_post .colhead_dark strong > a.username:hover::after {
+.sub + .forum_post .colhead_dark strong > a.username:hover::after {
   background-color: #4281da;
+}
+
+.forum_post .body div[id^="content"] > a.username:has(+ .time),
+.forum_post .body div[id^="content"] > a.username + .time {
+  font-style: italic;
+  color: #949aac;
+}
+
+.forum_post .body div[id^="content"] > a.username:has(+ .time) {
+  position: relative;
+}
+
+.forum_post .body div[id^="content"] > a.username:has(+ .time)::before {
+  content: "Last edited by";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  padding: 0 0.3em 0 0.8em;
+  white-space: nowrap;
+  color: #949aac;
+  font-style: italic;
+  background-color: #2f3547;
 }
 
 /****************************************************************************
@@ -8847,17 +8978,18 @@ html {
 
 .userratingdiv > table > tbody > tr:first-child > td {
   padding: 0.45rem 0;
-  background-color: #262b39;
   border: 1px solid #363d52;
   border-radius: 4px;
   transition: border-color 0.15s;
 }
 
-.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsup:hover) {
+.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsup:hover),
+.userratingdiv > table > tbody > tr:first-child:has(#thumbsdown img.desaturate) > td:has(#thumbsup) {
   border-color: rgba(85, 177, 96, 0.5);
 }
 
-.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsdown:hover) {
+.userratingdiv > table > tbody > tr:first-child > td:has(#thumbsdown:hover),
+.userratingdiv > table > tbody > tr:first-child:has(#thumbsup img.desaturate) > td:has(#thumbsdown) {
   border-color: rgba(250, 70, 89, 0.5);
 }
 
@@ -8865,13 +8997,34 @@ html {
 #thumbsdown {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
+}
+
+#thumbsup img.desaturate,
+#thumbsdown img.desaturate {
+  background-color: #7d879b;
 }
 
 #thumbsup strong,
 #thumbsdown strong {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
+}
+
+#thumbsup strong::before {
+  content: "Like ";
+  color: #99a1b3;
+}
+
+#thumbsdown strong::before {
+  content: "Dislike ";
+  color: #99a1b3;
+}
+
+.userratingdiv td:has(img.desaturate) #thumbsup strong,
+.userratingdiv td:has(img.desaturate) #thumbsdown strong,
+.userratingdiv td:has(img.desaturate) strong::before {
+  color: #7d879b;
 }
 
 #thumbsup strong {
