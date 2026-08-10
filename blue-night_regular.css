@@ -27,7 +27,7 @@
         9.5  Torrent group sidebar boxes
         9.6  User profile page
         9.7  Collections / collage detail
-        9.8  Items store, inventory and crafting
+        9.8  Items store, inventory, crafting and trading
         9.9  jQuery UI dialogs
         9.10 Wiki
         9.11 Calendar
@@ -52,6 +52,7 @@
         9.30 Per game themes
         9.31 Clan stats page
         9.32 Top 10 page
+        9.33 Rendered bbcode: hover text, hidden blocks, timeline, tables
    ========================================================================== */
 
 @layer ggn;
@@ -4701,7 +4702,7 @@ body#user .user_title {
 }
 
 /* Art gallery */
-#artdiv.gallery {
+.gallery {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4770,8 +4771,8 @@ body#user .user_title {
   border-color: #4281da;
 }
 
-#artdiv .ps-scrollbar-x-rail,
-#artdiv .ps-scrollbar-y-rail {
+.gallery .ps-scrollbar-x-rail,
+.gallery .ps-scrollbar-y-rail {
   display: none;
 }
 
@@ -5178,7 +5179,7 @@ body#user .user_title {
 }
 
 /****************************************************************************
-9.8  Shop */
+9.8  Shop and trading */
 .box_add_freeleech .body {
   padding: 0;
 }
@@ -5436,7 +5437,8 @@ body#user .user_title {
   padding-top: 12px;
 }
 
-#items-wrapper {
+#items-wrapper,
+#trading_panel .items-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
   grid-auto-rows: 1fr;
@@ -5444,8 +5446,11 @@ body#user .user_title {
   padding: 8px 4px;
 }
 
-#items-wrapper .item {
+#items-wrapper .item,
+#trading_panel .item,
+#backpack .item {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   margin: 0;
@@ -5458,34 +5463,42 @@ body#user .user_title {
   cursor: grab;
 }
 
-#items-wrapper .item:hover {
+#items-wrapper .item:hover,
+#trading_panel .item:hover,
+#backpack .item:hover {
   border-color: #4281da;
 }
 
-#items-wrapper .item img {
+#items-wrapper .item img,
+#trading_panel .item img,
+#backpack .item img {
   width: auto;
   height: 64px;
   max-width: 100%;
   object-fit: contain;
 }
 
-#items-wrapper .item h3 {
+#items-wrapper .item h3,
+#trading_panel .item h3,
+#backpack .item h3 {
   margin: 6px 0 0;
   font-size: 0.78rem;
   line-height: 1.2;
   color: #fff;
 }
 
-#items-wrapper .item_count {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 0 0.3rem;
-  color: #99a1b3;
-  font-size: 0.6rem;
+#items-wrapper .item_count,
+#trading_panel .item_count {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 1px 5px;
+  color: #e6ebf5;
+  font-size: 0.66rem;
   font-weight: 600;
-  background-color: #262b39;
-  border: 1px solid #363d52;
-  border-radius: 2px;
+  background-color: rgba(25, 29, 42, 0.92);
+  border: 1px solid #3a4056;
+  border-radius: 4px;
 }
 
 .itemslot {
@@ -5538,7 +5551,8 @@ body#user .user_title {
   color: #8fb4ff;
 }
 
-#items-wrapper .item.highlight {
+#items-wrapper .item.highlight,
+#trading_panel .item.highlight {
   background: #323a4f;
   border-color: #4281da;
 }
@@ -5575,7 +5589,7 @@ body#user .user_title {
   min-width: 0;
 }
 
-#slots_panel {
+#crafting_panel #slots_panel {
   display: grid;
   grid-column: 2;
   grid-template-columns: repeat(3, 64px);
@@ -5597,9 +5611,96 @@ body#user .user_title {
   }
 
   #crafting_panel > #items,
-  #slots_panel {
+  #crafting_panel #slots_panel {
     grid-column: 1;
     justify-self: center;
+  }
+}
+
+#backpack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+#backpack > h2,
+#backpack > #items_navigation {
+  grid-column: 1 / -1;
+}
+
+#backpack #items,
+#backpack #slots_panel {
+  box-sizing: border-box;
+  min-height: 220px;
+  padding: 10px;
+  background-color: #232838;
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+}
+
+#backpack #items {
+  text-align: center;
+}
+
+#backpack #slots_panel {
+  float: none;
+  width: auto;
+  margin: 0;
+}
+
+#backpack #slots_header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #2f3a52;
+}
+
+#backpack #slots_header img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+#backpack #slots_header span {
+  color: #e6ebf5;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+#backpack #slots_header button {
+  order: 1;
+  margin: 0 0 0 auto;
+}
+
+#backpack #slots_panel ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#backpack #slots_panel ul li {
+  padding: 0;
+}
+
+#backpack .itemslot .slot_number {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  z-index: 1;
+  color: #7d879b;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  #backpack {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -5894,6 +5995,287 @@ body#user .user_title {
 #equipment #slot_13::after { content: "Outfit"; }
 #equipment #slot_14::after,
 #equipment #slot_15::after { content: "Additional"; }
+
+#trading_panel #items,
+#trading_panel .trade_table .items-wrapper {
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+#trading_panel #items,
+.trade_table {
+  box-sizing: border-box;
+  padding: 8px;
+  background-color: #232838;
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.trade_table .name_tag {
+  margin: 0 0 8px;
+  padding: 7px 10px;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 5px;
+  color: #e6ebf5;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+#trading_panel .trade_table .items-wrapper {
+  align-content: start;
+  min-height: 180px;
+  margin: 0;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 5px;
+}
+
+#trading_panel .trade_table .notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  list-style: none;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 5px;
+  color: #c7d0e0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+#trading_panel .trade_table .notice span {
+  display: inline-block;
+}
+
+#trading_panel button {
+  height: auto;
+  width: auto;
+  margin: 10px 8px 0 0;
+  padding: 0.5rem 1.1rem;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #586278;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#trading_panel button#propose_trade {
+  background: #4281da;
+}
+
+#trading_panel button#accept_trade {
+  background: #55b160;
+}
+
+#trading_panel button#cancel_trade {
+  background: #a94651;
+}
+
+#trading_panel button:hover {
+  filter: brightness(1.12);
+}
+
+#trading_panel button:focus {
+  outline: 0;
+}
+
+#trading_panel button:disabled {
+  cursor: default;
+  filter: grayscale(0.85) brightness(0.75);
+}
+
+#trading_panel div.gold_trade {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#trading_panel .gold_trade .gold_trade_max {
+  flex: 1 1 100%;
+  color: #99a1b3;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+#trading_panel .gold_trade .gold_trade_box {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 5px;
+}
+
+#trading_panel .gold_trade .gold_trade_box_left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 40px;
+  background-color: #151925;
+}
+
+#trading_panel .gold_trade .gold_trade_box_left img {
+  width: 20px;
+  height: 20px;
+}
+
+#trading_panel .gold_trade .gold_trade_box_right {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#trading_panel .gold_trade .gold_trade_amount {
+  width: 100%;
+  height: 36px;
+  padding: 0 0.5rem;
+  color: #deb423;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  background: none;
+  border: 0;
+  -moz-appearance: textfield;
+       appearance: textfield;
+}
+
+#my_gold_trade_amount::-webkit-outer-spin-button,
+#my_gold_trade_amount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#trading_panel .gold_trade .gold_trade_buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#trading_panel .gold_trade .gold_trade_buttons img {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.trade_value {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.trade_value_inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.trade_value .trade_value_gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #deb423;
+}
+
+.trade_value .trade_value_gold img {
+  width: 18px;
+  height: 18px;
+}
+
+.trade_value .trade_value_percent {
+  color: #fa4659;
+}
+
+#trading_panel .message_section {
+  margin-top: 32px;
+}
+
+#trading_panel .message_box {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #232838;
+  border: 1px solid #3a4056;
+  border-radius: 6px;
+}
+
+#trading_panel .message_box .label {
+  display: block;
+  margin: 0 0 6px;
+  color: #99a1b3;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+#trading_panel .message_box textarea {
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 10px;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 5px;
+  color: #e6ebf5;
+}
+
+#trading_panel .message_replies {
+  margin-top: 16px;
+  text-align: left;
+}
+
+#trading_panel .message_reply {
+  display: inline-block;
+  position: relative;
+  max-width: 800px;
+  margin-top: 12px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: #e6ebf5;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+#trading_panel .message_replies .message_reply_self {
+  background-color: #2f3547;
+  border: 1px solid #3a4056;
+}
+
+#trading_panel .message_replies .message_reply_other {
+  float: right;
+  background-color: #223052;
+  border: 1px solid #31517d;
+}
+
+#trading_panel .message_replies .message_reply_self::before,
+#trading_panel .message_replies .message_reply_other::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+#trading_panel .message_replies .message_reply_self::before {
+  left: -10px;
+  border-top-color: #3a4056;
+}
+
+#trading_panel .message_replies .message_reply_other::after {
+  right: -10px;
+  border-top-color: #31517d;
+}
 
 /****************************************************************************
 9.9  jQuery UI dialogs */
@@ -9361,4 +9743,153 @@ colgroup,
 
 .donor_ico {
   margin-left: 4px;
+}
+
+/****************************************************************************
+9.33  Rendered bbcode: hover text, hidden blocks, timeline, tables. */
+.wiki_article span[title]:not([class]),
+.forum_post span[title]:not([class]),
+.body span[title]:not([class]) {
+  border-bottom: 1px dotted #7d879b;
+  cursor: help;
+}
+
+.hidden_bbcode {
+  display: inline-block;
+  max-width: 100%;
+  padding: 1px 8px;
+  opacity: 1 !important;
+  color: transparent;
+  background-color: #191d2a;
+  border: 1px solid #2f3a52;
+  border-radius: 4px;
+  cursor: help;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.hidden_bbcode * {
+  color: transparent;
+}
+
+.hidden_bbcode img,
+.hidden_bbcode video,
+.hidden_bbcode iframe {
+  visibility: hidden;
+}
+
+.hidden_bbcode:hover {
+  color: #e6ebf5;
+  border-color: #3a4056;
+}
+
+.hidden_bbcode:hover * {
+  color: inherit;
+}
+
+.hidden_bbcode:hover img,
+.hidden_bbcode:hover video,
+.hidden_bbcode:hover iframe {
+  visibility: visible;
+}
+
+.timeline__content {
+  padding: 0.7rem 0.9rem;
+  color: #e6ebf5;
+  background-color: #323a4f;
+  border-color: #4a5470;
+  border-radius: 6px;
+}
+
+.timeline__item::after {
+  background-color: #323a4f;
+  border-color: #4a5470;
+}
+
+.timeline--horizontal .timeline-divider,
+.timeline:not(.timeline--horizontal)::before {
+  background-color: #4a5470;
+}
+
+.timeline__content::before {
+  border-left-color: #4a5470;
+}
+
+.timeline__content::after {
+  border-left-color: #323a4f;
+}
+
+.timeline__item--right .timeline__content::before {
+  border-left-color: transparent;
+  border-right-color: #4a5470;
+}
+
+.timeline__item--right .timeline__content::after {
+  border-left-color: transparent;
+  border-right-color: #323a4f;
+}
+
+.timeline--horizontal .timeline__item .timeline__content::before {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #4a5470;
+}
+
+.timeline--horizontal .timeline__item .timeline__content::after {
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #323a4f;
+}
+
+.timeline--horizontal .timeline__item--bottom .timeline__content::before {
+  border-top-color: transparent;
+  border-bottom-color: #4a5470;
+}
+
+.timeline--horizontal .timeline__item--bottom .timeline__content::after {
+  border-top-color: transparent;
+  border-bottom-color: #323a4f;
+}
+
+.timeline-nav-button {
+  background-color: #323a4f;
+  border-color: #4a5470;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.timeline-nav-button:hover {
+  background-color: #39415a;
+  border-color: #4281da;
+  box-shadow: none;
+}
+
+.timeline .timeline-nav-button::before {
+  width: 14px;
+  height: 14px;
+  background-image: none;
+  background-color: #c7d0e0;
+  -webkit-mask: url("assets/icons/ui/chevron-left.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/chevron-left.svg") center / contain no-repeat;
+  transition: background-color 0.15s;
+}
+
+.timeline .timeline-nav-button--next::before {
+  -webkit-mask-image: url("assets/icons/ui/chevron-right.svg");
+          mask-image: url("assets/icons/ui/chevron-right.svg");
+}
+
+.timeline .timeline-nav-button:hover::before {
+  background-color: #fff;
+}
+
+.bbcode_table_div {
+  overflow-x: auto;
+}
+
+.bbcode_table {
+  border-color: #2f3a52;
+}
+
+.bbcode_table td {
+  padding: 6px 10px;
+  border-color: #2f3a52;
 }
