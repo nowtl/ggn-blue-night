@@ -868,8 +868,8 @@ a[title="Close"]:hover {
           mask-position: center;
   -webkit-mask-size: contain;
           mask-size: contain;
-  width: 12px !important;
-  height: 12px !important;
+  width: 14px !important;
+  height: 14px !important;
   margin-right: 0.5rem;
   cursor: pointer;
 }
@@ -10874,6 +10874,16 @@ span.redacted_bbcode_show {
   color: #8fb4ff;
 }
 
+.noty_bar .noty_text br:has(+ span[style*="float"]) {
+  display: none;
+}
+
+.noty_bar .noty_text span[style*="float"] {
+  float: none !important;
+  display: inline;
+  margin-left: 3px;
+}
+
 /****************************************************************************
 9.36  Sortable table headers. */
 .headerSort span {
@@ -10923,4 +10933,164 @@ span.redacted_bbcode_show {
   letter-spacing: normal;
   background-color: rgba(66, 129, 218, 0.22);
   border-radius: 4px;
+}
+
+/****************************************************************************
+9.38  Inbox compose. */
+#inbox #quickpost table.comp,
+#inbox #quickpost table.comp tbody {
+  display: block;
+  width: 100%;
+}
+
+#inbox #quickpost table.comp tr {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) max-content minmax(180px, 240px);
+  gap: 6px 10px;
+  align-items: center;
+  padding: 5px 0;
+}
+
+#inbox #quickpost table.comp tr:has(textarea) {
+  align-items: start;
+}
+
+#inbox #quickpost table.comp tr:has(textarea) h3 {
+  padding-top: 6px;
+}
+
+#inbox #quickpost table.comp tr > td {
+  display: block;
+  padding: 0;
+}
+
+#inbox #quickpost table.comp tr > td:last-child:nth-child(2) {
+  grid-column: 2 / -1;
+}
+
+#inbox #quickpost table.comp h3 {
+  margin: 0;
+  color: #99a1b3;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+#inbox #quickpost table.comp td.center {
+  text-align: left;
+}
+
+#inbox #quickpost table.comp td > br {
+  display: none;
+}
+
+#inbox #quickpost input[type="text"],
+#inbox #quickpost textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#inbox #quickpost .select2-container {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+#inbox ul.bbbutt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+#inbox ul.bbbutt > li {
+  display: flex;
+  align-items: center;
+}
+
+#inbox ul.bbbutt > li:last-child {
+  margin-left: auto;
+}
+
+#inbox .bbbutt a {
+  float: none;
+  margin-bottom: 0;
+}
+
+.dropdown-wrapper > .select2-dropdown {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  #inbox #quickpost table.comp tr {
+    grid-template-columns: 1fr;
+  }
+
+  #inbox #quickpost table.comp tr > td,
+  #inbox #quickpost table.comp tr > td:last-child:nth-child(2) {
+    grid-column: 1;
+  }
+}
+
+/****************************************************************************
+9.39  Confirm dialog (jquery.alertable). */
+.alertable {
+  padding: 16px 18px !important;
+  color: #c7d0e0 !important;
+  background: #1e2333 !important;
+  border: 1px solid #3a4056 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5) !important;
+}
+
+.alertable-overlay {
+  background: rgba(7, 11, 22, 0.6) !important;
+}
+
+.alertable-message {
+  color: #c7d0e0 !important;
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
+}
+
+.alertable-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 28px;
+  padding-left: 0.4rem;
+  margin: 8px 0 0 !important;
+  color: #fff !important;
+  font-size: 0.75rem;
+  background: #191d2a !important;
+  border: 1px solid #2f3a52 !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+}
+
+.alertable-buttons {
+  margin-top: 14px !important;
+}
+
+.alertable button {
+  padding: 0.4rem 1rem !important;
+  color: #fff !important;
+  font-family: "Open Sans", Tahoma, Helvetica, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  background: #586278 !important;
+  border: 1px solid transparent !important;
+  border-radius: 5px !important;
+  transition: all 0.3s !important;
+}
+
+.alertable button:hover,
+.alertable button:focus {
+  background: #4281da !important;
+  box-shadow: 0 0 40px #4281da !important;
+}
+
+.alertable-cancel {
+  margin-right: 6px !important;
 }
