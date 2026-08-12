@@ -8451,15 +8451,45 @@ table.forum_post.forum_unread {
   margin-left: 0.3rem;
 }
 
-.torrent_table span.torrent_info_tags strong.freeleech_label {
+.freeleech_label,
+.neutralleech_label,
+.trumpable_label,
+.reported_label {
   display: inline-block;
   padding: 0 0.3rem;
-  color: #8fb4ff;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 600;
+  vertical-align: 1px;
+  border-radius: 2px;
+}
+
+.freeleech_label {
+  color: #55b160 !important;
+  background-color: rgba(85, 177, 96, 0.12);
+  border: 1px solid #2f5537;
+}
+
+.neutralleech_label {
+  color: #8fb4ff !important;
   background-color: rgba(66, 129, 218, 0.14);
   border: 1px solid #3a4c6e;
-  border-radius: 2px;
+}
+
+.trumpable_label {
+  color: #f89332 !important;
+  background-color: rgba(248, 147, 50, 0.12);
+  border: 1px solid #5c4322;
+}
+
+.reported_label {
+  color: #fa4659 !important;
+  background-color: rgba(250, 70, 89, 0.12);
+  border: 1px solid #5e2a31;
+}
+
+#reported_tag,
+#trumpable_tag {
+  color: #fa4659;
 }
 
 .filter_torrents .submit {
@@ -8478,6 +8508,10 @@ table.forum_post.forum_unread {
 .filter_torrents .submit input[type="submit"],
 .filter_torrents .submit input[type="button"] {
   margin: 0;
+}
+
+.torrent_table #description img {
+  background: darkgray;
 }
 
 /****************************************************************************
@@ -9874,6 +9908,7 @@ html {
   height: auto;
   max-width: 100%;
   max-height: 100%;
+  background: darkgray;
   border-radius: 5px;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.6);
 }
