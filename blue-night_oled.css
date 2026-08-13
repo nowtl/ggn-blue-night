@@ -1,0 +1,24 @@
+@import url("blue-night_regular.css");
+
+:root {
+  --surface-0: #000000;
+  --surface-1: #020204;
+  --surface-2: #050507;
+  --surface-3: #08080b;
+  --surface-4: #090a0d;
+  --surface-5: #0b0c0f;
+  --surface-6: #0d0e12;
+  --surface-7: #111218;
+  --surface-8: #15161d;
+  --surface-9: #1a1b23;
+  --line-1: #23252e;
+  --line-2: #26282f;
+  --line-3: #33353d;
+  --line-4: #3c3f47;
+  --surface-deep-rgb: 0, 0, 0;
+  --surface-2-rgb: 5, 5, 7;
+}
+
+html {
+  background-color: #000000;
+}
