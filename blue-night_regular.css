@@ -4548,6 +4548,41 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
   margin-left: auto;
 }
 
+#markread {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  align-self: center;
+  flex: none;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0 6px 0 0;
+  border: 1px solid rgba(85, 177, 96, 0.4);
+  border-radius: 5px;
+  background: rgba(85, 177, 96, 0.12);
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+#markread::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #55b160;
+  border-top: 0;
+  border-left: 0;
+  transform: rotate(43deg);
+}
+
+#markread:hover {
+  border-color: #55b160;
+  background: rgba(85, 177, 96, 0.22);
+}
+
 /****************************************************************************
 9.5  Torrent group sidebar boxes (tags, ratings, recommend, album art) */
 .box_albumart p {
