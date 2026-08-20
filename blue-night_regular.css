@@ -3651,6 +3651,7 @@ img[src="static/forums/locked_read.png"] {
   font-weight: 700;
 }
 
+#better .linkbox:has(> a.brackets),
 #collections .linkbox:has(> a.brackets),
 #requests .linkbox:has(> a.brackets) {
   display: flex;
@@ -3660,6 +3661,7 @@ img[src="static/forums/locked_read.png"] {
   gap: 0.4rem;
 }
 
+#better .linkbox:has(> a.brackets)::before,
 #collections .linkbox:has(> a.brackets)::before,
 #requests .linkbox:has(> a.brackets)::before {
   content: "";
@@ -3667,6 +3669,7 @@ img[src="static/forums/locked_read.png"] {
   height: 0;
 }
 
+#better .linkbox > a.brackets,
 #collections .linkbox > a.brackets,
 #requests .linkbox > a.brackets {
   display: inline-flex;
@@ -3683,6 +3686,8 @@ img[src="static/forums/locked_read.png"] {
   transition: all 0.3s;
 }
 
+#better .linkbox > a.brackets::before,
+#better .linkbox > a.brackets::after,
 #collections .linkbox > a.brackets::before,
 #collections .linkbox > a.brackets::after,
 #requests .linkbox > a.brackets::before,
@@ -3690,6 +3695,7 @@ img[src="static/forums/locked_read.png"] {
   content: none;
 }
 
+#better .linkbox > a.brackets:hover,
 #collections .linkbox > a.brackets:hover,
 #requests .linkbox > a.brackets:hover {
   color: #fff;
@@ -11197,4 +11203,63 @@ span.redacted_bbcode_show {
 
 .alertable-cancel {
   margin-right: 6px !important;
+}
+
+/****************************************************************************
+9.40  Better and tools pages. */
+body#better #content > .thin > ul {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+body#better #content > .thin > ul > li {
+  padding: 7px 12px;
+  color: #99a1b3;
+  background-color: var(--surface-7);
+  border-top: 1px solid var(--line-1);
+}
+
+body#better #content > .thin > ul > li:first-child {
+  border-top: 0;
+}
+
+body#better #content > .thin > ul > li:hover {
+  background-color: var(--surface-9);
+}
+
+body#better #content > .thin > ul > li > a:first-of-type {
+  color: #c7d0e0;
+}
+
+body#better table.border {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+body#better #content input[type="text"] {
+  width: min(420px, 100%);
+}
+
+body#tools #content > table {
+  width: 100% !important;
+}
+
+body#tools #content > table th {
+  white-space: nowrap;
+}
+
+body#tools #content > table:has(th:nth-child(4)) th:nth-child(2) {
+  width: 100%;
+}
+
+body#tools #content > table:has(th:nth-child(4)) th:nth-child(3),
+body#tools #content > table:has(th:nth-child(4)) th:nth-child(4),
+body#tools #content > table:has(th:nth-child(4)) td:nth-child(3),
+body#tools #content > table:has(th:nth-child(4)) td:nth-child(4) {
+  text-align: center;
 }
