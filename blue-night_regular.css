@@ -5985,12 +5985,51 @@ body#user .user_title {
   border: 1px solid var(--line-2);
   border-radius: 6px;
   cursor: grab;
+  transition: opacity 0.26s cubic-bezier(0.2, 0.85, 0.32, 1.2),
+    transform 0.26s cubic-bezier(0.2, 0.85, 0.32, 1.2),
+    display 0.26s allow-discrete;
 }
 
 #items-wrapper .item:hover,
 #trading_panel .item:hover,
 #backpack .item:hover {
   border-color: #4281da;
+}
+
+#items-wrapper .item.hidden,
+#trading_panel .item.hidden,
+#backpack .item.hidden,
+#items_list > li.item_li.hidden {
+  display: none;
+}
+
+#items-wrapper .item.hidden,
+#trading_panel .item.hidden,
+#backpack .item.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.14s ease-in, transform 0.14s ease-in,
+    display 0.14s allow-discrete;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #items-wrapper .item,
+  #trading_panel .item,
+  #backpack .item,
+  #items-wrapper .item.hidden,
+  #trading_panel .item.hidden,
+  #backpack .item.hidden {
+    transition: none;
+  }
+}
+
+#items-wrapper:not(:has(> li.item:not(.hidden)))::after {
+  content: "No matching items";
+  grid-column: 1 / -1;
+  padding: 22px 0;
+  color: #99a1b3;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 #items-wrapper .item img,
@@ -6122,9 +6161,25 @@ body#user .user_title {
   grid-column: 1 / -1;
 }
 
+#crafting_recipes {
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--surface-5);
+  border: 1px solid var(--surface-9);
+  border-radius: 6px;
+}
+
 #crafting_panel > #items {
   grid-column: 1;
   min-width: 0;
+  padding: 10px 12px 12px;
+  background: var(--surface-5);
+  border: 1px solid var(--surface-9);
+  border-radius: 6px;
+}
+
+#crafting_panel #items-wrapper {
+  max-height: min(62vh, 588px);
 }
 
 #crafting_panel #slots_panel {
@@ -6134,13 +6189,25 @@ body#user .user_title {
   gap: 6px;
   float: none !important;
   width: auto;
-  margin: 48px 0 0;
+  margin: 0;
   padding: 12px 12px 30px;
   justify-content: center;
   align-content: start;
   background: var(--surface-5);
   border: 1px solid var(--surface-9);
   border-radius: 6px;
+}
+
+#crafting_panel #search_query {
+  width: min(320px, 100%);
+}
+
+#crafting_recipes li.item_li {
+  cursor: pointer;
+}
+
+#crafting_recipes li.item_li:hover {
+  border-color: #4281da;
 }
 
 @media (max-width: 700px) {
@@ -6245,6 +6312,7 @@ body#user .user_title {
 #crafting_recipes > #items_list:has(> .item_li) {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
   gap: 10px;
+  max-height: min(50vh, 470px);
 }
 
 #crafting_recipes #items_list > li.item_li > div {
@@ -6257,13 +6325,15 @@ body#user .user_title {
 }
 
 #crafting_recipes #items_list li.item_li h3 {
-  margin: 0 0 8px;
-  font-size: 0.82rem;
+  order: 2;
+  margin: 8px 0 0;
+  font-size: 0.78rem;
   line-height: 1.25;
   color: #fff;
 }
 
 #crafting_recipes .item_image_div {
+  order: 1;
   height: 88px;
   margin-top: auto;
 }
@@ -6819,6 +6889,7 @@ body#user .user_title {
 9.9  jQuery UI dialogs */
 .ui-dialog {
   padding: 0 !important;
+  max-width: calc(100vw - 32px) !important;
   background: var(--surface-3) !important;
   border: 1px solid var(--line-2) !important;
   border-radius: 8px !important;
@@ -6852,6 +6923,20 @@ body#user .user_title {
   color: #fff !important;
 }
 
+.ui-dialog .ui-dialog-content a {
+  color: #4281da !important;
+}
+
+.ui-dialog .ui-dialog-content a:hover {
+  color: #fff !important;
+}
+
+.ui-dialog .ui-dialog-content a:focus-visible {
+  outline: 2px solid #4281da !important;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
 .ui-dialog .ui-dialog-titlebar .ui-button,
 .ui-dialog .ui-dialog-titlebar a {
   background: transparent !important;
@@ -6869,6 +6954,7 @@ body#user .user_title {
 
 .ui-dialog,
 .ui-dialog .ui-widget {
+  font-family: inherit !important;
   font-size: 0.8rem !important;
 }
 
@@ -9559,11 +9645,25 @@ html {
   scrollbar-color: var(--line-2) var(--surface-2);
 }
 
+.ps-container {
+  position: relative;
+}
+
 .ps-container > .ps-scrollbar-x-rail,
-.ps-container > .ps-scrollbar-y-rail,
-.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail,
-.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
   background-color: transparent;
+}
+
+.ps-container > .ps-scrollbar-y-rail,
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  width: 8px !important;
+  background-color: var(--surface-2) !important;
+  border-radius: 4px;
+  opacity: 1 !important;
+}
+
+.ps-container.ps-active-y {
+  padding-right: 14px !important;
 }
 
 .ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x,
@@ -9571,6 +9671,13 @@ html {
 .ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x,
 .ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
   background-color: #586278;
+}
+
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y,
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  right: 1px;
+  width: 6px !important;
+  border-radius: 3px;
 }
 
 .ps-container > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x,
