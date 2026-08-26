@@ -2343,6 +2343,17 @@ table .colhead > td {
   line-height: 1;
   text-transform: lowercase;
 }
+#alerts {
+  margin: -6px 0 6px;
+  padding: 0 0.6em;
+  font-size: 12px;
+  text-align: center;
+}
+
+#alerts .alertbar {
+  color: #586278;
+}
+
 /* Search bar */
 #searchbars {
   background: var(--surface-7);
@@ -3866,6 +3877,7 @@ div.show_torrents {
   border: none;
   background: none;
   position: relative;
+  z-index: 1;
 }
 
 #grouplinks tbody,
@@ -3933,6 +3945,7 @@ div.show_torrents {
 
 #grouplinks td::after {
   font-weight: 700;
+  pointer-events: none;
 }
 #grouplinks td:has(.amigacd32)::after { content: "Amiga CD32"; }
 #grouplinks td:has(.amstradcpc)::after { content: "Amstrad CPC"; }
@@ -4090,10 +4103,6 @@ div.show_torrents {
   min-width: 250px;
   max-width: 380px;
   overflow: hidden;
-}
-
-#grouplinks td.ost_groups:hover > ul {
-  display: block;
 }
 
 #grouplinks td.ost_groups > ul li {
@@ -10578,7 +10587,8 @@ colgroup,
     text-shadow: none !important;
   }
 
-  #menu ul a:hover {
+  #menu ul a:hover,
+  .alertbar a:hover {
     color: #fff !important;
   }
 
