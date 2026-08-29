@@ -7098,6 +7098,13 @@ body#user .user_title {
   float: none;
   clear: none;
   margin: 10px 8px 0 0;
+  background: #586278;
+}
+
+#content #trading_panel > button#propose_trade:hover:not(:disabled),
+#content #trading_panel > button#accept_trade:hover:not(:disabled),
+#content #trading_panel > button#cancel_trade:hover:not(:disabled) {
+  background: #4281da;
 }
 
 #content #trading_panel .message_box .label {
