@@ -1585,7 +1585,7 @@ input[type="radio"]:focus {
 
 button[disabled],
 input[disabled] {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 button::-moz-focus-inner,
@@ -4796,9 +4796,9 @@ ul.nobullet:has(> .similar_group) > li:not(.similar_group) {
 
 #thumbsup img,
 #thumbsdown img {
-  width: 16px;
-  height: 16px;
-  padding-left: 16px;
+  width: 13px;
+  height: 13px;
+  padding-left: 13px;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -5957,6 +5957,7 @@ body#user .user_title {
   background: var(--surface-7);
   border: 1px solid var(--line-2);
   border-radius: 6px;
+  box-shadow: none;
   cursor: grab;
 }
 
@@ -6669,7 +6670,7 @@ body#user .user_title {
 #content #trading_panel button {
   height: auto;
   width: auto;
-  margin: 10px 8px 0 0;
+  margin: 10px 0 0;
   padding: 0.4rem 1rem;
   color: #fff;
   font-size: 0.8rem;
@@ -6702,7 +6703,7 @@ body#user .user_title {
 }
 
 #content #trading_panel button:disabled {
-  cursor: default;
+  cursor: not-allowed;
   box-shadow: none;
   filter: grayscale(0.85) brightness(0.75);
 }
@@ -6762,6 +6763,8 @@ body#user .user_title {
 }
 
 #content #trading_panel .gold_trade .gold_trade_box_right {
+  display: flex;
+  align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -6769,17 +6772,34 @@ body#user .user_title {
 #content #trading_panel .gold_trade .gold_trade_amount {
   display: block;
   width: 100%;
-  height: 36px;
+  height: auto;
   padding: 0 0.5rem;
   color: #deb423;
   font-size: 0.95rem;
   font-weight: 700;
-  line-height: 36px;
+  line-height: normal;
   text-align: center;
   background: none;
   border: 0;
   -moz-appearance: textfield;
        appearance: textfield;
+}
+
+#content #trading_panel .gold_trade span.gold_trade_amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content #trading_panel .gold_trade .gold_trade_amount:focus,
+#content #trading_panel .gold_trade .gold_trade_amount:focus-visible {
+  outline: 0;
+  box-shadow: none;
+}
+
+#content #trading_panel .gold_trade:has(.gold_trade_amount:focus) .gold_trade_box,
+#content #trading_panel .gold_trade:has(.gold_trade_amount:focus) .gold_trade_buttons {
+  border-color: #4281da;
 }
 
 #content #my_gold_trade_amount::-webkit-outer-spin-button,
@@ -6901,57 +6921,84 @@ body#user .user_title {
 }
 
 #content #trading_panel .message_replies {
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
   text-align: left;
 }
 
 #content #trading_panel .message_reply {
-  display: inline-block;
+  display: block;
   position: relative;
-  max-width: 800px;
-  margin-top: 12px;
-  padding: 9px 12px;
-  border-radius: 6px;
+  float: none;
+  clear: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: min(76%, 620px);
+  margin: 0;
+  padding: 10px 14px;
   color: #e6ebf5;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: left;
+  word-break: break-word;
 }
 
 #content #trading_panel .message_replies .message_reply_self {
+  align-self: flex-start;
   background-color: var(--surface-2);
-  border: 1px solid var(--line-1);
+  border: 1px solid #39405a;
+  border-radius: 10px 10px 10px 3px;
 }
 
 #content #trading_panel .message_replies .message_reply_other {
-  float: right;
-  background-color: #223052;
-  border: 1px solid #31517d;
+  align-self: flex-end;
+  background-color: #233a68;
+  border: 1px solid #3b5a99;
+  border-radius: 10px 10px 3px 10px;
 }
 
 #content #trading_panel .message_replies .message_reply_self::before,
 #content #trading_panel .message_replies .message_reply_other::after {
   content: "";
   position: absolute;
-  top: 0;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
+  bottom: 1px;
+  width: 11px;
+  height: 11px;
+  border: 0;
+  transform: rotate(45deg);
 }
 
 #content #trading_panel .message_replies .message_reply_self::before {
-  left: -10px;
-  border-top-color: var(--line-1);
+  left: -6px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid #39405a;
+  border-left: 1px solid #39405a;
 }
 
 #content #trading_panel .message_replies .message_reply_other::after {
-  right: -10px;
-  border-top-color: #31517d;
+  right: -6px;
+  background-color: #233a68;
+  border-top: 1px solid #3b5a99;
+  border-right: 1px solid #3b5a99;
+}
+
+#content #trading_panel .message_reply a {
+  color: #8fb4ee;
+}
+
+#content #trading_panel .message_reply a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 #content #trading_panel {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -7111,7 +7158,7 @@ body#user .user_title {
 #content #trading_panel > button#cancel_trade {
   float: none;
   clear: none;
-  margin: 10px 8px 0 0;
+  margin: 10px 0 0;
   background: #586278;
 }
 
@@ -7128,21 +7175,6 @@ body#user .user_title {
 
 #content #trading_panel .message_box ul.bbbutt {
   border: 0;
-}
-
-@media (max-width: 1100px) {
-  #content #trading_panel > #items {
-    flex: 1 1 100%;
-    height: 320px;
-  }
-}
-
-@media (max-width: 700px) {
-  #content #trading_panel .trade_table {
-    flex: 1 1 100%;
-    height: auto;
-    min-height: 360px;
-  }
 }
 
 #crafting_panel > #items,
@@ -7273,32 +7305,49 @@ body#user .user_title {
   min-width: 0;
 }
 
+@media (max-width: 1100px) {
+  #content #trading_panel > #items {
+    flex: 1 1 100%;
+    height: 320px;
+  }
+}
+
+@media (max-width: 700px) {
+  #content #trading_panel .trade_table {
+    flex: 1 1 100%;
+    height: auto;
+    min-height: 360px;
+  }
+}
+
 #content #trading_panel button:active {
   box-shadow: none;
 }
 
 #content #trading_panel > button#cancel_trade {
-  color: #fa4659;
-  border-color: rgba(250, 70, 89, 0.45);
+  color: #fff;
+  background: #c33b4b;
+  border-color: #d9505f;
 }
 
 #content #trading_panel > button#accept_trade {
-  color: #55b160;
-  border-color: rgba(85, 177, 96, 0.45);
+  color: #fff;
+  background: #33874a;
+  border-color: #43a05c;
 }
 
 #content #trading_panel > button#cancel_trade:hover:not(:disabled) {
-  color: #fa4659;
-  background: rgba(250, 70, 89, 0.16);
-  border-color: #fa4659;
-  box-shadow: none;
+  color: #fff;
+  background: #d94456;
+  border-color: #ff5f70;
+  box-shadow: 0 0 30px rgba(250, 70, 89, 0.4);
 }
 
 #content #trading_panel > button#accept_trade:hover:not(:disabled) {
-  color: #55b160;
-  background: rgba(85, 177, 96, 0.16);
+  color: #fff;
+  background: #3b9c56;
   border-color: #55b160;
-  box-shadow: none;
+  box-shadow: 0 0 30px rgba(85, 177, 96, 0.4);
 }
 
 #content #trading_panel > button#propose_trade:disabled,
@@ -7307,31 +7356,8 @@ body#user .user_title {
   color: #6f7891;
   background: var(--surface-5);
   border-color: transparent;
-  cursor: default;
+  cursor: not-allowed;
   filter: none;
-}
-
-#content #trading_panel .message_reply {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-#content #trading_panel .message_replies .message_reply_self::before,
-#content #trading_panel .message_replies .message_reply_other::after {
-  top: 14px;
-  border: 8px solid transparent;
-}
-
-#content #trading_panel .message_replies .message_reply_self::before {
-  left: -8px;
-  border-left: 0;
-  border-right-color: var(--surface-2);
-}
-
-#content #trading_panel .message_replies .message_reply_other::after {
-  right: -8px;
-  border-right: 0;
-  border-left-color: #223052;
 }
 
 #equipment #items_inner {
@@ -7341,6 +7367,97 @@ body#user .user_title {
 #equipment #items-wrapper {
   padding: 8px 4px;
 }
+
+#content form.trade_search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin: 0 0 12px;
+  padding: 12px 16px;
+  background-color: var(--surface-7);
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+}
+
+#content form.trade_search > div {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  min-width: 0;
+}
+
+#content form.trade_search .trade_search_text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+}
+
+#content form.trade_search .trade_search_text > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#content form.trade_search .trade_search_text input[type="text"] {
+  width: 190px;
+}
+
+#content form.trade_search .trade_search_status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 6px;
+}
+
+#content form.trade_search .trade_search_status input[type="checkbox"] ~ input[type="checkbox"] {
+  margin-left: 16px;
+}
+
+#content form.trade_search label,
+#content form.trade_search .trade_search_status > span {
+  color: #99a1b3;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#content form.trade_search .trade_search_status > span {
+  margin-right: 2px;
+}
+
+#content form.trade_search input[type="submit"] {
+  margin: 0;
+}
+
+#content form.trade_search ~ .box.pad {
+  overflow-x: auto;
+}
+
+#content form.trade_search ~ .box.pad > table {
+  min-width: 720px;
+}
+
+@media (max-width: 660px) {
+  #content form.trade_search .trade_search_status {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: start;
+    gap: 8px;
+  }
+
+  #content form.trade_search .trade_search_status > span {
+    grid-column: 1 / -1;
+  }
+
+  #content form.trade_search .trade_search_status input[type="checkbox"] ~ input[type="checkbox"] {
+    margin-left: 0;
+  }
+}
+
 /****************************************************************************
 9.9  jQuery UI dialogs */
 .ui-dialog {
@@ -9031,15 +9148,17 @@ table.forum_post.forum_unread {
 }
 
 strong[class$="_label"] {
+  box-sizing: border-box;
   display: inline-block;
-  padding: 0 0.3rem;
+  padding: 0.2rem 0.6rem;
   color: #99a1b3;
-  font-size: 0.7rem;
-  font-weight: 600;
-  vertical-align: 1px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  vertical-align: baseline;
   background-color: rgba(var(--surface-2-rgb), 0.6);
-  border: 1px solid var(--line-2);
-  border-radius: 2px;
+  border: 0;
+  border-radius: 1rem;
+  transition: all 0.3s;
 }
 
 em[class$="_link_label"] {
@@ -9047,34 +9166,29 @@ em[class$="_link_label"] {
   font-style: normal;
 }
 
-.freeleech_label {
-  color: #55b160 !important;
-  background-color: rgba(85, 177, 96, 0.12);
-  border: 1px solid #2f5537;
+strong.freeleech_label {
+  color: #55b160;
+  background-color: rgba(85, 177, 96, 0.15);
 }
 
-.partial_freeleech_label {
-  color: #55b160 !important;
-  background-color: rgba(85, 177, 96, 0.1);
-  border: 1px dashed #3f6b49;
+strong.partial_freeleech_label {
+  color: #55b160;
+  background-color: rgba(85, 177, 96, 0.09);
 }
 
-.neutralleech_label {
-  color: #8fb4ff !important;
-  background-color: rgba(66, 129, 218, 0.14);
-  border: 1px solid #3a4c6e;
+strong.neutralleech_label {
+  color: #8fb4ff;
+  background-color: rgba(66, 129, 218, 0.15);
 }
 
-.trumpable_label {
-  color: #f89332 !important;
-  background-color: rgba(248, 147, 50, 0.12);
-  border: 1px solid #5c4322;
+strong.trumpable_label {
+  color: #dfa02d;
+  background-color: rgba(223, 160, 45, 0.15);
 }
 
-.reported_label {
-  color: #fa4659 !important;
-  background-color: rgba(250, 70, 89, 0.12);
-  border: 1px solid #5e2a31;
+strong.reported_label {
+  color: #fa4659;
+  background-color: rgba(250, 70, 89, 0.15);
 }
 
 #reported_tag,
@@ -10274,23 +10388,12 @@ html {
 
 #thumbsup strong,
 #thumbsdown strong {
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-#thumbsup strong::before {
-  content: "Like ";
-  color: #99a1b3;
-}
-
-#thumbsdown strong::before {
-  content: "Dislike ";
-  color: #99a1b3;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .userratingdiv td:has(img.desaturate) #thumbsup strong,
-.userratingdiv td:has(img.desaturate) #thumbsdown strong,
-.userratingdiv td:has(img.desaturate) strong::before {
+.userratingdiv td:has(img.desaturate) #thumbsdown strong {
   color: #7d879b;
 }
 
@@ -11621,7 +11724,7 @@ span.redacted_bbcode_show {
 }
 
 /****************************************************************************
-9.38  Inbox compose. */
+9.38  Inbox compose and conversation view. */
 #inbox #quickpost table.comp,
 #inbox #quickpost table.comp tbody {
   display: block;
@@ -11716,6 +11819,84 @@ span.redacted_bbcode_show {
   #inbox #quickpost table.comp tr > td:last-child:nth-child(2) {
     grid-column: 1;
   }
+}
+
+#inbox #content .thin > div.box.vertical_space {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#inbox #messageform > .box.pad > span:first-of-type {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 8px;
+  padding-right: 16px;
+}
+
+#inbox #messageform > .box.pad > span:first-of-type > input#tags_1 {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: auto !important;
+  min-width: 0;
+}
+
+#inbox #messageform > .box.pad > span + span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#inbox #messageform textarea#quickpost {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) table {
+  display: block;
+  width: 100%;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) tbody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) tr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) td {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  padding: 0;
+  border: 0;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) td.label {
+  color: #99a1b3;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) td.label ~ td.label {
+  margin-left: 22px;
+}
+
+#inbox #content form:has(input[name="mark_unread"]) input[type="submit"] {
+  margin: 0;
 }
 
 /****************************************************************************
