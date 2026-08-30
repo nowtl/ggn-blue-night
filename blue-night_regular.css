@@ -6918,8 +6918,8 @@ body#user .user_title {
 }
 
 #content #trading_panel .message_replies .message_reply_self {
-  background-color: var(--surface-7);
-  border: 1px solid var(--line-2);
+  background-color: var(--surface-2);
+  border: 1px solid var(--line-1);
 }
 
 #content #trading_panel .message_replies .message_reply_other {
@@ -6940,7 +6940,7 @@ body#user .user_title {
 
 #content #trading_panel .message_replies .message_reply_self::before {
   left: -10px;
-  border-top-color: var(--line-2);
+  border-top-color: var(--line-1);
 }
 
 #content #trading_panel .message_replies .message_reply_other::after {
@@ -7230,6 +7230,35 @@ body#user .user_title {
   text-align: left;
 }
 
+
+#content #trading_panel .message_box .label:nth-of-type(2) {
+  margin-top: 14px;
+}
+
+#content #trading_panel .message_box #buttons {
+  margin-top: 10px;
+  text-align: right;
+}
+
+#content #trading_panel .message_box #buttons input {
+  height: auto;
+  padding: 0.4rem 1rem;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #586278;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#content #trading_panel .message_box #buttons input:hover {
+  background: #4281da;
+  box-shadow: 0 0 40px #4281da;
+}
 /****************************************************************************
 9.9  jQuery UI dialogs */
 .ui-dialog {
