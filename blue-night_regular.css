@@ -6949,14 +6949,27 @@ body#user .user_title {
 }
 
 #content #trading_panel {
-  display: grid;
-  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 16px;
-  align-items: stretch;
+}
+
+#content #trading_panel::before {
+  content: "";
+  order: 1;
+  flex: 1 1 100%;
+  height: 0;
+  margin-top: -16px;
+}
+
+#content #trading_panel > h2,
+#content #trading_panel > .linkbox,
+#content #trading_panel > .message_section {
+  flex: 1 1 100%;
 }
 
 #content #trading_panel > .linkbox {
-  grid-column: 1 / -1;
   margin: 0;
   font-size: 0.8rem;
 }
@@ -6969,13 +6982,12 @@ body#user .user_title {
 
 #content #trading_panel > button {
   order: 1;
+  flex: 0 0 auto;
   float: none;
-  justify-self: start;
 }
 
 #content #trading_panel > .message_section {
   order: 2;
-  grid-column: 1 / -1;
   float: none;
   width: auto;
 }
@@ -7119,22 +7131,15 @@ body#user .user_title {
 }
 
 @media (max-width: 1100px) {
-  #content #trading_panel {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
   #content #trading_panel > #items {
-    grid-column: 1 / -1;
+    flex: 1 1 100%;
     height: 320px;
   }
 }
 
 @media (max-width: 700px) {
-  #content #trading_panel {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   #content #trading_panel .trade_table {
+    flex: 1 1 100%;
     height: auto;
     min-height: 360px;
   }
@@ -7191,7 +7196,6 @@ body#user .user_title {
 }
 
 #content #trading_panel > h2 {
-  grid-column: 1 / -1;
   visibility: visible;
   margin: 0;
 }
@@ -7237,7 +7241,7 @@ body#user .user_title {
 
 #content #trading_panel .message_box #buttons {
   margin-top: 10px;
-  text-align: right;
+  text-align: center;
 }
 
 #content #trading_panel .message_box #buttons input {
@@ -7258,6 +7262,84 @@ body#user .user_title {
 #content #trading_panel .message_box #buttons input:hover {
   background: #4281da;
   box-shadow: 0 0 40px #4281da;
+}
+
+#content #trading_panel > #items {
+  flex: 0 0 260px;
+}
+
+#content #trading_panel .trade_table {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+#content #trading_panel button:active {
+  box-shadow: none;
+}
+
+#content #trading_panel > button#cancel_trade {
+  color: #fa4659;
+  border-color: rgba(250, 70, 89, 0.45);
+}
+
+#content #trading_panel > button#accept_trade {
+  color: #55b160;
+  border-color: rgba(85, 177, 96, 0.45);
+}
+
+#content #trading_panel > button#cancel_trade:hover:not(:disabled) {
+  color: #fa4659;
+  background: rgba(250, 70, 89, 0.16);
+  border-color: #fa4659;
+  box-shadow: none;
+}
+
+#content #trading_panel > button#accept_trade:hover:not(:disabled) {
+  color: #55b160;
+  background: rgba(85, 177, 96, 0.16);
+  border-color: #55b160;
+  box-shadow: none;
+}
+
+#content #trading_panel > button#propose_trade:disabled,
+#content #trading_panel > button#accept_trade:disabled,
+#content #trading_panel > button#cancel_trade:disabled {
+  color: #6f7891;
+  background: var(--surface-5);
+  border-color: transparent;
+  cursor: default;
+  filter: none;
+}
+
+#content #trading_panel .message_reply {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+#content #trading_panel .message_replies .message_reply_self::before,
+#content #trading_panel .message_replies .message_reply_other::after {
+  top: 14px;
+  border: 8px solid transparent;
+}
+
+#content #trading_panel .message_replies .message_reply_self::before {
+  left: -8px;
+  border-left: 0;
+  border-right-color: var(--surface-2);
+}
+
+#content #trading_panel .message_replies .message_reply_other::after {
+  right: -8px;
+  border-right: 0;
+  border-left-color: #223052;
+}
+
+#equipment #items_inner {
+  padding: 12px 16px;
+}
+
+#equipment #items-wrapper {
+  padding: 8px 4px;
 }
 /****************************************************************************
 9.9  jQuery UI dialogs */
