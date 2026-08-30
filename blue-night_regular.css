@@ -6035,6 +6035,8 @@ body#user .user_title {
   position: absolute;
   top: 2px;
   left: 2px;
+  width: 22px;
+  height: auto;
 }
 
 #items-wrapper .item img.unequip_warning {
@@ -6453,7 +6455,7 @@ body#user .user_title {
 
 #equipment #items {
   position: relative;
-  flex: 0 0 253px;
+  flex: 1 1 253px;
   height: 806px;
   margin: 0;
   padding: 0;
@@ -7218,6 +7220,16 @@ body#user .user_title {
 .book_content span[style*="red"] {
   color: #fa4659 !important;
 }
+
+#content #trading_panel .message_box .message_notice {
+  display: block;
+  margin-top: 8px;
+  color: #99a1b3;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
 /****************************************************************************
 9.9  jQuery UI dialogs */
 .ui-dialog {
