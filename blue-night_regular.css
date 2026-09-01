@@ -2289,6 +2289,7 @@ table .colhead > td {
   font-size: 0.85rem;
   line-height: 1;
   filter: none;
+  text-shadow: none;
 }
 
 .global_buffs .individual_buff i.fa:empty {
@@ -2303,7 +2304,7 @@ table .colhead > td {
   font-weight: 700;
   line-height: 1.45;
   letter-spacing: normal;
-  background: rgba(66, 129, 218, 0.22);
+  background: color-mix(in srgb, var(--fg-accent) 22%, transparent);
   border-radius: 1rem;
 }
 
@@ -2316,6 +2317,7 @@ table .colhead > td {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  text-shadow: none;
 }
 
 .global_buffs .buff_text br {

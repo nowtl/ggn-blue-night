@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blue Night Toolkit
 // @namespace    https://github.com/nowtl/ggn-blue-night
-// @version      0.4.0
+// @version      0.5.0
 // @description  Companion panel for the Blue Night theme on GazelleGames: palettes, logos and layout options the site does not offer.
 // @author       nowtl
 // @homepageURL  https://github.com/nowtl/ggn-blue-night
@@ -16,7 +16,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '0.4.0';
+  var VERSION = '0.5.0';
   var SCHEMA = 2;
   var STORE_KEY = 'ggn-blue-night';
   var CACHE_KEY = 'ggn-blue-night:manifest';
@@ -102,13 +102,6 @@
     Object.keys(state.features).forEach(function (id) {
       applyOne(id, state.features[id]);
     });
-  }
-
-  function clearAll(state) {
-    Object.keys(state.features).forEach(function (id) {
-      root.removeAttribute(attrFor(id));
-    });
-    root.removeAttribute('data-ggn-toolkit');
   }
 
   var settings = load();
@@ -275,7 +268,7 @@
     '.status{padding:9px 15px;color:var(--faint);font-size:11px;letter-spacing:.05em;',
     'text-transform:uppercase;border-bottom:1px solid var(--line)}',
     '.status.miss{color:var(--warn)}',
-    '.body{flex:1;min-height:0;overflow-y:auto;padding:4px 15px 15px}',
+    '.body{flex:1;min-height:0;overflow-y:auto;padding:4px 15px 15px;border-radius:0 0 9px 9px}',
     '.group{padding-top:16px}',
     '.group h2{margin-bottom:8px;color:var(--faint);font-size:10px;font-weight:700;',
     'letter-spacing:.12em;text-transform:uppercase}',
@@ -303,11 +296,6 @@
     '.sw[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}',
     '.sw[aria-pressed="true"]::after{left:16px;background:#fff}',
     '.empty{padding:26px 0;color:var(--faint);font-size:12px;text-align:center}',
-    'footer{display:flex;gap:8px;padding:11px 15px;border-top:1px solid var(--line)}',
-    '.ghost{flex:1;padding:7px 10px;color:var(--dim);font-size:11.5px;font-weight:600;',
-    'background:none;border:1px solid var(--line);border-radius:6px;cursor:pointer;transition:all .18s}',
-    '.ghost:hover{color:var(--ink);background:var(--raised);border-color:var(--line-hi)}',
-    '.ghost.danger:hover{color:#fff;background:var(--danger);border-color:var(--danger)}',
     '@media (prefers-reduced-motion:reduce){*{transition:none!important}}'
   ].join('');
 
@@ -378,17 +366,10 @@
       themeVersion ? 'Theme ' + themeVersion : 'Blue Night stylesheet not detected');
 
     var body = el('div', 'body');
-    var foot = el('footer');
-    var reset = el('button', 'ghost', 'Reset all');
-    var off = el('button', 'ghost danger', 'Hide panel');
-    off.title = 'Hides the launcher until the next page load.';
-    foot.appendChild(reset);
-    foot.appendChild(off);
 
     pop.appendChild(head);
     pop.appendChild(status);
     pop.appendChild(body);
-    pop.appendChild(foot);
     shell.appendChild(launcher);
     shell.appendChild(pop);
 
@@ -414,19 +395,6 @@
       if (event.key === 'Escape' && host.isConnected) setOpen(false);
     });
 
-    reset.addEventListener('click', function () {
-      clearAll(settings);
-      settings = blank();
-      save(settings);
-      applyAll(settings);
-      paint(shell);
-      render(body, lastManifest);
-    });
-
-    off.addEventListener('click', function () {
-      setOpen(false);
-      host.remove();
-    });
 
     var lastManifest = FALLBACK_MANIFEST;
 
