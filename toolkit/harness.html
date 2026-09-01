@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Toolkit harness</title>
+<link rel="stylesheet" href="../blue-night_regular.css">
+<style>
+  body {
+    margin: 0;
+    padding: 40px;
+    min-height: 100vh;
+    background: var(--surface-0);
+    color: #e6ebf5;
+    font: 14px/1.6 "Open Sans", system-ui, sans-serif;
+  }
+  h1 { margin: 0 0 4px; font-size: 18px; }
+  p.sub { margin: 0 0 28px; color: #99a1b3; font-size: 12px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .card {
+    flex: 1 1 200px;
+    padding: 14px 16px;
+    background: var(--surface-7);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+  }
+  .card b { display: block; margin-bottom: 6px; font-size: 12px; }
+  .card span { color: #99a1b3; font-size: 12px; }
+  .well {
+    padding: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-1);
+    border-radius: 6px;
+  }
+  .chip {
+    display: inline-block;
+    margin: 0 6px 6px 0;
+    padding: 3px 7px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    background: color-mix(in srgb, currentColor 15%, transparent);
+  }
+  .chip.crit { background: color-mix(in srgb, currentColor 26%, transparent); font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>Blue Night toolkit harness</h1>
+  <p class="sub">Local page for driving the panel without the live site. Surfaces below use the theme tokens, so palette switches show up here.</p>
+
+  <div class="row">
+    <div class="card"><b>Panel surface</b><span>--surface-7 on --surface-0</span></div>
+    <div class="card"><b>Border</b><span>--line-2</span></div>
+    <div class="card"><b>Raised</b><span>--surface-5</span></div>
+  </div>
+
+  <div class="well">
+    <span class="chip" style="color:#d18ad9">Birthday</span>
+    <span class="chip" style="color:#8fb4ff">Site event</span>
+    <span class="chip" style="color:#55b160">Industry event</span>
+    <span class="chip" style="color:#dfa02d">Conference</span>
+    <span class="chip" style="color:#46c6c0">Stream</span>
+    <span class="chip crit" style="color:#fa4659">Maintenance (critical)</span>
+  </div>
+
+  <script>
+    localStorage.setItem('ggn-blue-night:manifest', JSON.stringify({
+      version: 3,
+      features: [
+        {
+          id: 'palette', type: 'select', group: 'Appearance', label: 'Colour palette',
+          from: '--ggn-palettes', defaultLabel: 'Blue Night',
+          options: [
+            { value: 'abyss', label: 'Abyss', help: 'The same blue, sunk deeper. Easier on the eyes at night.' },
+            { value: 'oled', label: 'OLED', help: 'True black background for AMOLED screens.' },
+            { value: 'graphite', label: 'Graphite', help: 'Neutral greys with the blue cast removed.' },
+            { value: 'ember', label: 'Ember', help: 'Warm browns under the same blue accent.' },
+            { value: 'nocturne', label: 'Nocturne', help: 'Violet-leaning surfaces, softer than the default blue.' }
+          ]
+        },
+        { id: 'logo', type: 'select', group: 'Appearance', label: 'Header logo', from: '--ggn-logos', defaultLabel: 'Default' }
+      ]
+    }));
+  </script>
+  <script src="ggn-blue-night.user.js"></script>
+</body>
+</html>

@@ -53,6 +53,7 @@
         9.31 Clan stats page
         9.32 Top 10 page
         9.33 Rendered bbcode: hover text, hidden blocks, timeline, tables
+   10   Companion toolkit hooks (toolkit userscript)
    ========================================================================== */
 
 @layer ggn;
@@ -8800,7 +8801,7 @@ body#calendar table.calendar .event_day {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  background: var(--line-1);
+  background: color-mix(in srgb, currentColor 15%, transparent);
   border-radius: 4px;
   transition: all 0.2s;
 }
@@ -8815,40 +8816,30 @@ body#calendar table.calendar .event_day:hover {
 
 body#calendar table.calendar .event_day.cat_birthday {
   color: #d18ad9 !important;
-  background: rgba(209, 138, 217, 0.15);
 }
 
 body#calendar table.calendar .event_day.cat_site_event {
   color: #8fb4ff !important;
-  background: rgba(66, 129, 218, 0.18);
 }
 
 body#calendar table.calendar .event_day.cat_gaming_industry_event {
   color: #55b160 !important;
-  background: rgba(85, 177, 96, 0.15);
 }
 
 body#calendar table.calendar .event_day.cat_gaming_conference {
   color: #dfa02d !important;
-  background: rgba(223, 160, 45, 0.15);
 }
 
 body#calendar table.calendar .event_day.cat_game_stream {
   color: #46c6c0 !important;
-  background: rgba(70, 198, 192, 0.15);
 }
 
 body#calendar table.calendar .event_day.cat_maintenance {
   color: #fa4659 !important;
-  background: rgba(250, 70, 89, 0.15);
-}
-
-body#calendar table.calendar .event_day.importance_important {
-  box-shadow: inset 2px 0 0 currentColor;
 }
 
 body#calendar table.calendar .event_day.importance_critical {
-  box-shadow: inset 3px 0 0 currentColor;
+  background: color-mix(in srgb, currentColor 26%, transparent);
   font-weight: 700;
 }
 
@@ -12302,4 +12293,132 @@ body#tools #content > table:has(th:nth-child(4)) th:nth-child(4),
 body#tools #content > table:has(th:nth-child(4)) td:nth-child(3),
 body#tools #content > table:has(th:nth-child(4)) td:nth-child(4) {
   text-align: center;
+}
+
+/****************************************************************************
+10   Companion toolkit hooks (toolkit/ggn-blue-night.user.js). */
+:root {
+  --ggn-theme-version: "2026.09.01";
+  --ggn-palettes: "abyss, oled, graphite, ember, nocturne";
+  --ggn-logos: "";
+}
+
+:root[data-ggn-palette="abyss"],
+[data-ggn-swatch="abyss"] {
+  --surface-0: #05060d;
+  --surface-1: #060810;
+  --surface-2: #0f1119;
+  --surface-3: #12151f;
+  --surface-4: #151926;
+  --surface-5: #171a23;
+  --surface-6: #191d27;
+  --surface-7: #1c202b;
+  --surface-8: #1e2331;
+  --surface-9: #202535;
+  --line-1: #1c2331;
+  --line-2: #232636;
+  --line-3: #2d3345;
+  --line-4: #383f52;
+  --surface-deep-rgb: 4, 6, 13;
+  --surface-2-rgb: 15, 17, 25;
+}
+
+html:root[data-ggn-palette="abyss"] {
+  background-color: #05060d;
+}
+
+:root[data-ggn-palette="oled"],
+[data-ggn-swatch="oled"] {
+  --surface-0: #000000;
+  --surface-1: #020204;
+  --surface-2: #050507;
+  --surface-3: #08080b;
+  --surface-4: #090a0d;
+  --surface-5: #0b0c0f;
+  --surface-6: #0d0e12;
+  --surface-7: #111218;
+  --surface-8: #15161d;
+  --surface-9: #1a1b23;
+  --line-1: #23252e;
+  --line-2: #26282f;
+  --line-3: #33353d;
+  --line-4: #3c3f47;
+  --surface-deep-rgb: 0, 0, 0;
+  --surface-2-rgb: 5, 5, 7;
+}
+
+html:root[data-ggn-palette="oled"] {
+  background-color: #000000;
+}
+
+:root[data-ggn-palette="graphite"],
+[data-ggn-swatch="graphite"] {
+  --surface-0: #0d0d0f;
+  --surface-1: #0e0e10;
+  --surface-2: #1b1b1e;
+  --surface-3: #202024;
+  --surface-4: #26262b;
+  --surface-5: #292930;
+  --surface-6: #2d2d34;
+  --surface-7: #33333a;
+  --surface-8: #383840;
+  --surface-9: #3c3c45;
+  --line-1: #333339;
+  --line-2: #3e3e46;
+  --line-3: #4f4f59;
+  --line-4: #62626d;
+  --surface-deep-rgb: 10, 10, 12;
+  --surface-2-rgb: 27, 27, 30;
+}
+
+html:root[data-ggn-palette="graphite"] {
+  background-color: #0d0d0f;
+}
+
+:root[data-ggn-palette="ember"],
+[data-ggn-swatch="ember"] {
+  --surface-0: #0f0b0a;
+  --surface-1: #110d0b;
+  --surface-2: #1e1715;
+  --surface-3: #241c19;
+  --surface-4: #2b211d;
+  --surface-5: #2e2421;
+  --surface-6: #332825;
+  --surface-7: #3a2e2a;
+  --surface-8: #403330;
+  --surface-9: #453835;
+  --line-1: #382b27;
+  --line-2: #443733;
+  --line-3: #57463f;
+  --line-4: #6b574e;
+  --surface-deep-rgb: 12, 9, 8;
+  --surface-2-rgb: 30, 23, 21;
+}
+
+html:root[data-ggn-palette="ember"] {
+  background-color: #0f0b0a;
+}
+
+:root[data-ggn-palette="nocturne"],
+[data-ggn-swatch="nocturne"] {
+  --surface-0: #0d0a16;
+  --surface-1: #0e0c19;
+  --surface-2: #191527;
+  --surface-3: #1e1930;
+  --surface-4: #241e3a;
+  --surface-5: #272038;
+  --surface-6: #2b2440;
+  --surface-7: #312a49;
+  --surface-8: #362e52;
+  --surface-9: #3a3257;
+  --line-1: #302a4d;
+  --line-2: #3b3459;
+  --line-3: #4c4472;
+  --line-4: #5f5687;
+  --surface-deep-rgb: 10, 7, 20;
+  --surface-2-rgb: 25, 21, 39;
+}
+
+html:root[data-ggn-palette="nocturne"] {
+  background-color: #0d0a16;
 }

@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "features": [
+    {
+      "id": "palette",
+      "type": "select",
+      "group": "Appearance",
+      "label": "Colour palette",
+      "from": "--ggn-palettes",
+      "defaultLabel": "Blue Night",
+      "options": [
+        {
+          "value": "abyss",
+          "label": "Abyss",
+          "help": "The same blue, sunk deeper. Easier on the eyes at night."
+        },
+        {
+          "value": "oled",
+          "label": "OLED",
+          "help": "True black background for AMOLED screens."
+        },
+        {
+          "value": "graphite",
+          "label": "Graphite",
+          "help": "Neutral greys with the blue cast removed."
+        },
+        {
+          "value": "ember",
+          "label": "Ember",
+          "help": "Warm browns under the same blue accent."
+        },
+        {
+          "value": "nocturne",
+          "label": "Nocturne",
+          "help": "Violet-leaning surfaces, softer than the default blue."
+        }
+      ]
+    },
+    {
+      "id": "logo",
+      "type": "select",
+      "group": "Appearance",
+      "label": "Header logo",
+      "from": "--ggn-logos",
+      "defaultLabel": "Default"
+    }
+  ]
+}
