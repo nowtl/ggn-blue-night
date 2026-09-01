@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blue Night Toolkit
 // @namespace    https://github.com/nowtl/ggn-blue-night
-// @version      0.6.0
+// @version      0.6.1
 // @description  Companion panel for the Blue Night theme on GazelleGames: palettes, logos and layout options the site does not offer.
 // @author       nowtl
 // @homepageURL  https://github.com/nowtl/ggn-blue-night
@@ -16,7 +16,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '0.5.0';
+  var VERSION = '0.6.1';
   var SCHEMA = 2;
   var STORE_KEY = 'ggn-blue-night';
   var CACHE_KEY = 'ggn-blue-night:manifest';
@@ -146,6 +146,29 @@
   }
 
   window.addEventListener('load', detectGameLogo);
+
+  /* ---- header metrics -------------------------------------------------- */
+
+  function measureBar(bar) {
+    var height = Math.round(bar.getBoundingClientRect().height);
+    if (height > 0) root.style.setProperty('--ggn-userinfo-h', height + 'px');
+  }
+
+  function watchBar() {
+    var bar = document.getElementById('userinfo');
+    if (!bar) return false;
+    measureBar(bar);
+    try {
+      new ResizeObserver(function () { measureBar(bar); }).observe(bar);
+    } catch (e) {
+      window.addEventListener('resize', function () { measureBar(bar); });
+    }
+    return true;
+  }
+
+  if (!watchBar()) {
+    document.addEventListener('DOMContentLoaded', watchBar);
+  }
 
   try {
     window.matchMedia('(min-width: 1150px)').addEventListener('change', detectGameLogo);

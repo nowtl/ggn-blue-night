@@ -112,10 +112,14 @@ without needing `!important`. Then add the label to `features.json`:
 
 ### The built-in wordmark
 
-`Header logo -> Wordmark` swaps the image for CSS text. The gradient is derived from
-`--fg-accent` by rotating its hue with `oklch(from ...)`, so each theme gets its own sweep
-without a per-theme rule. The face is Bebas Neue, subset to the seven glyphs the name needs
-and embedded as a data URI, so nothing is fetched at runtime and CSS-only users pay nothing.
+`Header logo -> Wordmark` swaps the image for CSS text. The fill is a vertical chrome ramp:
+a light top, a hard white highlight band across the middle, and a deeper bottom, with the hues
+rotated off `--fg-accent` by `oklch(from ...)` so each theme gets its own ramp without a
+per-theme rule. `-webkit-text-stroke` with `paint-order: stroke fill` draws the dark edge and
+three stacked `drop-shadow`s at the same offset build the solid extrude. The face is Anton,
+subset to the seven glyphs the name needs and embedded as a data URI, so nothing is fetched at
+runtime and CSS-only users pay nothing. Sizing matches the PNG: cap height 61px, so the header
+is the same height either way.
 
 Game themes still have to win. The script reads the computed `background-image` of `#logo`:
 anything other than `gazellegames-logo.png` means `gamethemes.css` has taken over, and it sets
