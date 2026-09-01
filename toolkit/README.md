@@ -110,6 +110,19 @@ without needing `!important`. Then add the label to `features.json`:
 { "value": "retro", "label": "Retro" }
 ```
 
+### The built-in wordmark
+
+`Header logo -> Wordmark` swaps the image for CSS text. The gradient is derived from
+`--fg-accent` by rotating its hue with `oklch(from ...)`, so each theme gets its own sweep
+without a per-theme rule. The face is Bebas Neue, subset to the seven glyphs the name needs
+and embedded as a data URI, so nothing is fetched at runtime and CSS-only users pay nothing.
+
+Game themes still have to win. The script reads the computed `background-image` of `#logo`:
+anything other than `gazellegames-logo.png` means `gamethemes.css` has taken over, and it sets
+`data-ggn-gamelogo="1"` on `<html>`. Every wordmark rule is gated on `:not([data-ggn-gamelogo])`,
+so the game logo renders through the normal `background-image: inherit` chain. The check re-runs
+on `load` and whenever the 1150px breakpoint that gates `gamethemes.css` flips.
+
 ## Tokens worth knowing
 
 | token                             | role                                                     |

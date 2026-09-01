@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blue Night Toolkit
 // @namespace    https://github.com/nowtl/ggn-blue-night
-// @version      0.5.0
+// @version      0.6.0
 // @description  Companion panel for the Blue Night theme on GazelleGames: palettes, logos and layout options the site does not offer.
 // @author       nowtl
 // @homepageURL  https://github.com/nowtl/ggn-blue-night
@@ -111,6 +111,44 @@
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
       if (settings.features.mode === 'system') applyOne('mode', 'system');
     });
+  } catch (e) {}
+
+  /* ---- game-theme logo guard ------------------------------------------ */
+
+  var OWN_LOGO = /gazellegames-logo/;
+
+  function detectGameLogo() {
+    var logo = document.getElementById('logo');
+    if (!logo) return false;
+    var image;
+    try {
+      image = getComputedStyle(logo).backgroundImage || '';
+    } catch (e) {
+      return false;
+    }
+    if (image.indexOf('url(') !== -1 && !OWN_LOGO.test(image)) {
+      root.setAttribute('data-ggn-gamelogo', '1');
+    } else {
+      root.removeAttribute('data-ggn-gamelogo');
+    }
+    return true;
+  }
+
+  if (!detectGameLogo()) {
+    var logoWatcher = new MutationObserver(function () {
+      if (detectGameLogo()) logoWatcher.disconnect();
+    });
+    logoWatcher.observe(root, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', function () {
+      logoWatcher.disconnect();
+      detectGameLogo();
+    });
+  }
+
+  window.addEventListener('load', detectGameLogo);
+
+  try {
+    window.matchMedia('(min-width: 1150px)').addEventListener('change', detectGameLogo);
   } catch (e) {}
 
   /* ---- theme handshake ------------------------------------------------ */

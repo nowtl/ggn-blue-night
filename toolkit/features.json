@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 8,
   "features": [
     {
       "id": "mode",
@@ -64,12 +64,36 @@
       "group": "Appearance",
       "label": "Header logo",
       "from": "--ggn-logos",
-      "defaultLabel": "Default"
+      "defaultLabel": "Image",
+      "options": [
+        {
+          "value": "wordmark",
+          "label": "Wordmark",
+          "help": "Draws the name as text in the theme’s own colours. Pages with a game theme keep their own logo."
+        }
+      ]
+    },
+    {
+      "id": "buffs",
+      "type": "select",
+      "group": "Layout",
+      "label": "Global buffs",
+      "options": [
+        {
+          "value": "",
+          "label": "Strip"
+        },
+        {
+          "value": "float",
+          "label": "Floating",
+          "help": "Puts the buff icons back in the top-left corner so they no longer take up page height."
+        }
+      ]
     },
     {
       "id": "flat-bg",
       "type": "toggle",
-      "group": "Appearance",
+      "group": "Layout",
       "label": "Flat background",
       "help": "Drops the faint game pattern behind the page."
     }
