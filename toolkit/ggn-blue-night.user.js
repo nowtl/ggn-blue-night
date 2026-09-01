@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blue Night Toolkit
 // @namespace    https://github.com/nowtl/ggn-blue-night
-// @version      0.2.0
+// @version      0.3.0
 // @description  Companion panel for the Blue Night theme on GazelleGames: palettes, logos and layout options the site does not offer.
 // @author       nowtl
 // @homepageURL  https://github.com/nowtl/ggn-blue-night
@@ -16,7 +16,7 @@
 (function () {
   'use strict';
 
-  var VERSION = '0.2.0';
+  var VERSION = '0.3.0';
   var SCHEMA = 1;
   var STORE_KEY = 'ggn-blue-night';
   var CACHE_KEY = 'ggn-blue-night:manifest';
@@ -225,27 +225,26 @@
     'transition:color .2s,background .2s,border-color .2s}',
     '.launcher svg{width:18px;height:18px}',
     '.launcher:hover{color:#fff;background:var(--accent);border-color:var(--accent)}',
-    '.open .launcher{opacity:0;transform:scale(.85);pointer-events:none}',
+    '.launcher[aria-expanded="true"]{color:#fff;background:var(--accent);border-color:var(--accent)}',
     '.launcher:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}',
-    '.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;',
-    'transition:opacity .2s}',
-    '.open .scrim{opacity:1;pointer-events:auto}',
-    '.drawer{position:fixed;top:0;right:0;display:flex;flex-direction:column;width:320px;',
-    'max-width:92vw;height:100%;color:var(--ink);background:var(--surface);',
-    'border-left:1px solid var(--line);box-shadow:-1rem 0 3rem rgba(0,0,0,.45);',
-    'transform:translateX(100%);transition:transform .22s ease;font-size:13px;line-height:1.5}',
-    '.open .drawer{transform:translateX(0)}',
+    '.pop{position:fixed;right:20px;bottom:68px;display:flex;flex-direction:column;',
+    'width:304px;max-width:calc(100vw - 40px);max-height:min(72vh,560px);',
+    'color:var(--ink);background:var(--surface);border:1px solid var(--line);',
+    'border-radius:10px;box-shadow:0 1rem 2.5rem rgba(0,0,0,.5);font-size:13px;',
+    'line-height:1.5;opacity:0;transform:translateY(6px) scale(.98);transform-origin:bottom right;',
+    'pointer-events:none;transition:opacity .16s ease,transform .16s ease}',
+    '.open .pop{opacity:1;transform:none;pointer-events:auto}',
     'header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;',
-    'padding:16px 18px;border-bottom:1px solid var(--line)}',
+    'padding:13px 15px;border-bottom:1px solid var(--line)}',
     'h1{font-size:15px;font-weight:700;letter-spacing:-.01em}',
     '.ver{margin-top:2px;color:var(--faint);font-size:11px;letter-spacing:.06em;text-transform:uppercase}',
     '.close{display:grid;place-items:center;width:26px;height:26px;color:var(--dim);font-size:18px;',
     'line-height:1;background:none;border:1px solid transparent;border-radius:6px;cursor:pointer}',
     '.close:hover{color:#fff;background:var(--raised);border-color:var(--line)}',
-    '.status{padding:10px 18px;color:var(--faint);font-size:11px;letter-spacing:.05em;',
+    '.status{padding:9px 15px;color:var(--faint);font-size:11px;letter-spacing:.05em;',
     'text-transform:uppercase;border-bottom:1px solid var(--line)}',
     '.status.miss{color:var(--warn)}',
-    '.body{flex:1;overflow-y:auto;padding:6px 18px 18px}',
+    '.body{flex:1;min-height:0;overflow-y:auto;padding:4px 15px 15px}',
     '.group{padding-top:16px}',
     '.group h2{margin-bottom:8px;color:var(--faint);font-size:10px;font-weight:700;',
     'letter-spacing:.12em;text-transform:uppercase}',
@@ -273,7 +272,7 @@
     '.sw[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}',
     '.sw[aria-pressed="true"]::after{left:16px;background:#fff}',
     '.empty{padding:26px 0;color:var(--faint);font-size:12px;text-align:center}',
-    'footer{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line)}',
+    'footer{display:flex;gap:8px;padding:11px 15px;border-top:1px solid var(--line)}',
     '.ghost{flex:1;padding:7px 10px;color:var(--dim);font-size:11.5px;font-weight:600;',
     'background:none;border:1px solid var(--line);border-radius:6px;cursor:pointer;transition:all .18s}',
     '.ghost:hover{color:var(--ink);background:var(--raised);border-color:var(--line-hi)}',
@@ -289,12 +288,12 @@
       '--line': token('--line-2') || '#3a4056',
       '--line-soft': token('--line-1') || '#2f3a52',
       '--line-hi': token('--line-3') || '#4a5470',
-      '--ink': '#e6ebf5',
-      '--dim': '#99a1b3',
-      '--faint': '#7d879b',
-      '--accent': '#4281da',
-      '--warn': '#dfa02d',
-      '--danger': '#c33b4b'
+      '--ink': token('--ink-1') || '#e6ebf5',
+      '--dim': token('--ink-4') || '#99a1b3',
+      '--faint': token('--ink-6') || '#7d879b',
+      '--accent': token('--fg-accent') || '#4281da',
+      '--warn': token('--fg-warn') || '#dfa02d',
+      '--danger': token('--fg-bad') || '#c33b4b'
     };
     Object.keys(vars).forEach(function (name) {
       shell.style.setProperty(name, vars[name]);
@@ -330,10 +329,9 @@
     launcher.setAttribute('aria-label', 'Blue Night Toolkit');
     launcher.title = 'Blue Night Toolkit';
 
-    var scrim = el('div', 'scrim');
-    var drawer = el('aside', 'drawer');
-    drawer.setAttribute('role', 'dialog');
-    drawer.setAttribute('aria-label', 'Blue Night Toolkit');
+    var pop = el('div', 'pop');
+    pop.setAttribute('role', 'dialog');
+    pop.setAttribute('aria-label', 'Blue Night Toolkit');
 
     var head = el('header');
     var titles = el('div');
@@ -356,28 +354,31 @@
     foot.appendChild(reset);
     foot.appendChild(off);
 
-    drawer.appendChild(head);
-    drawer.appendChild(status);
-    drawer.appendChild(body);
-    drawer.appendChild(foot);
+    pop.appendChild(head);
+    pop.appendChild(status);
+    pop.appendChild(body);
+    pop.appendChild(foot);
     shell.appendChild(launcher);
-    shell.appendChild(scrim);
-    shell.appendChild(drawer);
+    shell.appendChild(pop);
 
     function setOpen(open) {
       shell.classList.toggle('open', open);
       launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
-      drawer.inert = !open;
+      pop.inert = !open;
       if (open) close.focus();
     }
 
-    drawer.inert = true;
+    pop.inert = true;
+    launcher.setAttribute('aria-expanded', 'false');
 
     launcher.addEventListener('click', function () {
       setOpen(!shell.classList.contains('open'));
     });
     close.addEventListener('click', function () { setOpen(false); });
-    scrim.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('click', function (event) {
+      if (!host.isConnected || !shell.classList.contains('open')) return;
+      if (event.composedPath().indexOf(host) === -1) setOpen(false);
+    });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && host.isConnected) setOpen(false);
     });

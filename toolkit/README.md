@@ -68,6 +68,29 @@ up new options without anyone reinstalling the script.
 A `select` whose `from` token is empty is hidden, so a feature can ship in the manifest before
 the CSS side exists.
 
+## Adding a logo
+
+Drop the file in the repo root, then three small edits:
+
+```css
+:root {
+  --ggn-logos: "retro, minimal";
+}
+
+:root[data-ggn-logo="retro"] #logo {
+  background-image: url("logo-retro.png");
+}
+```
+
+The base `#logo` rule lives inside `@layer ggn`, so an unlayered rule like the one above wins
+without needing `!important`. Then add the label to `features.json`:
+
+```json
+{ "value": "retro", "label": "Retro" }
+```
+
+Logos have no colour ramp, so the panel just shows the name.
+
 ## Known trade-off
 
 `blue-night_oled.css` still carries its own copy of the OLED values so that people using that

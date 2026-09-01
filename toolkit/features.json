@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 5,
   "features": [
     {
       "id": "palette",
@@ -33,6 +33,11 @@
           "value": "nocturne",
           "label": "Nocturne",
           "help": "Violet-leaning surfaces, softer than the default blue."
+        },
+        {
+          "value": "daylight",
+          "label": "Daylight",
+          "help": "Light surfaces with dark text. Still experimental."
         }
       ]
     },
@@ -43,6 +48,13 @@
       "label": "Header logo",
       "from": "--ggn-logos",
       "defaultLabel": "Default"
+    },
+    {
+      "id": "flat-bg",
+      "type": "toggle",
+      "group": "Appearance",
+      "label": "Flat background",
+      "help": "Drops the faint game pattern behind the page."
     }
   ]
 }

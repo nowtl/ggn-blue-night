@@ -5,82 +5,139 @@
 <title>Toolkit harness</title>
 <link rel="stylesheet" href="../blue-night_regular.css">
 <style>
-  body {
-    margin: 0;
-    padding: 40px;
-    min-height: 100vh;
-    background: var(--surface-0);
-    color: #e6ebf5;
-    font: 14px/1.6 "Open Sans", system-ui, sans-serif;
-  }
-  h1 { margin: 0 0 4px; font-size: 18px; }
-  p.sub { margin: 0 0 28px; color: #99a1b3; font-size: 12px; }
-  .row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-  .card {
-    flex: 1 1 200px;
-    padding: 14px 16px;
-    background: var(--surface-7);
-    border: 1px solid var(--line-2);
-    border-radius: 6px;
-  }
-  .card b { display: block; margin-bottom: 6px; font-size: 12px; }
-  .card span { color: #99a1b3; font-size: 12px; }
-  .well {
-    padding: 14px;
-    background: var(--surface-2);
-    border: 1px solid var(--line-1);
-    border-radius: 6px;
-  }
-  .chip {
-    display: inline-block;
-    margin: 0 6px 6px 0;
-    padding: 3px 7px;
+  body { padding: 24px 32px 90px; }
+  .lab { max-width: 1100px; margin: 0 auto; }
+  .lab > h1 { font-size: 19px; margin: 0 0 2px; }
+  .lab > p.sub { margin: 0 0 26px; font-size: 12px; color: var(--ink-4); }
+  .lab h2.sec {
+    margin: 30px 0 10px;
     font-size: 11px;
-    font-weight: 600;
-    border-radius: 4px;
-    background: color-mix(in srgb, currentColor 15%, transparent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-5);
   }
-  .chip.crit { background: color-mix(in srgb, currentColor 26%, transparent); font-weight: 700; }
+  .strip { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 4px; }
+  .sw { width: 58px; padding: 4px; border-radius: 4px; font-size: 9px; text-align: center; }
 </style>
 </head>
-<body>
-  <h1>Blue Night toolkit harness</h1>
-  <p class="sub">Local page for driving the panel without the live site. Surfaces below use the theme tokens, so palette switches show up here.</p>
+<body id="torrents">
+<div class="lab">
 
-  <div class="row">
-    <div class="card"><b>Panel surface</b><span>--surface-7 on --surface-0</span></div>
-    <div class="card"><b>Border</b><span>--line-2</span></div>
-    <div class="card"><b>Raised</b><span>--surface-5</span></div>
+  <h1>Blue Night preview</h1>
+  <p class="sub">Real component markup driven by the theme tokens. Use the toolkit button to switch palettes and judge each one here.</p>
+
+  <h2 class="sec">Surface ramp</h2>
+  <div class="swatches">
+    <div class="sw" style="background:var(--surface-0);color:var(--ink-2)">s0</div>
+    <div class="sw" style="background:var(--surface-1);color:var(--ink-2)">s1</div>
+    <div class="sw" style="background:var(--surface-2);color:var(--ink-2)">s2</div>
+    <div class="sw" style="background:var(--surface-3);color:var(--ink-2)">s3</div>
+    <div class="sw" style="background:var(--surface-4);color:var(--ink-2)">s4</div>
+    <div class="sw" style="background:var(--surface-5);color:var(--ink-2)">s5</div>
+    <div class="sw" style="background:var(--surface-6);color:var(--ink-2)">s6</div>
+    <div class="sw" style="background:var(--surface-7);color:var(--ink-2)">s7</div>
+    <div class="sw" style="background:var(--surface-8);color:var(--ink-2)">s8</div>
+    <div class="sw" style="background:var(--surface-9);color:var(--ink-2)">s9</div>
+    <div class="sw" style="background:var(--line-1);color:var(--ink-2)">l1</div>
+    <div class="sw" style="background:var(--line-2);color:var(--ink-2)">l2</div>
+    <div class="sw" style="background:var(--line-3);color:var(--ink-2)">l3</div>
+    <div class="sw" style="background:var(--line-4);color:var(--ink-2)">l4</div>
   </div>
 
-  <div class="well">
-    <span class="chip" style="color:#d18ad9">Birthday</span>
-    <span class="chip" style="color:#8fb4ff">Site event</span>
-    <span class="chip" style="color:#55b160">Industry event</span>
-    <span class="chip" style="color:#dfa02d">Conference</span>
-    <span class="chip" style="color:#46c6c0">Stream</span>
-    <span class="chip crit" style="color:#fa4659">Maintenance (critical)</span>
+  <h2 class="sec">Ink ramp</h2>
+  <div class="strip" style="font-size:13px">
+    <span style="color:var(--ink-0)">ink-0 heading</span>
+    <span style="color:var(--ink-1)">ink-1</span>
+    <span style="color:var(--ink-2)">ink-2 body copy</span>
+    <span style="color:var(--ink-3)">ink-3 link</span>
+    <span style="color:var(--ink-4)">ink-4 muted</span>
+    <span style="color:var(--ink-5)">ink-5</span>
+    <span style="color:var(--ink-6)">ink-6</span>
+    <span style="color:var(--ink-7)">ink-7</span>
+    <span style="color:var(--ink-8)">ink-8 faint</span>
+  </div>
+  <div class="strip" style="font-size:13px;margin-top:8px">
+    <span style="color:var(--fg-accent)">accent</span>
+    <span style="color:var(--fg-accent-soft)">accent soft</span>
+    <span style="color:var(--fg-good)">good</span>
+    <span style="color:var(--fg-bad)">bad</span>
+    <span style="color:var(--fg-warn)">warn</span>
+    <span style="color:var(--fg-orange)">orange</span>
+    <span style="color:var(--fg-bad-soft)">bad soft</span>
   </div>
 
-  <script>
-    localStorage.setItem('ggn-blue-night:manifest', JSON.stringify({
-      version: 3,
-      features: [
-        {
-          id: 'palette', type: 'select', group: 'Appearance', label: 'Colour palette',
-          from: '--ggn-palettes', defaultLabel: 'Blue Night',
-          options: [
-            { value: 'abyss', label: 'Abyss', help: 'The same blue, sunk deeper. Easier on the eyes at night.' },
-            { value: 'oled', label: 'OLED', help: 'True black background for AMOLED screens.' },
-            { value: 'graphite', label: 'Graphite', help: 'Neutral greys with the blue cast removed.' },
-            { value: 'ember', label: 'Ember', help: 'Warm browns under the same blue accent.' },
-            { value: 'nocturne', label: 'Nocturne', help: 'Violet-leaning surfaces, softer than the default blue.' }
-          ]
-        },
-        { id: 'logo', type: 'select', group: 'Appearance', label: 'Header logo', from: '--ggn-logos', defaultLabel: 'Default' }
-      ]
-    }));
-  </script>
-  <script src="ggn-blue-night.user.js"></script>
+  <h2 class="sec">Box with head</h2>
+  <div class="box vertical_space">
+    <div class="head"><strong>Torrent group</strong> <span class="time">2 hours ago</span> - <a href="#">[Edit]</a></div>
+    <div class="body pad">
+      <p>Body copy inside a box. Here is <a href="#">an inline link</a> and a <a href="#" class="username">username</a>.</p>
+      <p><strong class="freeleech_label">Freeleech (0x DL)!</strong>
+         <strong class="trumpable_label">Trumpable!</strong>
+         <strong class="reported_label">Reported!</strong></p>
+    </div>
+  </div>
+
+  <h2 class="sec">Table</h2>
+  <table class="border">
+    <tbody>
+      <tr class="colhead"><td>Name</td><td>Size</td><td>Snatches</td><td>Seeders</td></tr>
+      <tr class="rowa"><td><a href="#">Some Game (2026) [PC]</a></td><td>4.21 GB</td><td>128</td><td>31</td></tr>
+      <tr class="rowb"><td><a href="#">Another Release [Switch]</a></td><td>812 MB</td><td>44</td><td>9</td></tr>
+      <tr class="rowa"><td><a href="#">Third Entry [PS5]</a></td><td>18.9 GB</td><td>3</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">Controls</h2>
+  <div class="strip">
+    <button type="button">Button</button>
+    <input type="submit" value="Submit">
+    <input type="text" placeholder="Text input" size="18">
+    <select><option>Select one</option></select>
+    <span class="linkbox"><a href="#" class="brackets">Bracket link</a></span>
+  </div>
+  <div class="strip" style="margin-top:10px">
+    <textarea rows="2" cols="40" placeholder="Textarea"></textarea>
+  </div>
+
+  <h2 class="sec">Item cards</h2>
+  <ul id="items_list" class="nobullet">
+    <li class="item_li item_type_2 available">
+      <form>
+        <div class="item_image_div"></div>
+        <div class="item_info"><h3>Cupid's Tiara</h3>
+          <p class="item_description">This ostentatious display of passion looks great and seems to be a bit of a lucky charm too.</p>
+        </div>
+        <div class="submit_section"><input type="submit" class="submit" value="Buy"></div>
+      </form>
+    </li>
+    <li class="item_li item_type_2 nostock">
+      <form>
+        <div class="item_image_div"></div>
+        <div class="item_info"><h3>Head of Garlic</h3>
+          <p class="item_description">Wards off things you would rather not meet on a dark night.</p>
+        </div>
+        <div class="submit_section"><input type="submit" class="submit" value="Buy"></div>
+      </form>
+    </li>
+  </ul>
+
+  <h2 class="sec">Calendar chips</h2>
+  <div class="box"><div class="pad">
+    <span class="event_day cat_birthday" style="color:#d18ad9">Birthday</span>
+    <span class="event_day cat_site_event" style="color:#8fb4ff">Site event</span>
+    <span class="event_day cat_gaming_industry_event" style="color:#55b160">Industry event</span>
+    <span class="event_day cat_maintenance importance_critical" style="color:#fa4659">Maintenance</span>
+  </div></div>
+
+</div>
+
+<script>
+  const realFetch = window.fetch.bind(window);
+  window.fetch = function (url, opts) {
+    return String(url).includes("features.json") ? realFetch("./features.json", opts) : realFetch(url, opts);
+  };
+</script>
+<script src="ggn-blue-night.user.js"></script>
 </body>
 </html>
