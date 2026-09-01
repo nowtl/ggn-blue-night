@@ -2364,34 +2364,39 @@ table .colhead > td {
   line-height: 1;
   text-transform: lowercase;
 }
-:root[data-ggn-buffs="float"] #header {
-  position: relative;
-}
+@media (min-width: 1200px) {
+  :root[data-ggn-buffs="float"] #header {
+    position: relative;
+  }
 
-:root[data-ggn-buffs="float"] #header > .global_buffs {
-  position: absolute;
-  top: calc(var(--ggn-userinfo-h, 56px) + 6px);
-  left: 6px;
-  z-index: 3;
-  width: auto;
-  margin: 0;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
+  :root[data-ggn-buffs="float"] #header > .global_buffs {
+    position: absolute;
+    top: calc(var(--ggn-userinfo-h, 56px) + 6px);
+    left: 6px;
+    z-index: 3;
+    width: auto;
+    max-height: 92px;
+    margin: 0;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 5px;
+  }
 
-:root[data-ggn-buffs="float"] #header > .global_buffs a {
-  padding: 2px 8px;
-  font-size: 0.68rem;
-}
+  :root[data-ggn-buffs="float"] #header > .global_buffs a {
+    padding: 3px 9px;
+    font-size: 0.7rem;
+  }
 
-:root[data-ggn-buffs="float"] #header > .global_buffs:has(> :nth-child(4)) {
-  gap: 3px;
-}
+  :root[data-ggn-buffs="float"] #header:has(> .global_buffs:not(:empty)) #searchbars {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
-:root[data-ggn-buffs="float"] #header > .global_buffs:has(> :nth-child(4)) a {
-  padding: 1px 8px;
-  font-size: 0.66rem;
+  :root[data-ggn-buffs="float"] #header:has(> .global_buffs:not(:empty)) + #content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }
 
 #alerts {
@@ -2403,6 +2408,41 @@ table .colhead > td {
 
 #alerts .alertbar {
   color: var(--ink-8);
+}
+
+@media (min-width: 992px) {
+  :root[data-ggn-toolbox="float"] #header {
+    position: relative;
+  }
+
+  :root[data-ggn-toolbox="float"] #alerts {
+    position: absolute;
+    top: calc(var(--ggn-userinfo-h, 56px) + 6px);
+    right: 6px;
+    z-index: 3;
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root[data-ggn-toolbox="float"] #alerts .alertbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    font-size: 0;
+  }
+
+  :root[data-ggn-toolbox="float"] #alerts .alertbar a {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    background: var(--surface-3);
+    border: 1px solid var(--line-1);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    text-decoration: none;
+  }
 }
 
 #content {
@@ -2422,16 +2462,6 @@ table .colhead > td {
 #header:has(> .global_buffs:not(:empty)) + #content {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-}
-
-:root[data-ggn-buffs="float"] #header:has(> .global_buffs:not(:empty)) #searchbars {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-:root[data-ggn-buffs="float"] #header:has(> .global_buffs:not(:empty)) + #content {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 /* Search bar */
@@ -11534,7 +11564,7 @@ table {
 
 .nobullet,
 colgroup,
-#searchbars ul.autocomplete_list li {
+#searchbars ul.autocomplete_list li:not(:hover):not(.highlight) {
   background-color: transparent;
 }
 

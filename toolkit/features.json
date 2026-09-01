@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "features": [
     {
       "id": "mode",
@@ -86,9 +86,16 @@
         {
           "value": "float",
           "label": "Floating",
-          "help": "Puts the buff icons back in the top-left corner so they no longer take up page height."
+          "help": "Puts the buff icons back in the top-left corner so they no longer take up page height. Wide screens only — below 1200px there is no room beside the logo."
         }
       ]
+    },
+    {
+      "id": "toolbox",
+      "type": "toggle",
+      "group": "Layout",
+      "label": "Toolbox in the corner",
+      "help": "Moves the Toolbox and Refresh Data links up into the top-right corner instead of a row of their own."
     },
     {
       "id": "flat-bg",
