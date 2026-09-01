@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Blue Night Toolkit
 // @namespace    https://github.com/nowtl/ggn-blue-night
-// @version      0.3.0
+// @version      0.4.0
 // @description  Companion panel for the Blue Night theme on GazelleGames: palettes, logos and layout options the site does not offer.
 // @author       nowtl
 // @homepageURL  https://github.com/nowtl/ggn-blue-night
@@ -16,8 +16,8 @@
 (function () {
   'use strict';
 
-  var VERSION = '0.3.0';
-  var SCHEMA = 1;
+  var VERSION = '0.4.0';
+  var SCHEMA = 2;
   var STORE_KEY = 'ggn-blue-night';
   var CACHE_KEY = 'ggn-blue-night:manifest';
   var MANIFEST_URL = 'https://nowtl.github.io/ggn-blue-night/toolkit/features.json';
@@ -31,7 +31,15 @@
   }
 
   function migrate(state) {
-    if (state.v !== SCHEMA) state.v = SCHEMA;
+    if (state.v === SCHEMA) return state;
+    var features = state.features;
+    if (features.palette) {
+      if (features.palette === 'daylight') features.mode = 'light';
+      else features.theme = features.palette;
+      delete features.palette;
+      state.dirty = true;
+    }
+    state.v = SCHEMA;
     return state;
   }
 
@@ -52,7 +60,9 @@
     }
     if (!parsed || typeof parsed !== 'object') return blank();
     if (!parsed.features || typeof parsed.features !== 'object') parsed.features = {};
-    return migrate(parsed);
+    var migrated = migrate(parsed);
+    if (migrated.dirty) { delete migrated.dirty; save(migrated); }
+    return migrated;
   }
 
   function save(state) {
@@ -67,7 +77,21 @@
     return 'data-ggn-' + id;
   }
 
-  function applyOne(id, value) {
+  function prefersLight() {
+    try {
+      return window.matchMedia('(prefers-color-scheme: light)').matches;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function resolve(id, value) {
+    if (id !== 'mode' || value !== 'system') return value;
+    return prefersLight() ? 'light' : 'dark';
+  }
+
+  function applyOne(id, stored) {
+    var value = resolve(id, stored);
     if (value === true) root.setAttribute(attrFor(id), 'on');
     else if (typeof value === 'string' && value) root.setAttribute(attrFor(id), value);
     else root.removeAttribute(attrFor(id));
@@ -89,6 +113,12 @@
 
   var settings = load();
   applyAll(settings);
+
+  try {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
+      if (settings.features.mode === 'system') applyOne('mode', 'system');
+    });
+  } catch (e) {}
 
   /* ---- theme handshake ------------------------------------------------ */
 
@@ -160,6 +190,7 @@
       group: feature.group,
       label: feature.label,
       help: feature.help,
+      preview: feature.preview,
       options: options
     };
   }
@@ -405,6 +436,7 @@
       applyOne(id, value);
       save(settings);
       paint(shell);
+      render(body, lastManifest);
     }
 
     function render(container, manifest) {
@@ -464,7 +496,7 @@
             feature.options.forEach(function (option) {
               var choice = el('button', 'choice');
               choice.appendChild(el('span', null, option.label || option.value));
-              var colors = rampFor(feature.id, option.value);
+              var colors = feature.preview === 'ramp' ? rampFor(feature.id, option.value) : [];
               if (colors.length) {
                 var ramp = el('span', 'ramp');
                 colors.forEach(function (colour) {

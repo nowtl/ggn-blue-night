@@ -1,23 +1,45 @@
 {
-  "version": 5,
+  "version": 6,
   "features": [
     {
-      "id": "palette",
+      "id": "mode",
       "type": "select",
       "group": "Appearance",
-      "label": "Colour palette",
-      "from": "--ggn-palettes",
+      "label": "Mode",
+      "options": [
+        {
+          "value": "",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "system",
+          "label": "System",
+          "help": "Follows whatever your operating system is set to."
+        }
+      ]
+    },
+    {
+      "id": "theme",
+      "type": "select",
+      "group": "Appearance",
+      "label": "Theme",
+      "from": "--ggn-themes",
       "defaultLabel": "Blue Night",
+      "preview": "ramp",
       "options": [
         {
           "value": "abyss",
           "label": "Abyss",
-          "help": "The same blue, sunk deeper. Easier on the eyes at night."
+          "help": "The same blue, sunk deeper."
         },
         {
           "value": "oled",
           "label": "OLED",
-          "help": "True black background for AMOLED screens."
+          "help": "Pure black on dark, pure white on light. Maximum contrast."
         },
         {
           "value": "graphite",
@@ -27,17 +49,12 @@
         {
           "value": "ember",
           "label": "Ember",
-          "help": "Warm browns under the same blue accent."
+          "help": "Warm browns under a copper accent."
         },
         {
           "value": "nocturne",
           "label": "Nocturne",
-          "help": "Violet-leaning surfaces, softer than the default blue."
-        },
-        {
-          "value": "daylight",
-          "label": "Daylight",
-          "help": "Light surfaces with dark text. Still experimental."
+          "help": "Violet surfaces with a matching violet accent."
         }
       ]
     },
