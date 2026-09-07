@@ -2410,38 +2410,50 @@ table .colhead > td {
   color: var(--ink-8);
 }
 
+#alerts .alertbar:has(> a[href="tools.php"]) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 0;
+}
+
+#alerts .alertbar:has(> a[href="tools.php"]) a {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: var(--surface-3);
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+#alerts .alertbar:has(> a[href="tools.php"]) a:hover {
+  background: var(--surface-5);
+  border-color: var(--line-3);
+}
+
 @media (min-width: 992px) {
-  :root[data-ggn-toolbox="float"] #header {
+  :root[data-ggn-toolbox="on"] #header {
     position: relative;
   }
 
-  :root[data-ggn-toolbox="float"] #alerts {
+  :root[data-ggn-toolbox="on"] #alerts .alertbar:has(> a[href="tools.php"]) {
     position: absolute;
     top: calc(var(--ggn-userinfo-h, 56px) + 6px);
     right: 6px;
     z-index: 3;
-    width: auto;
-    margin: 0;
-    padding: 0;
-  }
-
-  :root[data-ggn-toolbox="float"] #alerts .alertbar {
-    display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     align-items: flex-end;
     gap: 5px;
-    font-size: 0;
   }
 
-  :root[data-ggn-toolbox="float"] #alerts .alertbar a {
-    display: inline-flex;
-    align-items: center;
+  :root[data-ggn-toolbox="on"] #alerts .alertbar:has(> a[href="tools.php"]) a {
     padding: 3px 9px;
-    background: var(--surface-3);
-    border: 1px solid var(--line-1);
-    border-radius: 4px;
     font-size: 0.7rem;
-    text-decoration: none;
   }
 }
 
@@ -11127,7 +11139,7 @@ html {
   font-weight: 600;
 }
 
-.weblinks {
+#weblinksdiv .weblinks {
   flex: none;
   width: 20px;
   height: 20px;
@@ -12481,6 +12493,140 @@ body#tools #content > table:has(th:nth-child(4)) th:nth-child(4),
 body#tools #content > table:has(th:nth-child(4)) td:nth-child(3),
 body#tools #content > table:has(th:nth-child(4)) td:nth-child(4) {
   text-align: center;
+}
+
+body#tools .permissions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body#tools .permission_container br {
+  display: none;
+}
+
+body#tools .permission_container:not(:has(table)) {
+  display: none;
+}
+
+body#tools .permission_subcontainer {
+  overflow: hidden;
+  border: 1px solid var(--line-1);
+  border-radius: 5px;
+}
+
+body#tools table.forum_post {
+  border-radius: 5px;
+}
+
+body#tools #tag_types_grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body#tools .tag_type_item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas:
+    "name sort delete"
+    "categories categories categories"
+    "taglist taglist taglist"
+    "add add add";
+  align-items: center;
+  gap: 7px 10px;
+  padding: 12px 14px;
+  background: var(--surface-3);
+  border: 1px solid var(--line-1);
+  border-radius: 5px;
+}
+
+body#tools .tag_type_name {
+  grid-area: name;
+  color: var(--ink-1);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+body#tools .tag_type_categories {
+  grid-area: categories;
+  margin-top: -5px;
+  color: var(--ink-6);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body#tools .tag_type_sort {
+  grid-area: sort;
+}
+
+body#tools .tag_type_sort a {
+  padding: 0 4px;
+  color: var(--ink-5);
+}
+
+body#tools .tag_type_sort a:hover,
+body#tools .tag_type_delete_link a:hover {
+  color: var(--fg-accent);
+}
+
+body#tools .tag_type_delete_link {
+  grid-area: delete;
+}
+
+body#tools .tag_type_taglist {
+  grid-area: taglist;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+body#tools .tag_type_taglist:empty {
+  display: none;
+}
+
+body#tools .tag_type_taglist .tag {
+  padding: 1px 7px;
+  color: var(--ink-4);
+  font-size: 0.68rem;
+  background-color: var(--surface-5);
+  border: 1px solid var(--surface-9);
+  border-radius: 2px;
+}
+
+body#tools .tag_type_taglist .tag:hover {
+  color: var(--ink-2);
+  border-color: var(--fg-accent);
+}
+
+body#tools .add_to_tag_type_text {
+  grid-area: add;
+  width: min(280px, 100%);
+}
+
+body#torrents #content .thin:has(> #non_wiki_editing) .box.pad {
+  text-align: left;
+}
+
+body#torrents #content .thin:has(> #non_wiki_editing) .box.pad:has(#coverimage) input[type="text"],
+body#torrents #content .thin:has(> #non_wiki_editing) .box.pad:has(#coverimage) input[type="url"],
+body#torrents #content .thin:has(> #non_wiki_editing) .box.pad:has(#coverimage) textarea {
+  width: min(964px, 100%);
+}
+
+body#torrents #content .thin:has(> #non_wiki_editing) .box.pad:has(#coverimage) textarea {
+  min-height: 340px;
+}
+
+body#torrents #content .thin:has(> #non_wiki_editing) td input[type="text"],
+body#torrents #content .thin:has(> #non_wiki_editing) td input[type="url"] {
+  width: min(560px, 100%);
+}
+
+body#torrents #content .thin:has(> #non_wiki_editing) input.weblinks {
+  min-width: 240px;
 }
 
 /****************************************************************************
