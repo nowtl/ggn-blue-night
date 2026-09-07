@@ -12560,20 +12560,53 @@ body#tools .tag_type_categories {
 
 body#tools .tag_type_sort {
   grid-area: sort;
-}
-
-body#tools .tag_type_sort a {
-  padding: 0 4px;
-  color: var(--ink-5);
-}
-
-body#tools .tag_type_sort a:hover,
-body#tools .tag_type_delete_link a:hover {
-  color: var(--fg-accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 body#tools .tag_type_delete_link {
   grid-area: delete;
+  display: flex;
+  align-items: center;
+}
+
+body#tools .tag_type_sort a,
+body#tools .tag_type_delete_link a {
+  display: block;
+  width: 15px;
+  height: 15px;
+  font-size: 0;
+  background-color: var(--ink-5);
+  transition: background-color 0.2s;
+}
+
+body#tools .tag_type_sort a.order {
+  -webkit-mask: url("assets/icons/ui/arrow-down-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-down-up.svg") center / contain no-repeat;
+}
+
+body#tools .tag_type_sort a.way[data-way="1"] {
+  -webkit-mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-down.svg") center / contain no-repeat;
+}
+
+body#tools .tag_type_sort a.way:not([data-way="1"]) {
+  -webkit-mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/arrow-up.svg") center / contain no-repeat;
+}
+
+body#tools .tag_type_delete_link a {
+  -webkit-mask: url("assets/icons/ui/trash-2.svg") center / contain no-repeat;
+          mask: url("assets/icons/ui/trash-2.svg") center / contain no-repeat;
+}
+
+body#tools .tag_type_sort a:hover {
+  background-color: var(--fg-accent);
+}
+
+body#tools .tag_type_delete_link a:hover {
+  background-color: var(--fg-bad-soft);
 }
 
 body#tools .tag_type_taglist {
@@ -12587,7 +12620,9 @@ body#tools .tag_type_taglist:empty {
   display: none;
 }
 
-body#tools .tag_type_taglist .tag {
+body#tools .tag_type_taglist .tag,
+body#tools #all_tags_list .tag,
+body#tools #untyped_tags .tag {
   padding: 1px 7px;
   color: var(--ink-4);
   font-size: 0.68rem;
@@ -12596,7 +12631,9 @@ body#tools .tag_type_taglist .tag {
   border-radius: 2px;
 }
 
-body#tools .tag_type_taglist .tag:hover {
+body#tools .tag_type_taglist .tag:hover,
+body#tools #all_tags_list .tag:hover,
+body#tools #untyped_tags .tag:hover {
   color: var(--ink-2);
   border-color: var(--fg-accent);
 }
@@ -12604,6 +12641,42 @@ body#tools .tag_type_taglist .tag:hover {
 body#tools .add_to_tag_type_text {
   grid-area: add;
   width: min(280px, 100%);
+}
+
+body#tools #tags_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background-color: rgba(0, 0, 0, 0.72);
+}
+
+body#tools #tags_modal:not(:has(#all_tags_list .tag)) {
+  display: none;
+}
+
+body#tools #all_tags_list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 5px;
+  width: min(760px, calc(100vw - 40px));
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 16px 18px;
+  transform: translate(-50%, -50%);
+  background: var(--surface-3);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  box-shadow: var(--shadow-3);
+}
+
+body#tools #untyped_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 body#torrents #content .thin:has(> #non_wiki_editing) .box.pad {
