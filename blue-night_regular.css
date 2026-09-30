@@ -11791,6 +11791,42 @@ colgroup,
   margin-left: 4px;
 }
 
+#top10 .top10_poster_grid .collage_images:not(.hidden) {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 190px));
+  justify-content: center;
+  gap: 1.5rem 1rem;
+  padding: 0.75rem 0;
+}
+
+#top10 .top10_poster_grid .collage_images li,
+#top10 .top10_poster_grid .collage_images li a {
+  display: block;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+#top10 .top10_poster_grid .collage_images li a img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 190 / 296;
+  margin: 0;
+  object-fit: cover;
+  object-position: top center;
+  box-shadow: 0 0.5rem 1rem rgba(7, 11, 22, 0.55);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#top10 .top10_poster_grid .collage_images li a:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #31517d;
+}
+
 /****************************************************************************
 9.33  Rendered bbcode: hover text, hidden blocks, timeline, tables. */
 .wiki_article span[title]:not([class]),
