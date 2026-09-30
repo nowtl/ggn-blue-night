@@ -12752,6 +12752,7 @@ body#torrents #content .thin:has(> #non_wiki_editing) input.weblinks {
 
 /****************************************************************************
 9.41  Upload form (upload.php). */
+#upload_table #release_title,
 #upload_table #weblinks input,
 #upload_table textarea {
   width: 100%;
