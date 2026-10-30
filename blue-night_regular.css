@@ -3797,33 +3797,6 @@ img[src="static/forums/locked_read.png"] {
 #collections .linkbox > a.brackets,
 #requests .linkbox > a.brackets {
   display: inline-flex;
-  order: -1;
-  align-items: center;
-  padding: 6px 12px;
-  color: var(--on-fill);
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  background: var(--control);
-  border: 1px solid transparent;
-  border-radius: 5px;
-  transition: all 0.3s;
-}
-
-#better .linkbox > a.brackets::before,
-#better .linkbox > a.brackets::after,
-#collections .linkbox > a.brackets::before,
-#collections .linkbox > a.brackets::after,
-#requests .linkbox > a.brackets::before,
-#requests .linkbox > a.brackets::after {
-  content: none;
-}
-
-#better .linkbox > a.brackets:hover,
-#collections .linkbox > a.brackets:hover,
-#requests .linkbox > a.brackets:hover {
-  color: var(--on-fill);
-  background: var(--fg-accent);
 }
 
 #requests .linkbox > a.brackets[id^="bookmarklink_"]::before,
