@@ -9634,7 +9634,8 @@ table.forum_post.forum_unread {
   margin-left: 0.3rem;
 }
 
-strong[class$="_label"] {
+strong[class$="_label"],
+strong[class$="_tag"] {
   box-sizing: border-box;
   display: inline-block;
   padding: 0.2rem 0.6rem;
@@ -9668,7 +9669,9 @@ strong.neutralleech_label {
   background-color: rgba(66, 129, 218, 0.15);
 }
 
-strong.trumpable_label {
+strong.trumpable_label,
+strong#trumpable_tag
+{
   color: var(--cat-conference);
   background-color: rgba(223, 160, 45, 0.15);
 }
